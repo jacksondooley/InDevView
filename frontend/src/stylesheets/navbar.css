@@ -1,0 +1,61 @@
+.nav-bar{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: navy;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid blue;
+}
+
+.nav-bar h1{
+    font-weight: bold;
+}
+
+.nav-bar-buttons a{
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 0.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 1rem;
+    font-weight: 400;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+}
+
+.nav-bar-buttons a:hover{
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.nav-bar-buttons button{
+    background-color: purple;
+    color: white;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 0.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-weight: bold;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+
+.nav-bar-buttons button:hover{
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.signup{
+    background-color: #cddff0;
+    color: black;
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+.login{
+    background-color: #2d898b;
+    color: white;
+    text-decoration: none;
+}

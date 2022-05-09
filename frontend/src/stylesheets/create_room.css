@@ -13,6 +13,7 @@
 
 .entry-code-timer p{
     font-size: 2rem;
+    margin: 1rem;
 }
 
 .entry-code-timer{
@@ -20,13 +21,16 @@
     flex-direction: column;
 }
 
+.entry-code-timer input{
+    border-radius: 5px;
+}
+
 .entry-code{
     background-color: white;
     color: black;
     border-radius: 10px;
     padding: 1rem;
-    margin-top: 0rem;
-    margin-bottom: 5rem;
+    margin: 2rem;
 }
 
 .entry-code-timer input{
@@ -52,5 +56,5 @@
 
 .create-room-container a:hover{
     box-shadow: none;
-    transform: translateY(4px);
+    transform: translateY(2px);
 }
