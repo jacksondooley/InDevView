@@ -8,7 +8,7 @@ const RootReducer = combineReducers({
   session,
   errors,
   questions,
-//   rooms
+  rooms
 });
 
 export default RootReducer;

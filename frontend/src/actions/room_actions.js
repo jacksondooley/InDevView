@@ -21,7 +21,7 @@ export const removeParticipantAction = participantId => ({
 
 export const createRoom = room => dispatch => (
   RoomAPIUtil.createRoom(room)
-    .then(() => dispatch(receiveRoom(room)))
+    .then((newRoom) => dispatch(receiveRoom(newRoom.data)))
 )
 
 export const addParticipant = participant => dispatch => (
