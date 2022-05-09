@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const RoomSchema = new Schema({
     host_id: {
-			type: Number,
+			type: String,
 			require: true
 		},
 		room_key: {
@@ -18,10 +18,10 @@ const RoomSchema = new Schema({
         type: Array,
         required: true
     },
-    date: {
-			type: Date,
-			default: Date.now
-	}
+  //   date: {
+	// 		type: Date,
+	// 		default: Date.now
+	// }
 });
 
-module.exports = Room = mongoose.model('Room', RoomSchema)
+module.exports = Room = mongoose.model('Room', RoomSchema);
