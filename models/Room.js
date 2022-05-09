@@ -14,10 +14,10 @@ const RoomSchema = new Schema({
 			type: Schema.Types.ObjectId,
 			ref: "User"
 		}],
-		questions: [{
-			type: Schema.Types.ObjectId,
-			ref: "Question"
-		}],
+		questions: {
+			type: Array,
+			require: true
+		},
     date: {
 			type: Date,
 			default: Date.now
@@ -25,3 +25,4 @@ const RoomSchema = new Schema({
 });
 
 module.exports = Room = mongoose.model('Room', RoomSchema);
+
