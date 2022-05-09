@@ -1,0 +1,11 @@
+.create-room-container{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.room-description{
+    display: flex;
+    background-color: pink;
+}

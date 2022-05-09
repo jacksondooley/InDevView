@@ -1,5 +1,5 @@
-import { connect } from 'react-redux'
-import Room from './room'
+import { connect } from "react-redux";
+import CreateRoom from "./create_room"
 
 const mapStateToProps = (state) => {
     return {
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Room)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateRoom)
