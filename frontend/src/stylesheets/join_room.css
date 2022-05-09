@@ -39,7 +39,7 @@
 
 .join-room-container button:hover{
     box-shadow: none;
-    transform: translateY(4px);
+    transform: translateY(2px);
 }
 
 .join-room-container a{
@@ -55,5 +55,5 @@
 
 .join-room-container a:hover{
     box-shadow: none;
-    transform: translateY(4px);
+    transform: translateY(2px);
 }
