@@ -8,9 +8,12 @@ const io = new Server(server)
 const db = require('./config/keys').mongoURI
 const mongoose = require('mongoose')
 const users = require("./routes/api/users")
+const questions = require("./routes/api/questions")
+const rooms = require("./routes/api/rooms")
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
+const { join } = require("path")
 
 
 // if (process.env.NODE_ENV === 'production') {
@@ -30,8 +33,9 @@ require('./config/passport')(passport);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-app.use("/api/users", users)
+app.use('/api/rooms', rooms);
+app.use("/api/users", users);
+app.use("/api/questions", questions);
 
 // app.get('/', (req, res) => {
 //   res.sendFile(__dirname + '/app.html');
