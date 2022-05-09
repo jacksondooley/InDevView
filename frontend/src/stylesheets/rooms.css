@@ -1,0 +1,33 @@
+.room-lobby-container{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: royalblue;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+}
+
+.create-room a, .join-room a{
+    border-radius: 5px;
+    color: white;
+    border: 1px solid #eee;
+    padding: 2rem;
+    font-size: 2rem;
+    text-decoration: none;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+    font-weight: bolder;
+}
+
+.create-room a{
+    background-color: tomato;
+}
+
+.join-room a{
+    background-color: goldenrod;
+}
+
+.create-room a:hover, .join-room a:hover{
+    box-shadow: none;
+    transform: translateY(4px);
+}

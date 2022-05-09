@@ -1,4 +1,6 @@
 import React from "react";
+import '../../stylesheets/join_room.css'
+import { Link } from "react-router-dom"
 
 class JoinRoom extends React.Component{
     constructor(props){
@@ -26,10 +28,11 @@ class JoinRoom extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="join-room-container">
                 <p>Please enter a room key:</p>
-                <input type="text" placeholder="Room Key" onChange={this.update('roomKey')}></input>
+                <input type="number" min='0' max='999999'step='0' placeholder="Room Key" onChange={this.update('roomKey')}></input>
                 <button value="Submit" onClick={this.handleSubmit}>Join Room</button>
+                <Link to="/rooms">Back to Lobby</Link>
             </div>
         )
     }

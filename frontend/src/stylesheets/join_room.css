@@ -1,4 +1,4 @@
-.create-room-container{
+.join-room-container{
     display: flex;
     text-align: center;
     justify-content: center;
@@ -8,39 +8,41 @@
     color: white;
     font-weight: bold;
     padding: 1rem;
+    flex-direction: column;
     height: 100vh;
 }
 
-.entry-code-timer p{
-    font-size: 2rem;
+.join-room-container p{
+    font-size: 1.5rem;
 }
 
-.entry-code-timer{
-    display: flex;
-    flex-direction: column;
-}
-
-.entry-code{
-    background-color: white;
-    color: black;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-top: 0rem;
-    margin-bottom: 5rem;
-}
-
-.entry-code-timer input{
-    padding: 1rem;
-    font-size: 1rem;
-}
-
-.coding-questions-form{
-    display: flex;
-    flex-direction: column;
+.join-room-container input{
     margin: 2rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
 }
 
-.create-room-container a{
+.join-room-container button{
+    padding: 1rem;
+    background-color: blueviolet;
+    color: white;
+    font-weight: bolder;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+    cursor: pointer;
+    margin: 1rem;
+}
+
+.join-room-container button:hover{
+    box-shadow: none;
+    transform: translateY(4px);
+}
+
+.join-room-container a{
     text-decoration: none;
     background-color: aquamarine;
     color: rebeccapurple;
@@ -48,9 +50,10 @@
     border-radius: 5px;
     border: 1px solid rgba(0,0,0,0.6);
     box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+    margin: 1rem;
 }
 
-.create-room-container a:hover{
+.join-room-container a:hover{
     box-shadow: none;
     transform: translateY(4px);
 }

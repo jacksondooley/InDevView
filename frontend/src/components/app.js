@@ -8,7 +8,7 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import CreateRoomContainer from './rooms/create_room_container';
 import JoinRoomContainer from './rooms/join_room_container';
-import RoomLobbyContainer from './rooms/room_lobby_container';
+import RoomsContainer from './rooms/rooms_container';
 
 const App = () => (
   <div>
@@ -18,9 +18,9 @@ const App = () => (
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
 
-        <ProtectedRoute exact path="/create" component={CreateRoomContainer}/>
-        <ProtectedRoute exact path="/join" component={JoinRoomContainer}/>
-        <ProtectedRoute exact path ="/lobby" component={RoomLobbyContainer}/>
+        <ProtectedRoute exact path="/rooms/create" component={CreateRoomContainer}/>
+        <ProtectedRoute exact path="/rooms/join" component={JoinRoomContainer}/>
+        <ProtectedRoute exact path ="/rooms" component={RoomsContainer}/>
     </Switch>
   </div>
 );

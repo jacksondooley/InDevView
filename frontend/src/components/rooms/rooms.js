@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom"
+import '../../stylesheets/rooms.css'
 
-class RoomLobby extends React.Component{
+class Rooms extends React.Component{
     constructor(props){
         super(props)
     }
@@ -10,14 +11,14 @@ class RoomLobby extends React.Component{
         return(
             <div className="room-lobby-container">
                 <div className="create-room">
-                    <Link to="/create">Create</Link>
+                    <Link to="/rooms/create">Create a Room</Link>
                 </div>
                 <div className="join-room">
-                    <Link to="/join">Join</Link>
+                    <Link to="/rooms/join">Join a Room</Link>
                 </div>
             </div>
         )
     }
 }
 
-export default RoomLobby;
+export default Rooms;

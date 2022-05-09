@@ -1,7 +1,6 @@
 import React from "react";
 import '../../stylesheets/create_room.css'
-// import '../../stylesheets/index.css'
-// import './create_room.css'
+import { Link } from "react-router-dom"
 
 class CreateRoom extends React.Component{
     constructor(props){
@@ -37,17 +36,15 @@ class CreateRoom extends React.Component{
         return(
             <div className="create-room-container">
                 <form onSubmit={this.handleSubmit}>
-                    <div className="room-description">
-                        <input type="text" placeholder="Please enter a description" onChange={this.update('description')}></input>
-                    </div>
-                    
                     <div className="entry-code-timer">
                         <p>Entry Code:</p>
+                        <p className="entry-code">Placeholder Code</p>
                         <input type="number" min="1" step="1" placeholder="Please enter a time duration" onChange={this.update('duration')}></input>
                     </div>
                     
 
                     <div className="coding-questions-form">
+                        <label>Choose a question</label>
                         <select>
                             {/* Maps each of the questions that are available into an option */}
                         </select>
@@ -65,6 +62,8 @@ class CreateRoom extends React.Component{
                             {/* Shows the user that is the interviewee */}
                         </div>
                     </div>
+
+                    <Link to='/rooms'>Back to Lobby</Link>
                 </form>
             </div>
         )
