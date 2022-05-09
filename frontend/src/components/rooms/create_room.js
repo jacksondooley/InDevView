@@ -6,23 +6,36 @@ class CreateRoom extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            description: '',
+            questions: [],
             duration: '',
-
+            
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    //fetches all questions inorder to display them in form.
     componentDidMount(){
+        // this.props.fetchQuestions()
+    }
 
+    //if rooms changed, when form is submited, redirects user to the created room
+    componentDidUpdate(prevProps, prevState){
+        if (prevProps.rooms !== this.props.rooms) {
+            this.props.history.push(`/rooms/${this.props.rooms.room_key}/lobby`)
+        }
     }
 
     handleSubmit(e){
         e.preventDefault();
-        let room = {
-            description: this.state.description,
-            duration: this.state.duration
+        // let room = {
+        //     description: this.state.description,
+        //     duration: this.state.duration
+        // }
+        const temp_room = {
+            questions: "62797280795905abe470a3f8",
+            user: this.props.currentUser
         }
+        this.props.createRoom(temp_room)
         // creates a room from the method passed down into props
     }
 
@@ -62,9 +75,9 @@ class CreateRoom extends React.Component{
                             {/* Shows the user that is the interviewee */}
                         </div>
                     </div>
-
-                    <Link to='/rooms'>Back to Lobby</Link>
+                    <input type="submit" value="Submit"/>
                 </form>
+                <Link to='/rooms'>Back to Lobby</Link>
             </div>
         )
     }
