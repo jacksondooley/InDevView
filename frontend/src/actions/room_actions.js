@@ -24,10 +24,15 @@ export const createRoom = room => dispatch => (
     .then((newRoom) => dispatch(receiveRoom(newRoom.data)))
 )
 
-export const addParticipant = (roomKey, participant) => dispatch => (
+export const addParticipant = (roomKey, participant) => dispatch => {
+  console.log("----")
+  console.log(roomKey)
+  console.log(participant)
+  console.log("----")
+  return (
   RoomAPIUtil.addParticipant(roomKey, participant)
-    .then(() => dispatch(receiveParticipant(participant)))
-)
+    .then((response) => dispatch(receiveRoom(response.data))))
+}
 
 export const removeParticipant = participantId => dispatch => (
   RoomAPIUtil.removeParticipant(participantId)

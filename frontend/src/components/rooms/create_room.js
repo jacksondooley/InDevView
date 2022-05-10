@@ -42,7 +42,7 @@ class CreateRoom extends React.Component{
             questions: selectedQuestion,
             user: this.props.currentUser
         }
-
+        console.log(temp_room)
         this.props.createRoom(temp_room)
         // creates a room from the method passed down into props
     }

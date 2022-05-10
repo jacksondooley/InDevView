@@ -10,10 +10,10 @@ const RoomSchema = new Schema({
 			type: Number,
 			require: true
 		},
-		participants: [{
-			type: Schema.Types.ObjectId,
-			ref: "User"
-		}],
+		participants: {
+			type: Array,
+			require: true
+		},
 		questions: {
 			type: Array,
 			require: true

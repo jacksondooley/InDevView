@@ -6,12 +6,20 @@ class RoomLobby extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            roomMembers: this.props.room.participants
+            room: this.props.room
         }
     }
 
     componentDidMount(){
-        this.props.fetchRoom(this.props.match.params.room_key)
+        this.props.fetchRoom(this.props.match.params.roomKey)
+        console.log(this.props)
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        console.log(this.props)
+        if (prevProps.room !== this.props.room) {
+            this.setState({ room: this.props.room })
+        }
     }
 
     render(){
@@ -20,18 +28,18 @@ class RoomLobby extends React.Component{
                 <h1>InDevView</h1>
                 <div className='entry-code'>
                     <h2>
-                        Entry Code: {this.props.room.room_key}
+                        Entry Code: {this.props.room?.room_key}
                     </h2>
                 </div>
                 <div className='room-lobby-participants'>
-                    <p>{this.state.roomMembers.length < 2 ? "Waiting on other people..." : "Ready!"}</p>
+                    <p>{this.props.room?.participants.length < 2 ? "Waiting on other people..." : "Ready!"}</p>
                     <ul>
-                        {this.state.roomMembers.map(member => 
+                        {this.props.room?.participants.map(member => 
                             (<li>
-                                {member.handle}
-                                {member._id !== this.props.room.host_id ? 
-                                    <button className='remove-user-button' onClick={this.props.removeParticipant(member._id)}>Remove this user</button>
-                                : ' (You)'}
+                                    {member.handle}
+                                    {member.id !== this.props.room.host_id ? 
+                                        <button className='remove-user-button' onClick={this.props.removeParticipant(member._id)}>Remove this user</button>
+                                    : ' (You)'}
                                 {/* Maybe show camera feeds here? */}
                             </li>)
                         )}
@@ -39,7 +47,7 @@ class RoomLobby extends React.Component{
                 </div>
                 <div className='room-lobby-buttons'>
                     {
-                        this.state.roomMembers.length > 1 && this.props.currentUser._id === this.props.room.host_id ?
+                        this.state.roomMembers?.length > 1 && this.props.currentUser._id === this.props.room.host_id ?
                         <Link className='ready-button' to={`/rooms/${this.props.room.room_key}/interview`}>Ready!</Link> :
                         <Link className='not-ready-button' onClick={(e) => e.preventDefault()}>Not Ready</Link>
                     }

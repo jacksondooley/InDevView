@@ -4,9 +4,9 @@ const User = require("../models/User");
 
 const createRoom = (req, res) => {
 	const newRoom = new Room({
-			host_id: req.user.id,
+			host_id: req.body.user.id,
 			room_key: Math.floor(100000 + Math.random() * 900000),
-			participants: [req.user],
+			participants: [req.body.user],
 			questions: req.body.questions
 	});
 
@@ -28,10 +28,11 @@ const fetchRoom = (req, res) => {
 }
 
 const addParticipant = (req, res) => {
+	console.log(req.body)
 	Room.find({ room_key: req.params.room_key }, (err, targetRoom) => {
-		if (err) {console.log(`this room does not exist`)}
+		if (err) {console.log(err)}
 		else {
-				targetRoom[0].participants.push(req.body.user)
+				targetRoom[0].participants.push(req.body)
 				targetRoom[0].save();
 				res.json(targetRoom)
 		}

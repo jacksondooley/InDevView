@@ -4,9 +4,9 @@ export const createRoom = (roomData) => {
   return axios.post('/api/rooms/create', roomData)
 }
 
-export const addParticipant = (roomKey, userData) => {
+export const addParticipant = (roomKey, user) => {
   console.log(roomKey)
-  return axios.patch(`/api/rooms/${roomKey}/join`, userData)
+  return axios.patch(`/api/rooms/${roomKey}/join`, user)
 }
 
 export const removeParticipant = (userId) => {

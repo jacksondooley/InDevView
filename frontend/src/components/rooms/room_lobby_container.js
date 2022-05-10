@@ -5,7 +5,7 @@ import { addParticipant, removeParticipant, fetchRoom } from "../../actions/room
 const mapStateToProps = (state) => {
     return {
         currentUser: state.session.user,
-        room: state.rooms
+        room: state.rooms[0]
     }
 }
 
