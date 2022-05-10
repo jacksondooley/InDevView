@@ -15,15 +15,44 @@ const createQuestion = (req, res) => {
 			.then((newQuestion) => res.json(newQuestion));
 };
 
-const fetchQuestions = (req, res) => {
+const fetchAllQuestions = (req, res) => {
 	Question.find()
 		.then(questions => res.json(questions))
 		.catch(err => res.status(404).json({ noquestionsfound: 'No questions found'}))
 }
 
+const fetchQuestion = (req, res) => {
+
+	Question.find({ _id: req.body.questionId }, (err, question) => {
+		if (err) {console.log(`this question does not exist`)}
+		else {
+			if (!question.length) {console.log(`question not found`)}
+			else {
+				res.json(question)
+			}
+		}
+	})
+}
+
+const destroyQuestion = (req, res) => {
+	Question.deleteOne({ _id: req.body.questionId }, (err, destroyedquestion) => {
+		console.log(`req: ${req}`);
+		console.log(`req.body.questionId: ${req.body.questionId}`)
+		if (err) {console.log(`could not delete question`)}
+		else {
+			console.log(`question successfully destroyed`)
+			res.json(
+				destroyedquestion
+			)
+		}
+	})
+}
+
 module.exports = {
-    createQuestion,
-	fetchQuestions
+	createQuestion,
+	fetchAllQuestions,
+	fetchQuestion,
+	destroyQuestion
 };
 
 // const fetchRoom = (req, res) => {
