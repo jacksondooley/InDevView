@@ -13,7 +13,7 @@ class JoinRoom extends React.Component{
 
     componentDidUpdate(prevProps) {
         if (this.props.rooms.length !== prevProps.rooms.length) {
-                this.props.history.push(`rooms/${this.state.roomKey}/lobby`)
+                this.props.history.push(`/rooms/${this.state.roomKey}/lobby`)
             }
     }
 
