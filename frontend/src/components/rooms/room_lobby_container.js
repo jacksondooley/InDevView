@@ -4,15 +4,15 @@ import { addParticipant, removeParticipant } from "../../actions/room_actions"
 
 const mapStateToProps = (state) => {
     return {
-        currentUser: state.session.id,
-        room: state.room
+        currentUser: state.session.user,
+        room: state.rooms
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         addParticipant: (participant) => dispatch(addParticipant(participant)),
-        removeParticipant: (participantId) => dispatch(removeParticipant(participantId)),
+        removeParticipant: (participantId) => dispatch(removeParticipant(participantId)) 
     }
 }
 
