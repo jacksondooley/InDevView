@@ -39,7 +39,7 @@ class NavBar extends React.Component {
   render() {
       return (
         <div className='nav-bar'>
-            <h1>InDevView</h1>
+           <Link className='home-button' to="/"><h1>InDevView</h1></Link>
             <Timer/>
             { this.getLinks() }
         </div>

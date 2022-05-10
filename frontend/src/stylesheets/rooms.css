@@ -9,7 +9,7 @@
 }
 
 .create-room a, .join-room a{
-    border-radius: 5px;
+    border-radius: 50px;
     color: white;
     border: 1px solid #eee;
     padding: 2rem;

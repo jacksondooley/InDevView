@@ -73,4 +73,7 @@
     color: white;
     padding: 0.25rem;
     border: 1px solid #eee;
+    border-radius: 50%;
+    margin: 1rem;
+    cursor: pointer;
 }
