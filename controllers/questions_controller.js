@@ -15,8 +15,15 @@ const createQuestion = (req, res) => {
 			.then((newQuestion) => res.json(newQuestion));
 };
 
+const fetchQuestions = (req, res) => {
+	Question.find()
+		.then(questions => res.json(questions))
+		.catch(err => res.status(404).json({ noquestionsfound: 'No questions found'}))
+}
+
 module.exports = {
-    createQuestion
+    createQuestion,
+	fetchQuestions
 };
 
 // const fetchRoom = (req, res) => {
