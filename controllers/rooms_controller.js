@@ -27,34 +27,37 @@ const addParticipant = (req, res) => {
 	Room.find({ room_key: req.params.room_key }, (err, targetRoom) => {
 		if (err) {console.log(`this room does not exist`)}
 		else {
-			// const index = targetRoom.participants.indexOf(req.user.id);
-			// if (index > -1) {
 				targetRoom[0].participants.push(req.body.user)
-				// targetRoom.save();
-				
+				targetRoom[0].save();
 				res.json(targetRoom)
-				// console.log(targetRoom[0].participants)
-					// targetRoom.participants.push(req.body.user);
-			// } else {
-			// 	console.log(`You can't join a room twice!`)
-			// }
-			// targetRoom.save()
 		}
 	})
 }
 
-// const removeUserFromGroup = (req, res) => {
-// 	Group.findById(req.params.groupId, (err, groupResult) => {
-// 			const index = groupResult.users.indexOf(req.user.id);
-// 			if (index > -1) {
-// 					groupResult.users.splice(index, 1);
-// 			}
-// 		}
-// 	)
+const removeParticipant = (req, res) => {
+	Room.find({ room_key: req.params.room_key }, (err, targetRoom) => {
+		if (err) {console.log(`this room does not exist`)}
+		else {
+			const index = targetRoom[0].participants.indexOf(req.body.userId);
+			if (index > -1) {
+					targetRoom[0].participants.splice(index, 1);
+					targetRoom[0].save()
+					res.json(targetRoom)
+			} else {
+				console.log("User not in room")
+			}
+		}
+	})
+}
+
+// const destroyRoom = (req, res) => {
+
 // }
 
 module.exports = {
 		createRoom,
 		fetchRoom,
-		addParticipant
+		addParticipant,
+		removeParticipant
 };
+
