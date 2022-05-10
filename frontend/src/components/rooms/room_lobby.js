@@ -11,7 +11,7 @@ class RoomLobby extends React.Component{
     }
 
     componentDidMount(){
-        this.props.addParticipant(this.props.currentUser)
+        this.props.fetchRoom(this.props.match.params.room_key)
     }
 
     render(){
