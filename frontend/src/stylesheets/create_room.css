@@ -16,18 +16,29 @@
 .create-room-timer{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .create-room-timer input{
     border-radius: 5px;
     padding: 1rem;
     font-size: 1rem;
+    width: 150%;
 }
 
 .coding-questions-form{
     display: flex;
     flex-direction: column;
     margin: 2rem;
+    margin-bottom: 1rem;
+}
+
+.coding-questions-form label{
+    margin-bottom: 1rem;
+}
+
+.coding-questions-form select{
+    height: 2rem;
 }
 
 .create-room-container a{

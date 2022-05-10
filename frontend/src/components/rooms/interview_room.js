@@ -47,12 +47,15 @@ class InterviewRoom extends React.Component{
                     <div>
                         These are the live camera feeds
                         {/* Live camera feeds go here */}
+                        This is where the live chat goes
+                        {/* Live chat goes here */}
                     </div>
                 </div>
                 <div className="interview-left-side-bar">
                     <div>
-                        This is where the live chat goes
-                        {/* Live chat goes here */}
+                        Test cases go here
+                        {/* test cases go here */}
+                        {/* Notes for interviewer are here */}
                     </div>
                     
                 </div>
