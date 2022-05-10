@@ -53,9 +53,17 @@ let interval;
 
 io.on("connection", (socket) => {
     console.log("New client connected");
+    console.log(socket.id)
     if (interval) {
         clearInterval(interval)
     }
+
+    socket.emit('serverMessage', "Connected to Backend");
+    socket.emit('serverMessage', "User has connected");
+
+    socket.on('send_message', (data) => {
+        socket.emit("receive_message", data);
+    })
     interval = setInterval(() => getApiandEmit(socket, 1000));
     socket.on("disconnect", () => {
         console.log("Client disconnected");

@@ -11,6 +11,7 @@ import JoinRoomContainer from './rooms/join_room_container';
 import RoomsContainer from './rooms/rooms_container';
 import RoomLobbyContainer from './rooms/room_lobby_container';
 import InterviewRoomContainer from './rooms/interview_room_container'
+import Chat from './chat';
 
 const App = () => (
   <div>
@@ -25,6 +26,7 @@ const App = () => (
         <ProtectedRoute exact path ="/rooms" component={RoomsContainer}/>
         <ProtectedRoute exact path="/rooms/:roomKey/lobby" component={RoomLobbyContainer}/>
         <ProtectedRoute exact path="/rooms/:roomKey/interview" component={InterviewRoomContainer}/>
+        <ProtectedRoute exact path="/chat" component={Chat} />
     </Switch>
   </div>
 );
