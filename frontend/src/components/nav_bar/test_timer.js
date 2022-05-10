@@ -4,6 +4,7 @@ const ENDPOINT = "http://127.0.0.1:5002"
 
 function Timer() {
   const [response, setResponse] = useState("");
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT);
@@ -14,10 +15,13 @@ function Timer() {
     return () => socket.disconnect();
   }, []);
 
+
   return (
-    <p>
-      It's <time dateTime={response}>{response}</time>
-    </p>
+    <>
+      <p>
+        It's <time dateTime={response}>{response}</time>
+      </p>
+    </>
   )
 }
 

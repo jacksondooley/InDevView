@@ -7,7 +7,10 @@ const roomsReducer = (state = {}, action) => {
     case RECEIVE_ROOM:
       return action.room
     case RECEIVE_PARTICIPANT:
-      dupState.rooms.participants[action.participant.id] = action.participant
+      console.log(Object.values(dupState))
+      const tempState = Object.values(dupState)[0]
+      tempState.participants.push(action.participant.id)
+      return tempState
     case REMOVE_PARTICIPANT:
       delete dupState.participants.action.participantId
       return dupState

@@ -24,8 +24,8 @@ export const createRoom = room => dispatch => (
     .then((newRoom) => dispatch(receiveRoom(newRoom.data)))
 )
 
-export const addParticipant = participant => dispatch => (
-  RoomAPIUtil.addParticipant(participant)
+export const addParticipant = (roomKey, participant) => dispatch => (
+  RoomAPIUtil.addParticipant(roomKey, participant)
     .then(() => dispatch(receiveParticipant(participant)))
 )
 

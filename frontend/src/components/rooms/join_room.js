@@ -11,13 +11,19 @@ class JoinRoom extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    componentDidMount(){
-
+    componentDidUpdate(prevProps) {
+        if (this.props.rooms.length !== prevProps.rooms.length) {
+                this.props.history.push(`rooms/${this.state.roomKey}/lobby`)
+            }
     }
 
     handleSubmit(e){
         e.preventDefault();
         // based down through props, join a room based upon this.state.roomKey
+        console.log(this.state.roomKey)
+        this.props.fetchRoom(this.state.roomKey)
+            .then(() => this.props.addParticipant(this.state.roomKey, this.props.currentUser))
+       
     }
 
     update(field){
@@ -30,7 +36,7 @@ class JoinRoom extends React.Component{
         return(
             <div className="join-room-container">
                 <p>Please enter a room key:</p>
-                <input type="number" min='0' max='999999'step='0' placeholder="Room Key" onChange={this.update('roomKey')}></input>
+                <input type="number" placeholder="Room Key" onChange={this.update('roomKey')}></input>
                 <button value="Submit" onClick={this.handleSubmit}>Join Room</button>
                 <Link to="/rooms">Back to Lobby</Link>
             </div>
