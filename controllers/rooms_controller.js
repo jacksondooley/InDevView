@@ -18,7 +18,11 @@ const fetchRoom = (req, res) => {
 	Room.find({ room_key: req.params.room_key }, (err, room) => {
 		if (err) {console.log(`this room does not exist`)}
 		else {
-			res.json(room)
+			if (!room.length)  {
+				res.json(`room does not exist`)
+			} else {
+				res.json(room)
+			}
 		}
 	})
 }
@@ -50,14 +54,25 @@ const removeParticipant = (req, res) => {
 	})
 }
 
-// const destroyRoom = (req, res) => {
-
-// }
+const destroyRoom = (req, res) => {
+	Room.deleteOne({ _id: req.body.roomId }, (err, destroyedRoom) => {
+		console.log(`req: ${req}`);
+		console.log(`req.body.roomId: ${req.body.roomId}`)
+		if (err) {console.log(`could not delete room`)}
+		else {
+			console.log(`room successfully destroyed`)
+			res.json(
+				destroyedRoom
+			)
+		}
+	})
+}
 
 module.exports = {
 		createRoom,
 		fetchRoom,
 		addParticipant,
-		removeParticipant
+		removeParticipant,
+		destroyRoom
 };
 
