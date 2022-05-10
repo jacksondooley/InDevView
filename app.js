@@ -1,10 +1,9 @@
 const express = require("express")
 const app = express()
-const http = require('http');
-const server = http.createServer(app);
-const { Server } = require("socket.io")
-const io = new Server(server)
 
+
+
+// backend imports
 const db = require('./config/keys').mongoURI
 const mongoose = require('mongoose')
 const users = require("./routes/api/users")
@@ -38,6 +37,40 @@ app.use('/api/rooms', rooms);
 app.use("/api/users", users);
 app.use("/api/questions", questions);
 
+// websocket import
+const index = require('./routes/index')
+app.use("/index", index)
+const http = require('http');
+const server = http.createServer(app)
+const socketIo = require("socket.io")
+const io = socketIo(server, {
+    cors: {
+        origin: '*'
+    }
+});
+
+let interval;
+
+io.on("connection", (socket) => {
+    console.log("New client connected");
+    if (interval) {
+        clearInterval(interval)
+    }
+    interval = setInterval(() => getApiandEmit(socket, 1000));
+    socket.on("disconnect", () => {
+        console.log("Client disconnected");
+        clearInterval(interval)
+    })
+})
+const getApiandEmit = socket => {
+    const response = new Date();
+    socket.emit("FromAPI", response)
+}
+
+const port = process.env.PORT || 5001;
+
+server.listen(5002, () => console.log(`listenting on post ${port}`));
+
 // app.get('/', (req, res) => {
 //   res.sendFile(__dirname + '/app.html');
 // });
@@ -56,6 +89,6 @@ app.use("/api/questions", questions);
 //   console.log('listening on *:3000');
 // })
 
-const port = process.env.PORT || 5001;
+
 
 app.listen(port, console.log(`Server is running on port ${port}`));

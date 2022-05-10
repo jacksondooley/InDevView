@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import '../../stylesheets/navbar.css'
+import Timer from './test_timer';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class NavBar extends React.Component {
       return (
         <div className='nav-bar'>
             <h1>InDevView</h1>
+            <Timer/>
             { this.getLinks() }
         </div>
       );

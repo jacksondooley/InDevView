@@ -33,3 +33,8 @@ export const removeParticipant = participantId => dispatch => (
   RoomAPIUtil.removeParticipant(participantId)
     .then(() => dispatch(removeParticipantAction(participantId)))
 )
+
+export const fetchRoom = roomKey => dispatch => (
+  RoomAPIUtil.fetchRoom(roomKey)
+    .then((response) => dispatch(receiveRoom(response.data)))
+)
