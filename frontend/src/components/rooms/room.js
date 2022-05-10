@@ -11,9 +11,35 @@ class Room extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="room-container">
+                <h1>
+                    {/* Room key to share */}
+                    {this.props.room.room_key}
+                </h1>
                 <div>
-                    {/* Code editor goes here */}
+                    {/* Timer goes here */}
+                </div>
+                <div>
+                    <div>
+                        <ul>
+                            {/* Code question goes here */}
+                            {this.props.room.questions.forEach(question => {
+                                <li>
+                                    <div>
+                                        <h1>{question.title}</h1>
+                                        <p>{question.difficulty}</p>
+                                    </div>
+
+                                    <div>
+                                        {question.description}
+                                    </div>
+                                </li>
+                            })}
+                        </ul>
+                    </div>
+                    <div>
+                        {/* Code editor goes here */}
+                    </div>
                 </div>
                 <div>
                     <div>

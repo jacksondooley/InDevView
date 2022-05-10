@@ -3,7 +3,8 @@ import Room from './room'
 
 const mapStateToProps = (state) => {
     return {
-        currentUser: state.session.user
+        currentUser: state.session.user,
+        room: state.room
     }
 }
 
