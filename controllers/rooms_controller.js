@@ -13,15 +13,18 @@ const createRoom = (req, res) => {
 			.then((newRoom) => res.json(newRoom));
 };
 
-module.exports = {
-    createRoom
-};
 
 const fetchRoom = (req, res) => {
 	const fetchedRoom = Room.find({ room_key: req.params.room_key }, (err, room) => {
 		if (err) {console.log(`error in fetchRoom: `, err)}
 		else {
-			(fetchedRoom) => res.json(fetchedRoom)
+			res.json(fetchedRoom)
 		}
 	})
 }
+
+
+module.exports = {
+		createRoom,
+		fetchRoom
+};
