@@ -1,5 +1,6 @@
 import React from "react";
 import '../../stylesheets/interview_room.css'
+import EditorContainer from "../editor/editor_container";
 
 class InterviewRoom extends React.Component{
     constructor(props){
@@ -15,9 +16,10 @@ class InterviewRoom extends React.Component{
             <div className="interview-room-container">
                 <div className="interview-room-header">
                     <h1>
-                        {this.props.room[0].room_key}
+                        Entry Code: {this.props.room[0].room_key}
                     </h1>
                     {/* Timer goes here */}
+                    <p>Timer</p>
                 </div>
                 <div className="interview-room-body">
                     <div>
@@ -41,20 +43,23 @@ class InterviewRoom extends React.Component{
                     </div>
                     <div>
                         {/* Code editor goes here */}
+                        <EditorContainer/>
                     </div>
                 </div>
                 <div className="interview-right-side-bar">
                     <div>
                         These are the live camera feeds
                         {/* Live camera feeds go here */}
-                        This is where the live chat goes
-                        {/* Live chat goes here */}
+                        
                     </div>
                 </div>
                 <div className="interview-left-side-bar">
                     <div>
-                        Test cases go here
+                        Test cases go here.
                         {/* test cases go here */}
+                        This is where the live chat tab goes.
+                        {/* Live chat goes here */}
+                        Also here is notes tab.
                         {/* Notes for interviewer are here */}
                     </div>
                     

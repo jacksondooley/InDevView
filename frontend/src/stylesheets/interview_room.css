@@ -18,31 +18,28 @@
     grid-area: header; 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     text-align: center;
     font-weight: bold;
     font-size: 3rem;
-    border: 1px solid blue;
 }
 
 .interview-room-footer { 
     grid-area: footer; 
-    border: 1px solid blue;
 }
 
 .interview-left-side-bar { 
     grid-area: left-side-bar; 
-    border: 1px solid blue;
+    padding: 1rem;
 }
 
 .interview-right-side-bar { 
     grid-area: right-side-bar; 
-    border: 1px solid blue;
+    padding: 1rem;
 }
 
 .interview-room-body { 
     grid-area: body; 
-    border: 1px solid blue;
     text-align: center;
     padding: 1rem;
 }
@@ -53,6 +50,7 @@
     align-items: center;
     background-color: navy;
     border-radius: 5px;
+    border: 1px solid blue;
 }
 
 .interview-room-body h2{
