@@ -13,15 +13,16 @@ const createRoom = (req, res) => {
 			.then((newRoom) => res.json(newRoom));
 };
 
-module.exports = {
-    createRoom
-};
-
 const fetchRoom = (req, res) => {
-	const fetchedRoom = Room.find({ room_key: req.params.room_key }, (err, room) => {
-		if (err) {console.log(`error in fetchRoom: `, err)}
+	Room.find({ room_key: req.params.room_key }, (err, room) => {
+		if (err) {console.log(`this room does not exist`)}
 		else {
-			(fetchedRoom) => res.json(fetchedRoom)
+			res.json(room)
 		}
 	})
 }
+
+module.exports = {
+		createRoom,
+		fetchRoom
+};
