@@ -9,7 +9,7 @@ class Rooms extends React.Component{
 
     render(){
         return(
-            <div className="room-lobby-container">
+            <div className="rooms-container">
                 <div className="create-room">
                     <Link to="/rooms/create">Create a Room</Link>
                 </div>

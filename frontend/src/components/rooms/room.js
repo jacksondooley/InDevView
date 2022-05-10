@@ -23,8 +23,8 @@ class Room extends React.Component{
                     <div>
                         <ul>
                             {/* Code question goes here */}
-                            {this.props.room.questions.forEach(question => {
-                                <li>
+                            {this.props.room.questions.forEach(question => 
+                                (<li>
                                     <div>
                                         <h1>{question.title}</h1>
                                         <p>{question.difficulty}</p>
@@ -33,8 +33,8 @@ class Room extends React.Component{
                                     <div>
                                         {question.description}
                                     </div>
-                                </li>
-                            })}
+                                </li>)
+                            )}
                         </ul>
                     </div>
                     <div>

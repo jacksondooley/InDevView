@@ -61,9 +61,7 @@ class CreateRoom extends React.Component{
         return(
             <div className="create-room-container">
                 <form onSubmit={this.handleSubmit}>
-                    <div className="entry-code-timer">
-                        <p>Entry Code:</p>
-                        <p className="entry-code">Placeholder Code</p>
+                    <div className="create-room-timer">
                         <input type="number" min="1" step="1" placeholder="Please enter a time duration" onChange={this.update('duration')}></input>
                     </div>
                     
@@ -96,7 +94,7 @@ class CreateRoom extends React.Component{
                     </div>
                     <input type="submit" value="Submit"/>
                 </form>
-                <Link to='/rooms'>Back to Lobby</Link>
+                <Link to='/rooms'>Back to Rooms</Link>
             </div>
         )
     }
