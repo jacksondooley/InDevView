@@ -30,8 +30,8 @@ class RoomLobby extends React.Component{
                             (<li>
                                 {member.handle}
                                 {member._id !== this.props.room.host_id ? 
-                                    <button onClick={this.props.removeParticipant(member._id)}>X</button>
-                                : ''}
+                                    <button className='remove-user-button' onClick={this.props.removeParticipant(member._id)}>Remove this user</button>
+                                : ' (You)'}
                                 {/* Maybe show camera feeds here? */}
                             </li>)
                         )}
@@ -40,7 +40,7 @@ class RoomLobby extends React.Component{
                 <div className='room-lobby-buttons'>
                     {
                         this.state.roomMembers.length > 1 && this.props.currentUser._id === this.props.room.host_id ?
-                        <Link className='ready-button' to={`/rooms/${this.props.room.room_key}`}>Ready!</Link> :
+                        <Link className='ready-button' to={`/rooms/${this.props.room.room_key}/interview`}>Ready!</Link> :
                         <Link className='not-ready-button' onClick={(e) => e.preventDefault()}>Not Ready</Link>
                     }
                     

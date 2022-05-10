@@ -10,7 +10,7 @@ import CreateRoomContainer from './rooms/create_room_container';
 import JoinRoomContainer from './rooms/join_room_container';
 import RoomsContainer from './rooms/rooms_container';
 import RoomLobbyContainer from './rooms/room_lobby_container';
-import RoomContainer from './rooms/room_container'
+import InterviewRoomContainer from './rooms/interview_room_container'
 
 const App = () => (
   <div>
@@ -24,7 +24,7 @@ const App = () => (
         <ProtectedRoute exact path="/rooms/join" component={JoinRoomContainer}/>
         <ProtectedRoute exact path ="/rooms" component={RoomsContainer}/>
         <ProtectedRoute exact path="/rooms/:roomKey/lobby" component={RoomLobbyContainer}/>
-        <ProtectedRoute exact path="/rooms/:roomKey" component={RoomContainer}/>
+        <ProtectedRoute exact path="/rooms/:roomKey/interview" component={InterviewRoomContainer}/>
     </Switch>
   </div>
 );

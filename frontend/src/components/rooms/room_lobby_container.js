@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import RoomLobby from "./room_lobby"
-import { addParticipant, removeParticipant } from "../../actions/room_actions"
+import { addParticipant, removeParticipant, fetchRoom } from "../../actions/room_actions"
 
 const mapStateToProps = (state) => {
     return {
@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addParticipant: (participant) => dispatch(addParticipant(participant)),
-        removeParticipant: (participantId) => dispatch(removeParticipant(participantId)) 
+        removeParticipant: (participantId) => dispatch(removeParticipant(participantId)) ,
+        fetchRoom: (roomKey) => dispatch(fetchRoom(roomKey))
     }
 }
 
