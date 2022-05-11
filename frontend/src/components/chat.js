@@ -36,6 +36,7 @@ const Chat = (props) => {
     e.preventDefault()
     socket.emit('sendRoomMsgClient', { message: message, roomKey: roomKey, handle: handle});
     console.log("client message sent")
+    setMessage("")
   }
 
   return (
@@ -53,7 +54,7 @@ const Chat = (props) => {
           })}
         </ul>
       </div>
-      <input type="text" onChange={(e) => setMessage(e.target.value)}/>
+      <input type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>
       <button onClick={sendMessage}>Send</button>
     </div>
   )

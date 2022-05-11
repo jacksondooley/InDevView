@@ -46,6 +46,7 @@ const port = process.env.PORT || 5001;
 const server = app.listen(port, () => console.log(`Server is running on port ${port}`));
 const io = require('socket.io')(server, { cors: {origin: "*"}});
 const { fetchRoom } = require("./controllers/rooms_controller");
+const Room = require("./models/Room");
 
 let interval;
 
@@ -77,6 +78,12 @@ io.on("connection", (socket) => {
     socket.on("leaveRoom", (data) => {
         console.log(`${data.handle} has left ${data.roomKey}`)
         socket.leave(data.roomKey)
+    })
+
+    socket.on("fetchRoom", (data) => {
+        console.log(data)
+        Room.find({ room_key: data.roomKey})
+            .then(res => io.to(data.roomKey).emit("fetchRoomRes", res))
     })
 
     socket.on("disconnect", () => {
