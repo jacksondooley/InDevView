@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export const createRoom = (roomData) => {
   return axios.post('/api/rooms/create', roomData)
 }
@@ -16,3 +17,4 @@ export const removeParticipant = (userId) => {
 export const fetchRoom = (roomKey) => {
   return axios.get(`/api/rooms/${roomKey}`)
 }
+

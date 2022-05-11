@@ -9,7 +9,7 @@ const createRoom = (req, res) => {
 			participants: [req.body.user],
 			questions: req.body.questions
 	});
-
+	
 	newRoom.save()
 			.then((newRoom) => res.json(newRoom));
 };

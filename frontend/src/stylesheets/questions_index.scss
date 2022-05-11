@@ -13,9 +13,15 @@
 }
 
 .create-question-sidebar-container {
+	padding: 30px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	position: sticky;
+  bottom: 0;
+  align-self: flex-end;
+	box-shadow: 0 20px 80px $blue-500;
+
 }
 
 .create-problems-header {
@@ -36,12 +42,12 @@
 .create-question-button {
 	margin: 20px;
 	font-family: $poppins;
-	position:sticky;
 	font-size: 20px;
 	font-weight: lighter;
 	top: 5%;
 	height: 50px;
 	width: 20%;
+	min-width: 300px;
 	color: $font-color;
 	letter-spacing: 2px;
 	background-color: $blue-900;
@@ -60,7 +66,8 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	text-shadow: $text-shadow
+	text-shadow: $text-shadow;
+	height: fit-content
 }
 
 .problems-index-header {
@@ -83,7 +90,7 @@
 	border: 2px solid $blue-700;
 	margin: 5px;
 	height: 95%;
-	width: 16vw;
+	width: 250px;
 	font-family: $poppins;
 	border-radius: 5px;
 	display: flex;
@@ -198,13 +205,14 @@
 	height: 100%;
 	width: 90%;
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
 	font-style: italic;
 	font-weight: 400;
 	color: $blue-500;
 	font-size: 14px;
 	line-height: 1.15;
-	text-align: center;
-	text-overflow: ellipsis;
+	text-align: left;
+	text-overflow:ellipsis;
+	overflow: scroll;
 }
