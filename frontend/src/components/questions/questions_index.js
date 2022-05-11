@@ -32,6 +32,17 @@ class QuestionsIndex extends React.Component{
         }
     }
 
+    renderDescription(description) {
+        if (description.length < 120) {
+            return description
+        } else {
+            let chars = description.split("");
+            return chars.slice(0, 120).join("") + "..."
+        }
+    }
+
+    
+
     render(){
         return(
             <div className="questions-index-page-container">
@@ -52,7 +63,7 @@ class QuestionsIndex extends React.Component{
                                 </header>
                                 <div className="questions-list-info-container">
                                     <div>
-                                        {question.description}
+                                        {this.renderDescription(question.description)}
                                     </div>
                                 </div>
                             </button>
@@ -69,7 +80,7 @@ class QuestionsIndex extends React.Component{
                         Create question
                     </button>
                     <div className="create-problem-description">
-                        Create a new question to give coders new challenges. Get creative!
+                        Create a question to give coders new challenges. Get creative!
                     </div>
                 </div>
             </div>
