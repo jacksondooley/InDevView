@@ -44,7 +44,7 @@ app.use("/index", index)
 
 const port = process.env.PORT || 5001;
 const server = app.listen(port, () => console.log(`Server is running on port ${port}`));
-const io =require('socket.io')(server, { cors: {origin: "*"}});
+const io = require('socket.io')(server, { cors: {origin: "*"}});
 
 
 let interval;
@@ -52,27 +52,19 @@ let interval;
 io.on("connection", (socket) => {
     console.log("New client connected");
     console.log(socket.id)
-    if (interval) {
-        clearInterval(interval)
-    }
 
     socket.emit('serverMessage', "Connected to Backend");
     socket.broadcast.emit('serverMessage', "User has connected");
 
     socket.on('send_message', (data) => {
         console.log(data)
-        socket.broadcast.emit("receive_message", data);
+        io.emit("receive_message", data);
     })
-    interval = setInterval(() => getApiandEmit(socket, 1000));
+
     socket.on("disconnect", () => {
         console.log("Client disconnected");
-        clearInterval(interval)
     })
 })
-const getApiandEmit = socket => {
-    const response = new Date();
-    socket.emit("FromAPI", response)
-}
 
 
 
