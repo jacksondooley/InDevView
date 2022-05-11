@@ -11,6 +11,7 @@ class JoinRoom extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+
     componentDidUpdate(prevProps) {
         if (this.props.rooms.length !== prevProps.rooms.length) {
                 this.props.history.push(`/rooms/${this.state.roomKey}/lobby`)

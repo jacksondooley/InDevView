@@ -3,6 +3,7 @@ import * as RoomAPIUtil from '../util/room_api_util'
 export const RECEIVE_ROOM = "RECEIVE_ROOM"
 export const RECEIVE_PARTICIPANT = "RECEIVE_PARTICIPANT"
 export const REMOVE_PARTICIPANT = "REMOVE_PARTICIPANT"
+export const REMOVE_ROOM = "REMOVE_ROOM"
 
 export const receiveRoom = room => ({
   type: RECEIVE_ROOM,
@@ -17,6 +18,10 @@ export const receiveParticipant = participant => ({
 export const removeParticipantAction = participantId => ({
   type: REMOVE_PARTICIPANT,
   participantId
+})
+
+export const removeRoom = () => ({
+  type: REMOVE_ROOM
 })
 
 export const createRoom = room => dispatch => (

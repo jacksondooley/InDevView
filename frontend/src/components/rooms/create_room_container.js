@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import CreateRoom from "./create_room"
-import { createRoom } from "../../actions/room_actions";
+import { createRoom, removeRoom } from "../../actions/room_actions";
 import { fetchQuestions } from "../../actions/question_actions";
 
 const mapStateToProps = (state) => {
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         createRoom: roomData => dispatch(createRoom(roomData)),
-        fetchQuestions: () => dispatch(fetchQuestions())
+        fetchQuestions: () => dispatch(fetchQuestions()),
     }
 }
 

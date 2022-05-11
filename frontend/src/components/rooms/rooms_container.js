@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { removeRoom } from '../../actions/room_actions'
 import Rooms from './rooms'
 
 const mapStateToProps = (state) => {
@@ -9,7 +10,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        removeRoom: () => dispatch(removeRoom())
     }
 }
 

@@ -12,11 +12,11 @@ const Chat = (props) => {
   //sets roomKey from props or global
   const roomKey = props.roomKey || 'global'
 
-  const userHandle = props.handle || 'user'
+  const handle = currentUser.handle || 'user'
   
   // disconnects from socket when component will unmount
   useEffect(() => {
-    socket.emit("joinRoom", { roomKey: roomKey, userHandle: userHandle})
+    socket.emit("joinRoom", { roomKey: roomKey, handle: handle})
 
     socket.on("userJoinedRoom", (data) => console.log(data))
 
@@ -34,7 +34,8 @@ const Chat = (props) => {
 
   const sendMessage = (e) => {
     e.preventDefault()
-    socket.emit('sendRoomMsgClient', { message: message, roomKey: roomKey, handle: currentUser.handle});
+    socket.emit('sendRoomMsgClient', { message: message, roomKey: roomKey, handle: handle});
+    console.log("client message sent")
   }
 
   return (

@@ -7,6 +7,10 @@ class Rooms extends React.Component{
         super(props)
     }
 
+    componentDidMount() {
+        this.props.removeRoom()
+    }
+
     render(){
         return(
             <div className="rooms-container">

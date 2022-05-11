@@ -45,7 +45,7 @@ app.use("/index", index)
 const port = process.env.PORT || 5001;
 const server = app.listen(port, () => console.log(`Server is running on port ${port}`));
 const io = require('socket.io')(server, { cors: {origin: "*"}});
-
+const { fetchRoom } = require("./controllers/rooms_controller");
 
 let interval;
 
@@ -57,8 +57,8 @@ io.on("connection", (socket) => {
 
     socket.on("joinRoom", (data) => {
         socket.join(data.roomKey)
-        console.log(`${data.userHandle} has joined ${data.roomKey}`)
-        io.emit("userJoinedRoom", `${data.userHandle} has joined ${data.roomKey}`)
+        console.log(`${data.handle} has joined ${data.roomKey}`)
+        io.emit("userJoinedRoom", `${data.handle} has joined ${data.roomKey}`)
     })
 
     socket.on("sendRoomMsgClient", (data) => {
@@ -68,6 +68,11 @@ io.on("connection", (socket) => {
     socket.on('send_message', (data) => {
         io.emit("receive_message", data);
     })
+
+    // socket.on("fetchRoom", (data) => {
+    //     let fakeReq = {params {room_key: data.roomKey}}
+    //     () => fetchRoom(fakeReq)
+    // })
 
     socket.on("disconnect", () => {
         console.log("Client disconnected");
