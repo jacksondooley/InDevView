@@ -1,6 +1,6 @@
 import React from "react";
 import '../../stylesheets/interview_room.css'
-import EditorContainer from "../editor/editor_container";
+import Editor from '@monaco-editor/react'
 
 class InterviewRoom extends React.Component{
     constructor(props){
@@ -9,6 +9,10 @@ class InterviewRoom extends React.Component{
 
     componentDidMount(){
         this.props.fetchRoom(this.props.room.room_key)
+    }
+
+    handleChange(value, event){
+        //value is a string
     }
 
     render(){
@@ -41,9 +45,15 @@ class InterviewRoom extends React.Component{
                             )}
                         </ul>
                     </div>
-                    <div>
+                    <div className="code-editor">
                         {/* Code editor goes here */}
-                        <EditorContainer/>
+                        <Editor
+                            height="65vh"
+                            defaultLanguage='javascript'
+                            defaultValue='"Hello World"'
+                            theme='vs-dark'
+                            onChange={this.handleChange}
+                        />
                     </div>
                 </div>
                 <div className="interview-right-side-bar">
