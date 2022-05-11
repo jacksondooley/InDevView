@@ -8,7 +8,6 @@ class CreateRoom extends React.Component{
         this.state = {
             questions: '',
             duration: '',
-            
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }

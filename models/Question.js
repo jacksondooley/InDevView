@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const QuestionSchema = new Schema({
-		creator_id: {
-			type: String,
-			require: true
-		},
+		// creator_id: {
+		// 	type: String,
+		// 	require: true
+		// },
     title: {
 			type: String,
 			require: true

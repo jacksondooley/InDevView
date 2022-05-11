@@ -3,7 +3,7 @@ const User = require("../models/User");
 
 const createQuestion = (req, res) => {
 	const newQuestion = new Question({
-			creator_id: req.user.id,
+			// creator_id: req.user.id,
 			title: req.body.title,
 			description: req.body.description,
 			template: req.body.template,
@@ -15,11 +15,13 @@ const createQuestion = (req, res) => {
 			.then((newQuestion) => res.json(newQuestion));
 };
 
+
 const fetchAllQuestions = (req, res) => {
 	Question.find()
 		.then(questions => res.json(questions))
 		.catch(err => res.status(404).json({ noquestionsfound: 'No questions found'}))
 }
+
 
 const fetchQuestion = (req, res) => {
 
@@ -54,15 +56,3 @@ module.exports = {
 	fetchQuestion,
 	destroyQuestion
 };
-
-// const fetchRoom = (req, res) => {
-// 	const room
-// }
-
-// {
-// 	title: "Doubler",
-// 	description: "Write a function that takes in a number as an argument and doubles that number",
-// 	template: "doubler(5) // 10",
-// 	solution: "input * 2",
-// 	difficulty: 1
-// }
