@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
 const { join } = require("path");
-
+const cors = require('cors')
 
 
 // if (process.env.NODE_ENV === 'production') {
@@ -40,22 +40,29 @@ app.use("/api/questions", questions);
 // websocket import
 const index = require('./routes/index')
 app.use("/index", index)
-const http = require('http');
-const server = http.createServer(app)
-const socketIo = require("socket.io")
-const io = socketIo(server, {
-    cors: {
-        origin: '*'
-    }
-});
+
+
+const port = process.env.PORT || 5001;
+const server = app.listen(port, () => console.log(`Server is running on port ${port}`));
+const io =require('socket.io')(server, { cors: {origin: "*"}});
+
 
 let interval;
 
 io.on("connection", (socket) => {
     console.log("New client connected");
+    console.log(socket.id)
     if (interval) {
         clearInterval(interval)
     }
+
+    socket.emit('serverMessage', "Connected to Backend");
+    socket.broadcast.emit('serverMessage', "User has connected");
+
+    socket.on('send_message', (data) => {
+        console.log(data)
+        socket.broadcast.emit("receive_message", data);
+    })
     interval = setInterval(() => getApiandEmit(socket, 1000));
     socket.on("disconnect", () => {
         console.log("Client disconnected");
@@ -67,9 +74,7 @@ const getApiandEmit = socket => {
     socket.emit("FromAPI", response)
 }
 
-const port = process.env.PORT || 5001;
 
-server.listen(5002, () => console.log(`listenting on post ${port}`));
 
 // app.get('/', (req, res) => {
 //   res.sendFile(__dirname + '/app.html');
@@ -91,4 +96,3 @@ server.listen(5002, () => console.log(`listenting on post ${port}`));
 
 
 
-app.listen(port, console.log(`Server is running on port ${port}`));
