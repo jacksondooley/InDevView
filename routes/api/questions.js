@@ -9,4 +9,3 @@ router.get("/get", fetchQuestion)
 router.delete('/destroy', passport.authenticate("jwt", {session: false}), destroyQuestion);
 
 module.exports = router;
-

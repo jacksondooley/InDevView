@@ -1,5 +1,6 @@
 import axios from 'axios';
 
-export const getQuestions = () => {
+export const getAllQuestions = () => {
     return axios.get('/api/questions/all');
 }
+

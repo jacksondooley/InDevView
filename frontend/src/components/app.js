@@ -1,3 +1,4 @@
+import '../stylesheets/css_reset.css';
 import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch } from 'react-router-dom';
@@ -11,6 +12,7 @@ import JoinRoomContainer from './rooms/join_room_container';
 import RoomsContainer from './rooms/rooms_container';
 import RoomLobbyContainer from './rooms/room_lobby_container';
 import InterviewRoomContainer from './rooms/interview_room_container'
+import QuestionsIndexContainer from './questions/questions_index_container';
 
 const App = () => (
   <div>
@@ -25,6 +27,7 @@ const App = () => (
         <ProtectedRoute exact path ="/rooms" component={RoomsContainer}/>
         <ProtectedRoute exact path="/rooms/:roomKey/lobby" component={RoomLobbyContainer}/>
         <ProtectedRoute exact path="/rooms/:roomKey/interview" component={InterviewRoomContainer}/>
+        <ProtectedRoute exact path="/questions/all" component={QuestionsIndexContainer}/>
     </Switch>
   </div>
 );
