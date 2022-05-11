@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
-import { io } from "socket.io-client";
-const ENDPOINT = "http://127.0.0.1:5002"
-const socket = io();
+import '../stylesheets/chat.css'
+import socket from "../util/socket_client_util";
 
-const Chat = () => {
+const Chat = (props) => {
+  console.log(props)
   const [response, setResponse] = useState("");
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const currentUser = useSelector(state => state.session.user)
+  //sets roomKey from props or global
+  const roomKey = props.roomKey || 'global'
 
+  const userHandle = props.handle || 'user'
+  
   // disconnects from socket when component will unmount
   useEffect(() => {
+    socket.emit("joinRoom", { roomKey: roomKey, userHandle: userHandle})
+
+    socket.on("userJoinedRoom", (data) => console.log(data))
+
     return () => socket.disconnect();
   }, []);
 
   useEffect(() => {
 
     socket.on("serverMessage", (data) => console.log(data));
-    socket.on("receive_message", (data) => {
+    socket.on("sendRoomMsgServer", (data) => {
       console.log(data)
       setMessageList(messageList => [...messageList, data])
     })
@@ -26,24 +34,29 @@ const Chat = () => {
 
   const sendMessage = (e) => {
     e.preventDefault()
-    socket.emit('send_message', { message: message, handle: currentUser.handle});
+    socket.emit('sendRoomMsgClient', { message: message, roomKey: roomKey, handle: currentUser.handle});
     console.log("test");
+    
   }
 
   return (
-    <>
-      <ul>
-        {messageList.map((data, idx) => {
-          console.log(data)
-          return (
-            <li key={idx}>{data.handle}: {data.message}</li>
-            
+    <div className="chat-container">
+      <div className="chat-messages">
+        <ul>
+          {messageList.map((data, idx) => {
+            console.log(data)
+            return (
+              <li key={idx} className="chat-message">
+                {data.handle}: {data.message}
+              </li>
+
             )
           })}
-      </ul>
+        </ul>
+      </div>
       <input type="text" onChange={(e) => setMessage(e.target.value)}/>
       <button onClick={sendMessage}>Send</button>
-    </>
+    </div>
   )
 }
 

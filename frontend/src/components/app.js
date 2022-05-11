@@ -1,7 +1,7 @@
 import '../stylesheets/css_reset.css';
 import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import NavBarContainer from './nav_bar/navbar_container';
 
 import MainPage from './main/main_page';
@@ -28,7 +28,7 @@ const App = () => (
         <ProtectedRoute exact path ="/rooms" component={RoomsContainer}/>
         <ProtectedRoute exact path="/rooms/:roomKey/lobby" component={RoomLobbyContainer}/>
         <ProtectedRoute exact path="/rooms/:roomKey/interview" component={InterviewRoomContainer}/>
-        <ProtectedRoute exact path="/chat" component={Chat} />
+        <ProtectedRoute exact path="/chat" component={Chat}/>
         
         <Route exact path="/questions/all" component={QuestionsIndexContainer}/>
     </Switch>

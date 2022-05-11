@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import '../../stylesheets/room_lobby.css'
+import Chat from '../chat';
 
 class RoomLobby extends React.Component{
     constructor(props){
@@ -26,6 +27,9 @@ class RoomLobby extends React.Component{
         return (
             <div className='room-lobby-container'>
                 <h1>InDevView</h1>
+                <div>
+                    <Chat roomKey={this.props.match.params.roomKey} handle={this.props.currentUser.handle}/>
+                </div>
                 <div className='entry-code'>
                     <h2>
                         Entry Code: {this.props.room?.room_key}
