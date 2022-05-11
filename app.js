@@ -74,6 +74,11 @@ io.on("connection", (socket) => {
     //     () => fetchRoom(fakeReq)
     // })
 
+    socket.on("leaveRoom", (data) => {
+        console.log(`${data.handle} has left ${data.roomKey}`)
+        socket.leave(data.roomKey)
+    })
+
     socket.on("disconnect", () => {
         console.log("Client disconnected");
     })
