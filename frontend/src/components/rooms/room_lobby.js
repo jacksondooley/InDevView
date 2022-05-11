@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 import '../../stylesheets/room_lobby.css'
 import Chat from '../chat';
 
@@ -23,12 +24,16 @@ class RoomLobby extends React.Component{
         }
     }
 
+    renderChat() {
+        return <Chat roomKey={this.props.match.params.roomKey} handle={this.props.currentUser.handle}/>
+    }
+
     render(){
         return (
             <div className='room-lobby-container'>
                 <h1>InDevView</h1>
                 <div>
-                    <Chat roomKey={this.props.match.params.roomKey} handle={this.props.currentUser.handle}/>
+                    {this.renderChat()}
                 </div>
                 <div className='entry-code'>
                     <h2>
@@ -63,3 +68,11 @@ class RoomLobby extends React.Component{
 }
 
 export default RoomLobby
+
+const RoomLobby1 = () => {
+    const room = useSelector(state => state.room)
+
+    // useEffect(() => {
+        
+    // }, [])
+}

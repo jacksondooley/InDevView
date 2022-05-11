@@ -19,8 +19,8 @@ class CreateRoom extends React.Component{
 
     //if rooms changed, when form is submited, redirects user to the created room
     componentDidUpdate(prevProps, prevState){
-        if (prevProps.rooms !== this.props.rooms) {
-            this.props.history.push(`/rooms/${this.props.rooms.room_key}/lobby`)
+        if (prevProps.room !== this.props.room) {
+            this.props.history.push(`/rooms/${this.props.room.room_key}/lobby`)
         }
     }
 

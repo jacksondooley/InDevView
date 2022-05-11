@@ -5,7 +5,7 @@ import { fetchRoom } from '../../actions/room_actions'
 const mapStateToProps = (state) => {
     return {
         currentUser: state.session.user,
-        room: state.rooms
+        room: state.room
     }
 }
 

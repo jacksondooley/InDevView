@@ -6,7 +6,7 @@ import { fetchQuestions } from "../../actions/question_actions";
 const mapStateToProps = (state) => {
     return {
         currentUser: state.session.user,
-        rooms: state.rooms,
+        room: state.room,
         questions: Object.values(state.questions)
     }
 }

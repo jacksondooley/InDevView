@@ -51,24 +51,21 @@ let interval;
 
 io.on("connection", (socket) => {
     console.log("New client connected");
-    console.log(socket.id)
 
     socket.emit('serverMessage', "Connected to Backend");
     socket.broadcast.emit('serverMessage', "User has connected");
 
     socket.on("joinRoom", (data) => {
         socket.join(data.roomKey)
-        socket.emit("userJoinedRoom", `${data.userHandle} has joined ${data.roomKey}`)
+        console.log(`${data.userHandle} has joined ${data.roomKey}`)
+        io.emit("userJoinedRoom", `${data.userHandle} has joined ${data.roomKey}`)
     })
 
     socket.on("sendRoomMsgClient", (data) => {
-        console.log(data)
         io.to(data.roomKey).emit("sendRoomMsgServer", data)
     })
 
-    socket.emit("userJoinedRoom", )
     socket.on('send_message', (data) => {
-        console.log(data)
         io.emit("receive_message", data);
     })
 

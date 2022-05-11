@@ -35,8 +35,6 @@ const Chat = (props) => {
   const sendMessage = (e) => {
     e.preventDefault()
     socket.emit('sendRoomMsgClient', { message: message, roomKey: roomKey, handle: currentUser.handle});
-    console.log("test");
-    
   }
 
   return (
