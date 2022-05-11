@@ -34,28 +34,43 @@ class QuestionsIndex extends React.Component{
 
     render(){
         return(
-            <div className="questions-index-container">
-                <h2 className="problems-index-header">
-                    Problems
-                </h2>
-                <div className="questions-list-container">
-                    {this.props.questions.map((question, idx) => (
-                        <button className="question-list-btn" value={question._id}>
-                            <header className='questions-btn-header'>
-                                <h3 className="question-list-title">
-                                    {question.title}
-                                </h3>
-                                <div className="difficulty-indicator">
-                                    {this.diffDisplay(question.difficulty)}
+            <div className="questions-index-page-container">
+                <div className="questions-index-container">
+                    <h2 className="problems-index-header">
+                        Interview questions
+                    </h2>
+                    <div className="questions-list-container">
+                        {this.props.questions.map((question, idx) => (
+                            <button className="question-list-btn" value={question._id}>
+                                <header className='questions-btn-header'>
+                                    <h3 className="question-list-title">
+                                        {question.title}
+                                    </h3>
+                                    <div id="diff" className="difficulty-indicator">
+                                        {this.diffDisplay(question.difficulty)}
+                                    </div>
+                                </header>
+                                <div className="questions-list-info-container">
+                                    <div>
+                                        {question.description}
+                                    </div>
                                 </div>
-                            </header>
-                            <div className="questions-list-info-container">
-                                <div>
-                                    {question.description}
-                                </div>
-                            </div>
-                        </button>
-                    ))}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+                <div className="create-question-sidebar-container">
+                    <header className="create-question-sidebar-header">
+                        <h2 className="create-problems-header">
+                            Got an idea?
+                        </h2>
+                    </header>
+                    <button className='create-question-button'>
+                        Create question
+                    </button>
+                    <div className="create-problem-description">
+                        Create a new question to give coders new challenges. Get creative!
+                    </div>
                 </div>
             </div>
         )

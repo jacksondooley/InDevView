@@ -1,44 +1,89 @@
 @import './variables.scss';
 
-.questions-index-container {
-	// border: 1px solid black;
-	background-color: $background-color;
+.questions-index-page-container {
 	padding-top: 10px;
+	width: 100%;
+	background-color: $background-color;
+	display: grid;
+	grid-template-rows: auto auto;
+	grid-gap: 5%;
+	font-family: $poppins;
+	color: $font-color;
 	height: 100vw;
+}
 
+.create-question-sidebar-container {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+}
+
+.create-problems-header {
+	font-size: 24px;;
+	font-weight: 100;
+	text-shadow: $text-shadow;
+}
+
+.create-problem-description {
+	width: 20%;
+	color: $blue-500;
+	font-weight: 400;
+	font-style: italic;
+	text-align: center;
+	line-height: 1.25;
+}
+
+.create-question-button {
+	margin: 20px;
 	font-family: $poppins;
+	position:sticky;
+	font-size: 20px;
+	font-weight: lighter;
+	top: 5%;
+	height: 50px;
+	width: 20%;
 	color: $font-color;
+	letter-spacing: 2px;
+	background-color: $blue-900;
+	border-radius: 5px;
+	text-transform: uppercase;
+	// color: $
+	transition: $transition;
+	&:hover {
+		box-shadow: 0 0 40px 40px $blue-500 inset;
+		letter-spacing: 3px;
+	}
+}
+
+
+.questions-index-container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 	text-shadow: $text-shadow
 }
 
 .problems-index-header {
 	font-size: 24px;
-	margin: 20px;
-	font-weight: 400;
+	margin: 70px;
+	font-weight: 100;
 }
 
 .questions-list-container {
-	// background-color: transparent;
-	/* margin-top: 20px; */
-	margin-right:25vw;
-	margin-left: 25vw;
+	margin-left: -15px;
 	display: grid;
 	grid-template-columns: repeat(3, 33%);
 	grid-auto-rows: 180px;
 	grid-gap: 1%;
 }
 
-
 .question-list-btn {
 	box-sizing: border-box;
 	background-color: transparent;
 	border: 2px solid $blue-700;
-	margin: auto;
+	margin: 5px;
 	height: 95%;
-	width: 95%;
+	width: 16vw;
 	font-family: $poppins;
 	border-radius: 5px;
 	display: flex;
@@ -56,6 +101,7 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
+	font-size: 18px;
 }
 
 .question-list-btn:hover {
@@ -66,7 +112,10 @@
 }
 
 .question-list-btn:hover > header > .question-list-title {
-	letter-spacing: .5px;
+	letter-spacing: 1px;
+	font-size: 22px;
+	color: $blue-100;
+	// text-shadow: $text-shadow;
 	transition: $transition
 }
 
@@ -76,11 +125,58 @@
 	box-shadow: none;
 }
 
+.question-list-btn:hover > header > #diff {
+	// font-size: 14px;
+	// animation:  shake .8s;
+	letter-spacing: 1.2px;
+	text-decoration:wavy;
+	line-height: 1.5;
+}
+
+.question-list-btn:hover .easy {
+		animation:  shake 1.5s;
+		animation-iteration-count: infinite;
+		transition: $transition;
+}
+
+.question-list-btn:hover .medium {
+		animation:  shake 1s;
+		animation-iteration-count: infinite;
+		transition: $transition;
+}
+
+.question-list-btn:hover .hard {
+		animation:  shake .5s;
+		animation-iteration-count: infinite;
+		transition: $transition;
+}
+
+@keyframes shake{
+	0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -1px) rotate(-1deg); }
+  20% { transform: translate(-1px, 0px) rotate(1deg); }
+  30% { transform: translate(1px, 1px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 1px) rotate(-1deg); }
+  60% { transform: translate(-1px, 1px) rotate(0deg); }
+  70% { transform: translate(1px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 1px) rotate(0deg); }
+  100% { transform: translate(1px, -1px) rotate(-1deg); }
+}
+
 .question-list-title {
-	font-weight: 600;
+	font-weight: 400;
 	font-size: 20px;
 	transition: $transition;
 }
+
+#diff {
+	font-size: 12px;
+	font-weight: bolder;
+	-webkit-font-smoothing: antialiased;
+}
+
 
 .easy {
 	color: green;
@@ -93,20 +189,22 @@
 }
 
 .hard {
-	color: red;
+	color: $remove;
 	font-weight: bolder;
 }
 
 .questions-list-info-container {
 	box-sizing: border-box;
 	height: 100%;
+	width: 90%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-style: italic;
+	font-weight: 400;
 	color: $blue-500;
 	font-size: 14px;
 	line-height: 1.15;
-	text-align: left;
+	text-align: center;
 	text-overflow: ellipsis;
 }

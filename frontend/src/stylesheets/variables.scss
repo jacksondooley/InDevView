@@ -1,5 +1,6 @@
-// FONTS
 $transition: 250ms ease-in-out;
+
+// FONTS
 $poppins: 'Poppins', sans-serif;
 $futura: Futura, "Trebuchet MS", Arial, sans-serif;
 $proxima: proxima-nova, sans-serif;
@@ -7,7 +8,6 @@ $proxima: proxima-nova, sans-serif;
 // COLORS
 $background-color: #05172a;
 $font-color: #F0F4F8;
-$text-shadow: 0px 0px 15px $font-color;
 
 // blue (main)
 $blue-100: #D9E2EC;
@@ -19,6 +19,8 @@ $blue-600: #486581;
 $blue-700: #334E68;
 $blue-800: #243B53;
 $blue-900: #102A43;
+
+$text-shadow: 0px 0px 5px $blue-500;
 
 // gray
 $gray-100: #FAFAFA;
