@@ -5,7 +5,7 @@ const { createQuestion, fetchAllQuestions, fetchQuestion, destroyQuestion } = re
 
 router.post('/create', passport.authenticate("jwt", {session: false}), createQuestion);
 router.get("/all", fetchAllQuestions)
-router.get("/get", fetchQuestion)
+router.get("/:_id", fetchQuestion)
 router.delete('/destroy', passport.authenticate("jwt", {session: false}), destroyQuestion);
 
 module.exports = router;
