@@ -15,7 +15,6 @@ const createQuestion = (req, res) => {
 			.then((newQuestion) => res.json(newQuestion));
 };
 
-
 const fetchAllQuestions = (req, res) => {
 	Question.find()
 		.then(questions => res.json(questions))
@@ -28,6 +27,8 @@ const fetchQuestion = (req, res) => {
 		else {
 			if (!question.length) {console.log(`question not found`)}
 			else {
+				console.log(`params: ${req.params}`)
+				console.log(`params: ${req.params}`)
 				res.json(question)
 			}
 		}
@@ -54,3 +55,4 @@ module.exports = {
 	fetchQuestion,
 	destroyQuestion
 };
+

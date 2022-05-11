@@ -14,13 +14,12 @@ import RoomLobbyContainer from './rooms/room_lobby_container';
 import InterviewRoomContainer from './rooms/interview_room_container'
 import Chat from './chat';
 import QuestionsIndexContainer from './questions/questions_index_container';
-import QuestionShowContainer from './questions/question_show_container';
+import QuestionShowContainer from './questions/question_show';
 
 const App = () => (
   <div>
     <NavBarContainer />
     <Switch>
-        <Route exact path='/questions/:id' component={QuestionShowContainer}></Route>
         <AuthRoute exact path="/" component={MainPage} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
@@ -33,6 +32,7 @@ const App = () => (
         <ProtectedRoute exact path="/chat" component={Chat}/>
         
         <Route exact path="/questions/all" component={QuestionsIndexContainer}/>
+        <Route exact path='/questions/:id' component={QuestionShowContainer}></Route>
     </Switch>
   </div>
 );
