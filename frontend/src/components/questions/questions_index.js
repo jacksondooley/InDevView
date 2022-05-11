@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 import '../../stylesheets/questions_index.scss'
 
 class QuestionsIndex extends React.Component{
@@ -41,8 +42,6 @@ class QuestionsIndex extends React.Component{
         }
     }
 
-    
-
     render(){
         return(
             <div className="questions-index-page-container">
@@ -52,6 +51,7 @@ class QuestionsIndex extends React.Component{
                     </h2>
                     <div className="questions-list-container">
                         {this.props.questions.map((question, idx) => (
+                        <Link className="question-show-btn-link" to={`/questions/${question._id}`}>
                             <button className="question-list-btn" value={question._id}>
                                 <header className='questions-btn-header'>
                                     <h3 className="question-list-title">
@@ -67,6 +67,7 @@ class QuestionsIndex extends React.Component{
                                     </div>
                                 </div>
                             </button>
+                        </Link>
                         ))}
                     </div>
                 </div>

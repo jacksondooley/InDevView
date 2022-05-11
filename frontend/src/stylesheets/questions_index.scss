@@ -84,6 +84,10 @@
 	grid-gap: 1%;
 }
 
+.question-show-btn-link {
+	text-decoration: none;
+}
+
 .question-list-btn {
 	box-sizing: border-box;
 	background-color: transparent;
@@ -136,7 +140,7 @@
 	// font-size: 14px;
 	// animation:  shake .8s;
 	letter-spacing: 1.2px;
-	text-decoration:wavy;
+	// text-decoration:wavy;
 	line-height: 1.5;
 }
 

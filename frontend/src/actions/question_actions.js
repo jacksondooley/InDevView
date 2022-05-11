@@ -24,3 +24,4 @@ export const fetchQuestion = (questionId) => dispatch => {
     .then(question => dispatch(receiveQuestion(question)))
     .catch(err => console.log(err))
 }
+
