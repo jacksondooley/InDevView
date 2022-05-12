@@ -8,7 +8,7 @@ class MainPage extends React.Component {
       <div className='splash-page'>
         <h1>InDevView</h1>
         <footer className="splash-footer">
-          Copyright &copy; 2021 InDevView
+          Copyright &copy; 2022 InDevView
         </footer>
       </div>
     );

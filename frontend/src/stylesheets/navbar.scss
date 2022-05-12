@@ -26,7 +26,7 @@
 
 .home-button{
     text-decoration: none;
-    color: white;
+    color: $blue-100;
 }
 
 .nav-bar-buttons {
@@ -132,7 +132,7 @@
     padding: 0.55em 1em;
     box-sizing: border-box;
     color: $cool-gray-100;
-    text-shadow: 0 1px 0 #CACACA;
+    text-shadow: $text-shadow;
     border-radius: 0.2em;
   }
 

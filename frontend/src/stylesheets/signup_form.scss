@@ -14,9 +14,9 @@
 
 .signup-form-container input[type=submit]{
     @extend %form-submit;
+    transition: $transition;
 }
 
 .signup-form-container input[type=submit]:hover{
-    box-shadow: none;
-    transform: translateY(2px);
+    @extend %secondary-btn-hov;
 }

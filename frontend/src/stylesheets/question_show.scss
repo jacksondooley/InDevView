@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 .question-show-container {
-	color: $font-color;
+	color: $blue-100;
 	background-color: $background-color;
 	font-family: $poppins;
 	height: 100vw;
@@ -13,11 +13,10 @@
 .question-show-title {
 	display: flex;
 	justify-content: center;
-	color: $font-color;
 	padding-top: 10px;
 	font-family: $poppins;
 	font-size: 24px;
-	font-weight: 100;
+	font-weight: 200;
 	text-shadow: $text-shadow;
 	font-size: 24px;
 	margin: 70px;
@@ -46,26 +45,22 @@
 	grid-gap: 5%;
 	margin-left: 10%;
 	margin-right: 10%;
-	// border: 1px solid white;
 	justify-content: center;
 	height: 50%;
 }
 
 #quest-show-col {
-	// border: 1px solid white;
 	margin-top: 40px;
 	height: 100%;
 	display: grid;
 	grid-template-rows: 5% 1fr;
-	// justify-content: center !important;
-	// align-items: center;
 }
 
 .question-show-body-header {
 	color: $gray-300;
 	font-family: $poppins;
 	text-shadow: $text-shadow;
-	font-weight: lighter;
+	font-weight: 200;
 	font-size: 20px;
 	text-align: center;
 	// text-
@@ -92,9 +87,9 @@
 
 }
 
-.quest-show-left-col {
-	// width: 90%;
-}
+// .quest-show-left-col {
+// 	// width: 90%;
+// }
 
 #quest-solution-text {
 	color: $blue-400;

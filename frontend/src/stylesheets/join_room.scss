@@ -9,7 +9,7 @@
     font-family: $poppins;
     background-color: $background-color;
     color: $blue-100;
-    font-weight: 100;
+    font-weight: 200;
     padding: 1rem;
     flex-direction: column;
     height: 100vh;
@@ -60,22 +60,22 @@
     margin: 20px;
 	font-family: $poppins;
 	font-size: 20px;
-	font-weight: lighter;
+	font-weight: 200;
 	top: 5%;
 	height: 50px;
 	width: 20%;
 	min-width: 300px;
-	color: $font-color;
+	color: $blue-100;
 	letter-spacing: 2px;
 	background-color: $blue-900;
 	border-radius: 5px;
 	text-transform: uppercase;
 	// color: $
 	transition: $transition;
-	&:hover {
-		box-shadow: 0 0 40px 40px $blue-500 inset;
-		letter-spacing: 3px;
-	}
+}
+
+#join-room-btn:hover {
+    @extend %secondary-btn-hov
 }
 
 input[type=number]::-webkit-inner-spin-button, 

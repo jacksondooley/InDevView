@@ -91,12 +91,12 @@ $help: #673AB7;
 	margin: 20px;
 	font-family: $poppins;
 	font-size: 20px;
-	font-weight: lighter;
+	font-weight: 200;
 	top: 5%;
 	height: 50px;
 	width: 310px;
 	min-width: 300px;
-	color: $font-color;
+	color: $blue-100;
 	letter-spacing: 2px;
 	background-color: $blue-900;
 	border-radius: 5px;
@@ -108,7 +108,7 @@ $help: #673AB7;
 	color: $blue-100;
 	font-family: $poppins;
 	letter-spacing: 2px;
-	font-weight: lighter;
+	font-weight: 200;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -120,7 +120,7 @@ $help: #673AB7;
 %form-header {
 	text-shadow: $text-shadow;
 	font-size: 2rem;
-	font-weight: lighter;
+	font-weight: 200;
 	padding: 10px;
 }
 
@@ -129,4 +129,10 @@ $help: #673AB7;
 	box-shadow: -3px 3px 10px $blue-400;
 	transform: translate(3px, -3px);
 	transition: $transition;
+}
+
+%secondary-btn-hov {
+		transform: translateY(-2px);
+		box-shadow: 0 0 40px 40px $blue-700 inset;
+		letter-spacing: 3px;
 }
