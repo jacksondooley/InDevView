@@ -1,0 +1,88 @@
+@import './variables.scss';
+
+.join-room-container{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-family: $poppins;
+    background-color: $background-color;
+    color: $blue-100;
+    font-weight: 100;
+    padding: 1rem;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.join-room-main-col {
+    grid-column: 2;
+}
+
+.join-room-container p{
+    font-size: 1.5rem;
+}
+
+.join-room-input {
+    font-size: 22px !important;
+    letter-spacing: 5px !important;
+    font-weight: 400;
+    background-color: $gray-100;
+    color: $blue-900;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    width: 150px !important;
+    min-width: 100px !important;
+    height: 20px;
+    font-family: $code;
+}
+
+.join-room-container input{
+    margin: 2rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.join-room-btn-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#join-room-btn {
+    @extend %form-submit;
+    width: 100px !important;
+    min-width: 200px !important;
+    margin: auto !important;
+    margin: 20px;
+	font-family: $poppins;
+	font-size: 20px;
+	font-weight: lighter;
+	top: 5%;
+	height: 50px;
+	width: 20%;
+	min-width: 300px;
+	color: $font-color;
+	letter-spacing: 2px;
+	background-color: $blue-900;
+	border-radius: 5px;
+	text-transform: uppercase;
+	// color: $
+	transition: $transition;
+	&:hover {
+		box-shadow: 0 0 40px 40px $blue-500 inset;
+		letter-spacing: 3px;
+	}
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+
+#lobby-link {
+    margin-top: 1.5rem;
+}

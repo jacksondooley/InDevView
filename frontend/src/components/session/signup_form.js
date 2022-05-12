@@ -103,7 +103,7 @@ class SignupForm extends React.Component {
           </div>
         </form>
         <small className="form-small">already have an account? <br/>
-          <Link className="form-small-link" to="/signup">Login</Link>
+          <Link className="form-small-link" to="/login">Login</Link>
         </small>
       </div>
     );

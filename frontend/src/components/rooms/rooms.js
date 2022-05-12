@@ -14,12 +14,18 @@ class Rooms extends React.Component{
     render(){
         return(
             <div className="rooms-container">
-                <div className="create-room">
-                    <Link to="/rooms/create">Create Room</Link>
-                </div>
-                <div className="join-room">
-                    <Link to="/rooms/join">Join Room</Link>
-                </div>
+                <Link className='rooms-link' to="/rooms/create">
+                    <a id='create-btn' class="effect effect-1" href="#" title="Create Room">
+                        <div className="btn-text">
+                            Create room
+                        </div>
+                    </a>
+                </Link>
+                <Link id="join-link" classsName='rooms-link' to="/rooms/join">
+                    <a id='join-btn' class="effect effect-1" href="#" title="Join Room">
+                        Join Room
+                    </a>
+                </Link>
             </div>
         )
     }
