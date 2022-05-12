@@ -2,28 +2,26 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const RoomSchema = new Schema({
-    host_id: {
-			type: String,
-			require: true
+		host_id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User"
 		},
 		room_key: {
 			type: Number,
 			require: true
 		},
 		interviewers: {
-			type: Array,
-			require: true
-		},
-		participants: {
-			type: Array,
-			require: true
+			type: Array
 		},
 		interviewees: {
-			type: Array,
-			require: false
+			type: Array
 		},
 		questions: {
 			type: Array,
+			require: true
+		},
+		time: {
+			type: Number,
 			require: true
 		},
     date: {

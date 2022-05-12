@@ -11,7 +11,10 @@ const UserSchema = new Schema({
         require: true
     }, password: {
         type: String,
-        required: true
+        require: true
+    }, status: {
+        type: Number,
+        default: 0
     }
 }, {
     timestamps: true

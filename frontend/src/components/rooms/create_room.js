@@ -7,7 +7,7 @@ class CreateRoom extends React.Component{
         super(props)
         this.state = {
             questions: '',
-            duration: '',
+            time: '',
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -40,6 +40,7 @@ class CreateRoom extends React.Component{
         const temp_room = {
             questions: selectedQuestion,
             user: this.props.currentUser,
+            time: this.state.time * 60
         }
         console.log(temp_room)
         this.props.createRoom(temp_room)
@@ -61,7 +62,7 @@ class CreateRoom extends React.Component{
             <div className="create-room-container">
                 <form onSubmit={this.handleSubmit}>
                     <div className="create-room-timer">
-                        <input type="number" min="1" step="1" placeholder="Please enter a time duration" onChange={this.update('duration')}></input>
+                        <input type="number" min="10" step="5" placeholder="Please enter a time duration" onChange={this.update('time')}></input>
                     </div>
                     
                     <ul>

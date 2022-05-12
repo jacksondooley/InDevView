@@ -82,8 +82,28 @@ io.on("connection", (socket) => {
 
     socket.on("fetchRoom", (data) => {
         console.log(data)
-        Room.find({ room_key: data.roomKey})         
+        Room.find({ room_key: data.roomKey})        
             .then(res => io.to(data.roomKey).emit("fetchRoomRes", res))
+    })
+
+    socket.on("changeStatus", (data) => {
+        console.log(data)
+        Room.find({ room_key: data.roomKey }, (err, res) => {
+            console.log("--target room--")
+            console.log(res[0])
+            console.log("-----")
+            let newStatus = res[0].interviewers[0].status === 0 ? 1 : 0
+            res[0].interviewers[0].status = newStatus
+            console.log("--save--")
+            // res.save().then(res => console.log(res))
+        })
+            // .then(res => {
+            //     let newStatus = res[0].interviewers[0].status === 0 ? 1 : 0
+            //     res[0].interviewers[0].status = newStatus
+            //     console.log("--save--")
+            //     res[0].save().then(res => console.log(res))
+                // io.to(data.roomKey).emit("fetchRoomRes", res)
+            // })
     })
 
     socket.on("leaveLobby", (data) => {
@@ -92,7 +112,6 @@ io.on("connection", (socket) => {
             .then(res => {
                 const filteredInterviewers = res[0].interviewers.filter((user) => data.userId !== user.id)
                 const filteredInterviewees = res[0].interviewees.filter((user) => data.userId !== user.id)
-                // const index = res[0].participants.indexOf(res.userId);
                 res[0].interviewers = filteredInterviewers
                 res[0].interviewees = filteredInterviewees
                 res[0].save()

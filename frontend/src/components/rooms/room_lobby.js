@@ -20,8 +20,10 @@ const RoomLobby = (props) => {
         // dispatch(fetchRoom(props.match.params.roomKey))
         socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
         socket.emit("fetchRoom", {roomKey: props.match.params.roomKey})   
-        
+
         socket.on("fetchRoomRes", (data) => {
+            console.log("-----")
+            console.log(data)
             dispatch(receiveRoom(data))
         })
         
@@ -34,6 +36,10 @@ const RoomLobby = (props) => {
     //     return <Chat roomKey={props.match.params.roomKey} handle={this.props.currentUser.handle} />
     // }
 
+    // const changeStatus = () => {
+        
+    // }
+
     return (
         <div className='room-lobby-container'>
             <h1>InDevView</h1>
@@ -43,9 +49,13 @@ const RoomLobby = (props) => {
                     {props.room?.room_key}
                 </h2>
             </div>
+            <div>
+                <label>Interview Length:</label>
+                <div>{props.room?.time / 60} minutes</div>
+            </div>
             <div className='room-lobby-participants'>
                 <div className='room-lobby-item'>
-                    <label>Intreviewer</label>
+                    <label>Interviewer</label>
                     <ul>
                         {props.room?.interviewers.map(member =>
                         (<li>
@@ -54,6 +64,7 @@ const RoomLobby = (props) => {
                                 <button className='remove-user-button' >Remove this user</button> //onClick={removeParticipant(member._id)}
                                 : ' (You)'} */}
                             {/* Maybe show camera feeds here? */}
+                            {member.status === 0 ? 'not ready' : 'ready'}
                         </li>)
                         )}
                     </ul>
@@ -68,6 +79,7 @@ const RoomLobby = (props) => {
                                 <button className='remove-user-button' >Remove this user</button> //onClick={removeParticipant(member._id)}
                                 : ' (You)'} */}
                             {/* Maybe show camera feeds here? */}
+                            {member.status === 0 ? 'not ready' : 'ready'}
                         </li>)
                         )}
                     </ul>
@@ -80,7 +92,9 @@ const RoomLobby = (props) => {
                         <Link className='ready-button' to={`/rooms/${props?.room.room_key}/interview`}>Ready!</Link> :
                         <Link className='not-ready-button' onClick={(e) => e.preventDefault()}>Not Ready</Link>
                 } */}
-
+                <button onClick={() => socket.emit("changeStatus", { roomKey: props.match.params.roomKey, userId: props.currentUser.id })}>
+                    {props.currentUser.status === 0 ? "ready up" : "not ready"}
+                </button>
             </div>
             <div>
                 <Chat roomKey={props.match.params.roomKey} handle={props.currentUser?.handle}/>
@@ -90,3 +104,5 @@ const RoomLobby = (props) => {
 }
 
 export default RoomLobby
+
+

@@ -7,7 +7,8 @@ const createRoom = (req, res) => {
 			host_id: req.body.user.id,
 			room_key: Math.floor(100000 + Math.random() * 900000),
 			interviewers: [req.body.user],
-			questions: req.body.questions
+			questions: req.body.questions,
+			time: req.body.time
 	});
 	
 	newRoom.save()
