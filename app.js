@@ -37,9 +37,14 @@ app.use('/api/rooms', rooms);
 app.use("/api/users", users);
 app.use("/api/questions", questions);
 
+const compile = require('./routes/api/compile')
+app.use('/api/compile', compile)
+
 // websocket import
 const index = require('./routes/index')
 app.use("/index", index)
+
+
 
 
 const port = process.env.PORT || 5001;
