@@ -4,6 +4,7 @@ $transition: 250ms ease-in-out;
 $poppins: 'Poppins', sans-serif;
 $futura: Futura, "Trebuchet MS", Arial, sans-serif;
 $proxima: proxima-nova, sans-serif;
+$code: 'Source Code Pro', monospace;
 
 // COLORS
 $background-color: #05172a;
@@ -43,4 +44,62 @@ $secondary: #BDBDBD;
 $confirm: #00897B;
 $warning: #303F9F;
 $remove: #C62828;
-$help: #673AB7
+$help: #673AB7;
+
+
+// TEMPLATES
+%form-inputs {
+	background-color: $gray-100;
+	color: $blue-900;
+	margin: 1rem;
+	padding: 1rem;
+	font-size: 1rem;
+	border-radius: 5px;
+	width: 310px;
+	min-width: 300px;
+	font-family: $code;
+}
+
+%form-submit {
+	margin: 20px;
+	font-family: $poppins;
+	font-size: 20px;
+	font-weight: lighter;
+	top: 5%;
+	height: 50px;
+	width: 310px;
+	min-width: 300px;
+	color: $font-color;
+	letter-spacing: 2px;
+	background-color: $blue-900;
+	border-radius: 5px;
+	text-transform: uppercase;
+}
+
+%component-container {
+	background-color: $background-color;
+	color: $blue-100;
+	font-family: $poppins;
+	letter-spacing: 2px;
+	font-weight: lighter;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+%form-header {
+	text-shadow: $text-shadow;
+	font-size: 2rem;
+	font-weight: lighter;
+	padding: 10px;
+}
+
+%btn-hover-template {
+	cursor: pointer;
+	box-shadow: -3px 3px 10px $blue-400;
+	transform: translate(3px, -3px);
+	transition: $transition;
+}

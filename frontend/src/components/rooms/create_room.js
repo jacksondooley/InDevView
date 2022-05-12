@@ -1,5 +1,5 @@
 import React from "react";
-import '../../stylesheets/create_room.css'
+import '../../stylesheets/create_room.scss'
 import { Link } from "react-router-dom"
 
 class CreateRoom extends React.Component{

@@ -1,0 +1,43 @@
+@import './variables.scss';
+
+.login-form-container{
+    @extend %component-container; 
+}
+
+.login-form-container h1{
+   @extend %form-header;
+}
+
+.login-form-container input[type=text], .login-form-container input[type=password]{
+    @extend %form-inputs;
+}
+
+.login-form-container input[type=submit]{
+    @extend %form-submit;
+}
+
+.login-form-container input[type=submit]:hover{
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.form-small {
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.form-small-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.form-small-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}
+
+.form-errors {
+    font-weight: normal;
+    color: red;
+    line-height: 1.5;
+}

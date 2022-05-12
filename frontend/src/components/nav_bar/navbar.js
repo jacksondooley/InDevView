@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import '../../stylesheets/navbar.css'
+import '../../stylesheets/navbar.scss'
 // import Timer from './test_timer';
 
 class NavBar extends React.Component {
@@ -23,7 +23,7 @@ class NavBar extends React.Component {
                 {/* <Link to={'/tweets'}>All Tweets</Link>
                 <Link to={'/profile'}>Profile</Link>
                 <Link to={'/new_tweet'}>Write a Tweet</Link> */}
-                <button onClick={this.logoutUser}>Logout</button>
+                <Link className='logout' to={'/signup'} onClick={this.logoutUser}>Logout</Link>
             </div>
         );
       } else {
@@ -39,7 +39,11 @@ class NavBar extends React.Component {
   render() {
       return (
         <div className='nav-bar'>
-           <Link className='home-button' to="/"><h1>InDevView</h1></Link>
+           <Link className='home-button' to="/">
+             <h1 id="home-button-icon">
+               InDevView
+              </h1>
+            </Link>
             { this.getLinks() }
         </div>
       );

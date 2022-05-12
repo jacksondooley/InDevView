@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-import '../../stylesheets/login_form.css'
+import '../../stylesheets/login_form.scss'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -87,9 +88,14 @@ class LoginForm extends React.Component {
               />
             <br/>
             <input type="submit" value="Submit" />
-            {this.renderErrors()}
           </div>
         </form>
+        <span className="form-errors">
+          {this.renderErrors()}
+        </span>
+        <small className="form-small">don't have an account? <br/>
+          <Link className="form-small-link" to="/signup">Sign Up</Link>
+        </small>
       </div>
     );
   }
