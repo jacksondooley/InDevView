@@ -84,13 +84,18 @@ const InterviewRoom = (props) => {
     const [testCase1, setTestCase1] = useState(false);
     const [testCase2, setTestCase2] = useState(false);
     const [testCase3, setTestCase3] = useState(false);
+    const [value, setValue] = useState('');
 
     const handleChange = useCallback(
         (value, event) => {
-            const parameters = extractParameters(value);
-            const answer = extractCode(value);
-            setAnswer(answer);
-            setParameters(parameters);
+            setValue(value);
+            console.log(value)
+            // const parameters = extractParameters(value);
+            // const answer = extractCode(value);
+            // console.log(parameters)
+            // console.log(answer)
+            // setAnswer(answer);
+            // setParameters(parameters);
         }
     )
 
@@ -100,15 +105,29 @@ const InterviewRoom = (props) => {
             // if(testCases(answer, parameters, input1, solution1)){
             //     setTestCase1(true)
             // }
+            // else if(!testCases(answer, parameters, input1, solution1)){
+            //     setTestCase1(false)
+            // }
+
             // if(testCases(answer, parameters, input2, solution2)){
             //     setTestCase2(true);
             // }
+            // else if(!testCases(answer, parameters, input2, solution2)){
+            //     setTestCase2(false)
+            // }
+
             // if(testCases(answer, parameters, input3, solution3)){
             //     setTestCase3(true);
             // }
+            // else if(!testCases(answer, parameters, input3, solution3)){
+            //     setTestCase3(false)
+            // }
+            var vm = require('vm');
+            const script = new vm.Script(`function add(a, b){ return a + b} const x = add(1,2)`)
+            console.log(script.runInThisContext())
         }
     )
-
+    // won't work bc cannot operate properly with helper methods
     const extractParameters = function(str){
         let newStr = '';
         let parameters = false;
@@ -124,7 +143,6 @@ const InterviewRoom = (props) => {
             }
             
         }
-        // console.log(newStr)
         return newStr.replace(',', '').split(' ');
     }
 
@@ -132,6 +150,7 @@ const InterviewRoom = (props) => {
         let newStr = '';
         let code = false;
         let lastRightBracket = str.length;
+        let firstLeftRacket = false;
 
         for(let i = str.length-1; i > -1; i--){
             if(str[i] === "}"){
@@ -141,8 +160,9 @@ const InterviewRoom = (props) => {
         }
 
         for(let i = 0; i < str.length; i++){
-            if(str[i] === "{"){
+            if(str[i] === "{" && !firstLeftRacket){
                 code = true;
+                firstLeftRacket = true;
             }
             else if(i === lastRightBracket){
                 break
@@ -151,17 +171,28 @@ const InterviewRoom = (props) => {
                 newStr += str[i];
             }
         }
-        // console.log(newStr)
         return newStr
     }
 
     const testCases = (answer, parameters, input, solution) => {
-        const func = new Function(...parameters, answer);
-        const correct = false;
-        if(func(input) === solution){
-            correct = true;
+        // input is an array of paramters i.e. binarySearch(arr, target), input would be [[1,2,3],3]
+        let func = new Function(...parameters, answer);
+        let correct = false;
+        if(typeof solution === Array){
+            correct = true
+            let testAnswer = func(...input)
+            solution.forEach((ele, idx) => {
+                if(ele !== testAnswer[idx]){
+                    correct = false;
+                }
+            })
         }
-        return correct
+        else{
+            if(func(...input) === solution){
+                correct = true;
+            }
+        }
+        return correct;
     }
 
     return (
@@ -199,7 +230,9 @@ const InterviewRoom = (props) => {
                             theme='vs-dark'
                             onChange={handleChange}
                         />
-                        
+                        <script>
+                            {value}
+                        </script>
                     </div>
                 </div>
                 <div className="interview-right-side-bar">
@@ -211,6 +244,15 @@ const InterviewRoom = (props) => {
                     <div>
                         Test cases go here.
                         <button onClick={handleClick}>Run tests</button>
+                        <div>
+                            Test Case 1: { testCase1 ? "Passed": "Failed"}
+                        </div>
+                        <div>
+                            Test Case 2: { testCase2 ? "Passed" : "Failed"}
+                        </div>
+                        <div>
+                            Test Case 3: { testCase3 ? "Passed" : "Failed"}
+                        </div>
                         This is where the live chat tab goes.
                         Also here is notes tab.
                     </div>
