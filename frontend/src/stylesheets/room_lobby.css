@@ -31,9 +31,15 @@
 }
 
 .room-lobby-participants{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 300px 300px;
+    column-gap: 100px;
+    /* flex-direction: column; */
     margin: 1rem;
+}
+
+.room-lobby-item > ul {
+    border: 2px solid gray;
 }
 
 .room-lobby-participants ul li{
@@ -73,7 +79,7 @@
     color: white;
     padding: 0.25rem;
     border: 1px solid #eee;
-    border-radius: 50%;
+    border-radius: 5px;
     margin: 1rem;
     cursor: pointer;
 }

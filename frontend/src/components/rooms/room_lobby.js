@@ -14,16 +14,18 @@ const RoomLobby = (props) => {
     console.log(props)
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
+    console.log(currentUser)
 
     useEffect(() => {
         // dispatch(fetchRoom(props.match.params.roomKey))
         socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
-        socket.emit("fetchRoom", {roomKey: props.match.params.roomKey})
-
+        socket.emit("fetchRoom", {roomKey: props.match.params.roomKey})   
+        
         socket.on("fetchRoomRes", (data) => {
             dispatch(receiveRoom(data))
         })
-
+        
+        return () => socket.emit("leaveLobby", { roomKey: props.match.params.roomKey, userId: props.currentUser.id } )
     }, [])
 
 
@@ -35,35 +37,53 @@ const RoomLobby = (props) => {
     return (
         <div className='room-lobby-container'>
             <h1>InDevView</h1>
-            <div>
-                <Chat roomKey={props.match.params.roomKey} handle={props.currentUser?.handle}/>
-            </div>
             <div className='entry-code'>
+                <div>Entry Code:</div>
                 <h2>
-                    Entry Code: {props.room?.room_key}
+                    {props.room?.room_key}
                 </h2>
             </div>
             <div className='room-lobby-participants'>
-                <p>{props.room?.participants.length < 2 ? "Waiting on other people..." : "Ready!"}</p>
-                <ul>
-                    {props.room?.participants.map(member =>
-                    (<li>
-                        {member.handle}
-                        {member.id !== props.room.host_id ?
-                            <button className='remove-user-button' >Remove this user</button> //onClick={removeParticipant(member._id)}
-                            : ' (You)'}
-                        {/* Maybe show camera feeds here? */}
-                    </li>)
-                    )}
-                </ul>
+                <div className='room-lobby-item'>
+                    <label>Intreviewer</label>
+                    <ul>
+                        {props.room?.interviewers.map(member =>
+                        (<li>
+                            {member.handle}
+                            {/* {member.id !== props.room.host_id ?
+                                <button className='remove-user-button' >Remove this user</button> //onClick={removeParticipant(member._id)}
+                                : ' (You)'} */}
+                            {/* Maybe show camera feeds here? */}
+                        </li>)
+                        )}
+                    </ul>
+                </div>
+                <div className='room-lobby-item'>
+                    <label>Interviewee</label>
+                    <ul>
+                        {props.room?.interviewees.map(member =>
+                        (<li>
+                            {member.handle}
+                            {/* {member.id !== props.room.host_id ?
+                                <button className='remove-user-button' >Remove this user</button> //onClick={removeParticipant(member._id)}
+                                : ' (You)'} */}
+                            {/* Maybe show camera feeds here? */}
+                        </li>)
+                        )}
+                    </ul>
+                </div>
+                {/* <p>{props.room?.participants.length < 2 ? "Waiting on other people..." : "Ready!"}</p> */}
             </div>
             <div className='room-lobby-buttons'>
-                {
+                {/* {
                     props.room?.participants.length > 1 && currentUser._id === props.room?.host_id ?
                         <Link className='ready-button' to={`/rooms/${props?.room.room_key}/interview`}>Ready!</Link> :
                         <Link className='not-ready-button' onClick={(e) => e.preventDefault()}>Not Ready</Link>
-                }
+                } */}
 
+            </div>
+            <div>
+                <Chat roomKey={props.match.params.roomKey} handle={props.currentUser?.handle}/>
             </div>
         </div>
     )

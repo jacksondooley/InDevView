@@ -10,9 +10,17 @@ const RoomSchema = new Schema({
 			type: Number,
 			require: true
 		},
+		interviewers: {
+			type: Array,
+			require: true
+		},
 		participants: {
 			type: Array,
 			require: true
+		},
+		interviewees: {
+			type: Array,
+			require: false
 		},
 		questions: {
 			type: Array,

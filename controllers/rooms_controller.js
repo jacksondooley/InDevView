@@ -6,7 +6,7 @@ const createRoom = (req, res) => {
 	const newRoom = new Room({
 			host_id: req.body.user.id,
 			room_key: Math.floor(100000 + Math.random() * 900000),
-			participants: [req.body.user],
+			interviewers: [req.body.user],
 			questions: req.body.questions
 	});
 	
@@ -32,7 +32,7 @@ const addParticipant = (req, res) => {
 	Room.find({ room_key: req.params.room_key }, (err, targetRoom) => {
 		if (err) {console.log(err)}
 		else {
-				targetRoom[0].participants.push(req.body)
+				targetRoom[0].interviewees.push(req.body)
 				targetRoom[0].save();
 				res.json(targetRoom)
 		}

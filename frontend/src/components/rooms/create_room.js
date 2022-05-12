@@ -39,7 +39,7 @@ class CreateRoom extends React.Component{
         const selectedQuestion = this.props.questions.filter(questionFilter)
         const temp_room = {
             questions: selectedQuestion,
-            user: this.props.currentUser
+            user: this.props.currentUser,
         }
         console.log(temp_room)
         this.props.createRoom(temp_room)

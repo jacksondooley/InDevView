@@ -1,6 +1,7 @@
 import React from "react";
 import '../../stylesheets/join_room.css'
 import { Link } from "react-router-dom"
+import socket from '../../util/socket_client_util';
 
 class JoinRoom extends React.Component{
     constructor(props){
@@ -24,6 +25,7 @@ class JoinRoom extends React.Component{
         console.log(this.state.roomKey)
         this.props.fetchRoom(this.state.roomKey)
             .then(() => this.props.addParticipant(this.state.roomKey, this.props.currentUser))
+            .then(() => socket.emit("fetchRoom", { roomKey: this.state.roomKey }))
        
     }
 

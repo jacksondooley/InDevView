@@ -82,8 +82,22 @@ io.on("connection", (socket) => {
 
     socket.on("fetchRoom", (data) => {
         console.log(data)
-        Room.find({ room_key: data.roomKey})
+        Room.find({ room_key: data.roomKey})         
             .then(res => io.to(data.roomKey).emit("fetchRoomRes", res))
+    })
+
+    socket.on("leaveLobby", (data) => {
+        console.log(data.userId)
+        Room.find({ room_key: data.roomKey })
+            .then(res => {
+                const filteredInterviewers = res[0].interviewers.filter((user) => data.userId !== user.id)
+                const filteredInterviewees = res[0].interviewees.filter((user) => data.userId !== user.id)
+                // const index = res[0].participants.indexOf(res.userId);
+                res[0].interviewers = filteredInterviewers
+                res[0].interviewees = filteredInterviewees
+                res[0].save()
+                io.to(data.roomKey).emit("fetchRoomRes", res)
+            })
     })
 
     socket.on("disconnect", () => {
