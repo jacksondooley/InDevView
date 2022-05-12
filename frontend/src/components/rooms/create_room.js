@@ -59,41 +59,57 @@ class CreateRoom extends React.Component{
     render(){
         return(
             <div className="create-room-container">
+                <div className='create-room-main-col'>
                 <form onSubmit={this.handleSubmit}>
-                    <div className="create-room-timer">
-                        <input type="number" min="1" step="1" placeholder="Please enter a time duration" onChange={this.update('duration')}></input>
-                    </div>
-                    
-                    <ul>
-                        {/* {this.props.questions.map(question => (
-                            <li>{question.title}</li>
-                        ))} */}
-                    </ul>
-                    <div className="coding-questions-form">
-                        <label>Choose a question</label>
-                        <select onChange={this.update("questions")}>
-                            <option selected disabled hidden>Select Interview Question</option>
-                            {this.props.questions.map((question, idx) => (
-                                <option value={question._id}>{question.title}</option>
-                            ))}
-                        </select>
-                    </div>
+                    <div className='create-room-form-inputs'>
+                        <div>
+                        <label>Time (minutes)</label>
+                        <div className="create-room-timer">
+                            <input
+                                id='time-form'
+                                className='create-room-input'
+                                type="number"
+                                min="1" 
+                                step="1" 
+                                placeholder="time" 
+                                onChange={this.update('duration')}>    
+                            </input>
+                        </div> 
 
-                    <div className="users-in-lobby">
-                        <div>
-                            {/* Shows the user that is the interviewer */}
                         </div>
-                        <div>
-                            {/* Shows all of the users in the room */}
-                            {/* Able to select which user is able to into what role */}
+                        <ul>
+                            {/* {this.props.questions.map(question => (
+                                <li>{question.title}</li>
+                            ))} */}
+                        </ul>
+                        <div className="coding-questions-form">
+                            <label>Choose a question</label>
+                            <select id='quest-sel' className='question-select' onChange={this.update("questions")}>
+                                <option className='create-room-dropdown' selected disabled hidden placeholder="Select"></option>
+                                {this.props.questions.map((question, idx) => (
+                                    <option value={question._id}>{question.title}</option>
+                                ))}
+                            </select>
                         </div>
-                        <div>
-                            {/* Shows the user that is the interviewee */}
+
+                        <div className="users-in-lobby">
+                            <div>
+                                {/* Shows the user that is the interviewer */}
+                            </div>
+                            <div>
+                                {/* Shows all of the users in the room */}
+                                {/* Able to select which user is able to into what role */}
+                            </div>
+                            <div>
+                                {/* Shows the user that is the interviewee */}
+                            </div>
                         </div>
                     </div>
-                    <input type="submit" value="Submit"/>
+                    <input className='create-room-btn' type="submit" value="Create Room"/>
+                
                 </form>
-                <Link to='/rooms'>Back to Rooms</Link>
+                <Link className='lobby-link' to='/rooms'>Back to Rooms</Link>
+                </div>
             </div>
         )
     }

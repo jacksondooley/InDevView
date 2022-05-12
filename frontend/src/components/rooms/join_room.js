@@ -1,5 +1,5 @@
 import React from "react";
-import '../../stylesheets/join_room.css'
+import '../../stylesheets/join_room.scss'
 import { Link } from "react-router-dom"
 
 class JoinRoom extends React.Component{
@@ -36,10 +36,14 @@ class JoinRoom extends React.Component{
     render(){
         return(
             <div className="join-room-container">
-                <p>Please enter a room key:</p>
-                <input type="number" placeholder="Room Key" onChange={this.update('roomKey')}></input>
-                <button value="Submit" onClick={this.handleSubmit}>Join Room</button>
-                <Link to="/rooms">Back to Lobby</Link>
+                <div className='join-room-main-col'>
+                    <p>Enter a room key:</p>
+                    <input className='join-room-input' type="number" placeholder="Room Key" onChange={this.update('roomKey')}></input>
+                    <div className='join-room-btn-container'>
+                        <button id='join-room-btn' value="Submit" onClick={this.handleSubmit}>Join Room</button>
+                        <Link id="lobby-link" className='form-small-link' to="/rooms">Back to Lobby</Link>
+                    </div>
+                </div>
             </div>
         )
     }

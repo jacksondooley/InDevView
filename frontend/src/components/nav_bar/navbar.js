@@ -41,10 +41,35 @@ class NavBar extends React.Component {
         <div className='nav-bar'>
            <Link className='home-button' to="/">
              <h1 id="home-button-icon">
-               InDevView
-              </h1>
-            </Link>
+              InDevView
+            </h1>
+          </Link>
+          <div className='nav-right'>
+            <div className='nav-middle'>
+            <div class="list-choice">
+              <div class="list-choice-title">Explore <i class="fa-brands fa-wpexplorer"></i></div>
+                <div class="list-choice-objects">
+                  <label>
+                    <Link className='nav-link' to="/questions/all">
+                    <input type="radio" name="month"/>
+                      <span>
+                        Questions
+                      </span>
+                    </Link>
+                  </label>  
+                  <label>
+                    <Link className='nav-link' to="/rooms">
+                    <input type="radio" name="month"/>
+                      <span>
+                        Rooms
+                      </span>
+                    </Link>
+                  </label>  
+                </div>
+              </div>
+            </div>
             { this.getLinks() }
+          </div>
         </div>
       );
   }

@@ -8,37 +8,114 @@
     height: 100vh;
 }
 
-.create-room a, .join-room a{
-    font-family: $code;
+.rooms-container a {
+    font-size: 24px;
+    font-weight: 300;
+    margin: auto;
     border-radius: 5px;
-    color: $gray-100;
-    border: 1px solid $gray-100;
-    padding: 1.5rem;
-    font-size: 2rem;
+    height: 35px;
+    width: 16rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        transform: translateY(-2px);
+    }
+    font-family: $poppins;
+}
+
+#join-link {
+    grid-column: 3;
+    border: none;
     text-decoration: none;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
-    font-weight: bolder;
-    transition: all 200ms ease-in-out;
+    
+    &:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 100;
+    }
+
+    color: transparent;
 }
 
-.create-room {
+.rooms-link {
     grid-column-start: 2;
+    border: none;
+    text-decoration: none;
+    
+    &:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 100;
+    }
+
+    color: transparent;
 }
 
-.join-room a{
-    background-color: $secondary;
+#create-btn {
+    // grid-column: 2; 
+    background-color: $blue-500;
+    color: $blue-900;
+    border: 1px solid $background-color;
 }
 
-.create-room a{
-    background-color: $primary;
+#join-btn {
+    border: 1px solid $blue-500;
+    color: $blue-500;
+    &:before {
+        content: "\f500";
+    }
 }
+/* button styles !!!YOU NEED THEM 
+!!!ALSO YOU NEED TO ADD FONTWESOME */
+  
+.effect {
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    // color: $link-text-color;
+    text-transform: capitalize;
+    /* background-color: - add your own background-color */
+    font: {
+      family: 'Roboto', sans-serif; /* put your font-family */
+      size: 18px;
+    }
+    padding: 20px 0px;
+    // width: 150px;
+    // border-radius: $border-radius;
+    overflow: hidden;
+  }
+  
+  /* effect-1 styles */
 
-.join-room {
-    grid-column-start: 3;
-}
 
-.create-room a:hover, .join-room a:hover{
-    // box-shadow: 0 0 40px 40px $blue-500 inset;
-    letter-spacing: 5px;
-}
+  .effect.effect-1 {
+    transition: $transition;
+    
+    &:before {
+        padding-right: 25px;
+      content: "\f067";
+      font-family: FontAwesome;
+      font-size: 15px;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      right: 0;
+      top: 0;
+      opacity: 0;
+      height: 100%;
+    //   width: 40px;
+      transition: $transition;
+    }
+    
+    &:hover {
+      text-indent: -20px;
+      
+      &:before {
+        opacity: 1;
+        text-indent: 0px;
+      }
+    }
+  }
 
+  
