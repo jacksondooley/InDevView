@@ -22,7 +22,8 @@ const fetchAllQuestions = (req, res) => {
 }
 
 const fetchQuestion = (req, res) => {
-	Question.find({ _id: req.params.questionId }, (err, question) => {
+	console.log(req)
+	Question.find({ _id: req.params._id }, (err, question) => {
 		if (err) {console.log(`this question does not exist`)}
 		else {
 			if (!question.length) {console.log(`question not found`)}

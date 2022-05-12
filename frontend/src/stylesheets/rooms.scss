@@ -1,0 +1,44 @@
+@import "./variables.scss";
+
+.rooms-container{
+    @extend %component-container;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 600px 600px 1fr;
+    height: 100vh;
+}
+
+.create-room a, .join-room a{
+    font-family: $code;
+    border-radius: 5px;
+    color: $gray-100;
+    border: 1px solid $gray-100;
+    padding: 1.5rem;
+    font-size: 2rem;
+    text-decoration: none;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+    font-weight: bolder;
+    transition: all 200ms ease-in-out;
+}
+
+.create-room {
+    grid-column-start: 2;
+}
+
+.join-room a{
+    background-color: $secondary;
+}
+
+.create-room a{
+    background-color: $primary;
+}
+
+.join-room {
+    grid-column-start: 3;
+}
+
+.create-room a:hover, .join-room a:hover{
+    // box-shadow: 0 0 40px 40px $blue-500 inset;
+    letter-spacing: 5px;
+}
+

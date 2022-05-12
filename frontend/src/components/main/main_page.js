@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../stylesheets/main_page.css'
+import '../../stylesheets/main_page.scss'
 
 class MainPage extends React.Component {
 
@@ -7,7 +7,7 @@ class MainPage extends React.Component {
     return (
       <div className='splash-page'>
         <h1>InDevView</h1>
-        <footer>
+        <footer className="splash-footer">
           Copyright &copy; 2021 InDevView
         </footer>
       </div>

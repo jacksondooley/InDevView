@@ -116,10 +116,7 @@
 }
 
 .question-list-btn:hover {
-	cursor: pointer;
-	box-shadow: -3px 3px 10px $blue-400;
-	transform: translate(3px, -3px);
-	transition: $transition;
+	@extend %btn-hover-template;
 }
 
 .question-list-btn:hover > header > .question-list-title {
@@ -218,5 +215,4 @@
 	line-height: 1.15;
 	text-align: left;
 	text-overflow:ellipsis;
-	overflow: scroll;
 }

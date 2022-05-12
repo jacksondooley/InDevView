@@ -1,7 +1,11 @@
+@import './variables.scss';
+
 .splash-page{
-    background-color: royalblue;
-    color: white;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: $background-color;
+    color: $gray-300;
+    font-family: $code;
+    font-weight: 100;
+    text-shadow: $text-shadow;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -13,6 +17,6 @@
 
 .splash-page h1{
     font-size: 5rem;
-    text-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    text-shadow: $text-shadow;
     margin: 2rem;
 }
