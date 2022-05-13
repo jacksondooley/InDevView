@@ -61,7 +61,7 @@ class CreateRoom extends React.Component{
         return(
             <div className="create-room-container">
                 <div className='create-room-main-col'>
-                <form onSubmit={this.handleSubmit}>
+                <form className='create-room-form' onSubmit={this.handleSubmit}>
                     <div className='create-room-form-inputs'>
                         <div>
                         <label>Time (minutes)</label>

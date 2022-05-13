@@ -13,12 +13,12 @@
 }
 
 .login-form-container input[type=submit]{
+    transition: $transition;
     @extend %form-submit;
 }
 
 .login-form-container input[type=submit]:hover{
-    box-shadow: none;
-    transform: translateY(2px);
+    @extend %secondary-btn-hov;
 }
 
 .form-small {

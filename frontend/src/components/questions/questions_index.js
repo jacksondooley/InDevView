@@ -77,9 +77,11 @@ class QuestionsIndex extends React.Component{
                             Got an idea?
                         </h2>
                     </header>
-                    <button className='create-question-button'>
-                        Create question
-                    </button>
+                        <a className='button-wrapper' target='_blank' href='https://forms.gle/A9raZKPvdExKBHNm9'>
+                            <button className='create-question-button'>      
+                                Create question
+                            </button>
+                        </a>
                     <div className="create-problem-description">
                         Create a question to give coders new challenges. Get creative!
                     </div>
