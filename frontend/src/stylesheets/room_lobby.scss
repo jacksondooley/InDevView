@@ -1,0 +1,200 @@
+@import './variables.scss';
+
+.room-lobby-container{
+	padding-top: 10px;
+	width: 100%;
+	background-color: $background-color;
+	display: grid;
+	grid-template-columns: 1fr 800px 1fr;
+    grid-template-rows: 100vw;
+	font-family: $poppins;
+	color: $blue-100;
+	height: 100vw;
+}
+
+.lobby-header {
+    position:relative;
+}
+
+.lobby-main-col {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.room-lobby-container h1{
+    grid-row: 1;
+    grid-column: 2;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin: 1rem;
+    text-shadow: $text-shadow;
+    border: 1px solid white;
+    height: 70px;
+}
+
+.lobby-time-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.interview-length-text {
+    margin-right: 10px;
+    font-family: $code;
+}
+
+.interview-length-output {
+    font-family: $code;
+    color: $orange-300;
+    text-shadow: $text-shadow;
+}
+
+.status-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    width: 40%;
+    height: 40px;
+    border: 1px solid white;
+}
+
+%status-buttons {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-button {
+    @extend %status-buttons;
+    font-family: $poppins;
+}
+
+.start-button {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $blue-100;
+    background-color: $cool-gray-900;
+    color: $gray-100;
+    @extend %status-buttons;
+    border: 1px solid $orange-300;
+}
+
+.entry-code{
+    grid-column: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid white;
+    width: fit-content;
+    height: fit-content;
+}
+
+
+.room-lobby-container h2{
+    background-color: white;
+    color: $background-color;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 1rem;
+    height: fit-content;
+    border: 1px solid white;
+}
+
+.room-lobby-participants{
+    height: 800px;
+    position:static;
+    grid-column: 2;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 300px 300px;
+    column-gap: 100px;
+    /* flex-direction: column; */
+    margin: 1rem;
+    border: 1px solid white;
+}
+
+.lobby-members-list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lobby-list-item-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // width: 70%;
+}
+
+#user-icon {
+    padding: 20px;
+}
+
+.room-lobby-item > ul {
+    border: 2px solid gray;
+    border: 1px solid white;
+}
+
+.room-lobby-participants ul li{
+    margin: 1rem;
+    border: 1px solid white;
+}
+
+.room-lobby-buttons{
+    margin: 1rem;
+    border: 1px solid white;
+}
+
+.not-ready-button, .ready-button{
+    padding: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+    border: 1px solid white;
+}
+
+.not-ready-button{
+    background-color: lightcoral;
+    border: 1px solid white;
+    color: white;
+    cursor: default;
+}
+
+.ready-button{
+    background-color: coral;
+    color: white;
+    border: 1px solid white;
+}
+
+.ready-button:hover{
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.remove-user-button{
+    background-color: firebrick;
+    color: white;
+    padding: 0.25rem;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin: 1rem;
+    cursor: pointer;
+    border: 1px solid white;
+}
