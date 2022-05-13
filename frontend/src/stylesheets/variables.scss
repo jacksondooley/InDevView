@@ -99,6 +99,9 @@ $text-shadow: 0px 0px 5px $orange-500;
 	width: 310px;
 	min-width: 300px;
 	font-family: $code;
+	&:focus {
+		border: 3px solid $orange-500;
+	}
 }
 
 input:-webkit-autofill,
@@ -157,7 +160,7 @@ input:-webkit-autofill:active{
 
 %secondary-btn-hov {
 		transform: translateY(-4px);
-		box-shadow: 0 0 30px 30px $blue-700 inset;
+		box-shadow: 0 0 20px 20px $orange-800 inset;
 		letter-spacing: 3px;
 }
 

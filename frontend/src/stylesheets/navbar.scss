@@ -98,12 +98,14 @@
     background-color: $gray-100;
     color: $cool-gray-900;
     @extend %auth-buttons;
+    border: 1px solid $orange-300;
 }
 
 .login{
     background-color: $cool-gray-900;
     color: $gray-100;
     @extend %auth-buttons;
+    border: 1px solid $orange-300;
 }
 
 .logout {
@@ -113,6 +115,7 @@
     @extend %auth-buttons;
     box-shadow: $text-shadow;
 }
+
 
 .list-choice{
     width:300px;
@@ -124,7 +127,7 @@
     position:absolute;
     left:-9999px;
   }
-  
+
   .list-choice-title {
     width: 100%;
     display: block;
@@ -132,8 +135,9 @@
     text-align: center;
     padding: 0.55em 1em;
     box-sizing: border-box;
-    color: $cool-gray-100;
-    text-shadow: $text-shadow;
+    color: $orange-300;
+    font-weight: 200;
+    // text-shadow: $text-shadow;
     border-radius: 0.2em;
   }
 
@@ -169,7 +173,8 @@
     transition: $transition;
   }
   .list-choice:hover input[type="radio"] + span:hover {
-    background: $secondary-baby-blue;
+    box-shadow: 0 0 20px 20px $orange-800 inset;
+
   }
   .list-choice:hover input[type="radio"]:checked + span:hover {
     background:$secondary-baby-blue;

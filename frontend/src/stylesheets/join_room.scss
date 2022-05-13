@@ -22,6 +22,10 @@
     min-width: 100px !important;
     height: 20px;
     font-family: $code;
+
+    &:focus {
+        border: 3px solid $orange-500;
+    }
 }
 
 .join-room-container input{
@@ -51,6 +55,7 @@
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none;
+  
 }
 
 #lobby-link {
