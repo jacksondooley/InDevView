@@ -38,7 +38,7 @@
 
 
 .nav-bar-buttons a{
-    border: 1px solid $yellow-100;
+    border: 1px solid $cool-gray-300;
     border-radius: 5px;
     padding: 0.25rem;
     padding-left: 1rem;
@@ -91,6 +91,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid $blue-100;
 }
 
 .signup{
@@ -106,10 +107,11 @@
 }
 
 .logout {
-    background-color: $secondary-yellow;
-    color: $blue-900;
+    background-color: $blue-900;
+    color: $blue-100;
     border: 1px solid $blue-900 !important;
     @extend %auth-buttons;
+    box-shadow: $text-shadow;
 }
 
 .list-choice{
@@ -117,7 +119,6 @@
     margin:1em auto;
     position: relative;
     cursor: pointer;
-    // border: 1px solid white;
   }
   .list-choice input[type="radio"]{
     position:absolute;

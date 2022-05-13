@@ -1,51 +1,43 @@
 @import './variables.scss';
 
 .create-room-container{
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: auto;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    font-family: $poppins;
-    background-color: $background-color;
-    color: $blue-100;
-    font-weight: 200;
-    padding: 1rem;
-    flex-direction: column;
-    height: 100vh;
+    @extend %room-crud-container;
 }
 
 .create-room-main-col {
     grid-column: 2;
+    padding: 10rem;
 }
 
 .create-room-form-inputs {
+    text-align: center;
     width: 500px;
-    margin: 20px;
+    // margin: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
-
 }
+
 
 .create-room-timer{
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .coding-questions-form{
     display: flex;
     flex-direction: column;
+    // margin: 3rem;
 }
 
 %create-form-inputs {
     font-size: 22px !important;
     letter-spacing: 5px !important;
     font-weight: 400;
-    background-color: $gray-100;
+    background-color: $blue-100;
     color: $blue-900;
     border-radius: 5px;
     height: 20px;
@@ -54,8 +46,11 @@
 }
 
 #time-form {
-    width: 150px;
+    width: 10px;
     min-width: 80px;
+    text-align: center;
+    background-color: $blue-100;
+    color: $blue-900;
 }
 
 .create-room-input {
@@ -63,6 +58,7 @@
     // width: 150px !important;
     // min-width: 100px !important;
     padding: 1rem;
+    margin: 2rem;
 }
 
 .question-select {
@@ -72,57 +68,19 @@
     min-height: 20px;
     height: fit-content;
     padding: 10px;
-    // padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-// #quest-sel {
-    // height: 50px;
-// }
 
 .create-room-btn {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
     @extend %form-submit;
     width: 100px !important;
     min-width: 200px !important;
-    margin: auto !important;
-    margin: 20px;
-	font-family: $poppins;
-	font-size: 20px !important;
-	font-weight: 200;
-	top: 5%;
-	height: 50px;
-	width: 20%;
-	min-width: 300px;
-	color: $blue-100;
-	letter-spacing: 2px;
-	background-color: $blue-900;
-	border-radius: 5px;
-	text-transform: uppercase;
-	transition: $transition;
-	&:hover {
-		box-shadow: 0 0 40px 40px $blue-700 inset;
-		letter-spacing: 3px;
-        transform: translateY(-2px)!important;
-	}
 }
 
-.create-room-form {
-    margin: 40px;
-    color: $blue-100;
-}
-
-.lobby-link {
-    color: $blue-100;
-    text-decoration: none;
-}
-
-.lobby-link:hover {
-    text-decoration: underline;
+.create-room-btn:hover {
+    @extend %secondary-btn-hov;
 }
