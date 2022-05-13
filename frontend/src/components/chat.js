@@ -20,7 +20,7 @@ const Chat = (props) => {
 
     socket.on("userJoinedRoom", (data) => console.log(data))
 
-    return () => socket.emit("leaveRoom", {roomKey: roomKey, handle: handle});
+    // return () => socket.emit("leaveRoom", {roomKey: roomKey, handle: handle});
   }, []);
 
   useEffect(() => {

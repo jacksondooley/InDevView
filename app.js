@@ -75,10 +75,6 @@ io.on("connection", (socket) => {
         io.emit("receive_message", data);
     })
 
-    // socket.on("fetchRoom", (data) => {
-    //     let fakeReq = {params {room_key: data.roomKey}}
-    //     () => fetchRoom(fakeReq)
-    // })
 
     socket.on("leaveRoom", (data) => {
         console.log(`${data.handle} has left ${data.roomKey}`)
@@ -86,33 +82,43 @@ io.on("connection", (socket) => {
     })
 
     socket.on("fetchRoom", (data) => {
-        console.log(data)
         Room.find({ room_key: data.roomKey})        
             .then(res => io.to(data.roomKey).emit("fetchRoomRes", res))
     })
 
     socket.on("changeStatus", (data) => {
-        console.log(data)
-        Room.find({ room_key: data.roomKey }, (err, res) => {
-            console.log("--target room--")
-            console.log(res[0])
-            console.log("-----")
-            let newStatus = res[0].interviewers[0].status === 0 ? 1 : 0
-            res[0].interviewers[0].status = newStatus
-            console.log("--save--")
-            // res.save().then(res => console.log(res))
-        })
-            // .then(res => {
-            //     let newStatus = res[0].interviewers[0].status === 0 ? 1 : 0
-            //     res[0].interviewers[0].status = newStatus
-            //     console.log("--save--")
-            //     res[0].save().then(res => console.log(res))
-                // io.to(data.roomKey).emit("fetchRoomRes", res)
-            // })
+        socket.join(data.roomKey)
+        Room.find({ room_key: data.roomKey })
+            .then(res => {
+                console.log(res[0])
+                res[0].interviewers = res[0].interviewers.map(interviewer => {
+                    if (interviewer.id === data.userId) {
+                        interviewer.status = interviewer.status === 0 ? 1 : 0
+                        res[0].markModified('interviewers')
+                    }
+                    return (interviewer)
+                })
+                res[0].interviewee = res[0].interviewees.map(interviewee => {
+                    if (interviewee.id === data.userId) {
+                    interviewee.status = interviewee.status === 0 ? 1 : 0
+                    res[0].markModified('interviewees')
+                    }
+                    return (interviewee)
+                })
+                res[0].save()
+                io.to(data.roomKey).emit("fetchRoomRes", res)  
+            })
+    })
+
+    socket.on("hostStart", (data) => {
+        console.log("receive start")
+        socket.join(data.roomKey)
+        io.to(data.roomKey).emit("startInterview", data)
+        // socket.leave(data.roomKey)
+        socket.broadcast.emit("startInterview", {yes: "wee"});
     })
 
     socket.on("leaveLobby", (data) => {
-        console.log(data.userId)
         Room.find({ room_key: data.roomKey })
             .then(res => {
                 const filteredInterviewers = res[0].interviewers.filter((user) => data.userId !== user.id)
