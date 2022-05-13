@@ -24,7 +24,10 @@ const RoomSchema = new Schema({
 			type: Number,
 			require: true
 		},
-    date: {
+		editorValue: {
+			type: String
+		},
+    	date: {
 			type: Date,
 			default: Date.now
 	}

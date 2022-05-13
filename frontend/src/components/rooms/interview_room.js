@@ -6,13 +6,23 @@ import EditorContainer from "../editor/editor_container";
 import Editor from '@monaco-editor/react'
 import { compile } from "../../util/compile_api_util";
 import { questionsObj } from "../questions/questions_obj";
+import socket from '../../util/socket_client_util';
+import Chat from "../chat";
+import { receiveRoom } from "../../actions/room_actions";
 
 const InterviewRoom = (props) => {
     const room = useSelector(state => state.room);
     const currentUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchRoom(props.match.params.roomKey))
+        socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
+        socket.emit("fetchRoom", {roomKey: props.match.params.roomKey})
+
+        socket.on("fetchRoomRes", (data) => {
+            dispatch(receiveRoom(data))
+            socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
+        })
+
     }, [])
     // const [userCode, setUserCode] = useState(``);
     // const [userOutput, setUserOutput] = useState([]);
@@ -75,18 +85,18 @@ const InterviewRoom = (props) => {
         <div className="interview-room-container">
                 <div className="interview-room-header">
                     <h1>
-                        Entry Code: {props.room?.room_key}
+                        Entry Code: {props.room[0]?.room_key}
                     </h1>
-                    <p>Timer</p>
+                    <p>Time left: {props.room[0]?.time}</p>
                 </div>
                 <div className="interview-room-body">
                     <div>
                         <ul>
-                            {props.room[0].questions.map(question => 
+                            {props.room[0]?.questions.map(question => 
                                 (<li>
                                     <div className="interview-body-title">
                                         <h2>{question.title}</h2>
-                                        <p>Difficulty:  
+                                     <p>Difficulty:  
                                             {question.difficulty === 1 ? ' Easy' : question.difficulty === 2 ? ' Medium' : ' Hard'}
                                         </p>
                                     </div>
@@ -110,7 +120,7 @@ const InterviewRoom = (props) => {
                 </div>
                 <div className="interview-right-side-bar">
                     <div>
-                        These are the live camera feeds
+                        <Chat />
                     </div>
                 </div>
                 <div className="interview-left-side-bar">
