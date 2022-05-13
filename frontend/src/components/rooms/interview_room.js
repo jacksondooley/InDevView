@@ -5,6 +5,7 @@ import '../../stylesheets/interview_room.css'
 import EditorContainer from "../editor/editor_container";
 import Editor from '@monaco-editor/react'
 import { compile } from "../../util/compile_api_util";
+import { questionsObj } from "../questions/questions_obj";
 
 const InterviewRoom = (props) => {
     const room = useSelector(state => state.room);
@@ -13,58 +14,62 @@ const InterviewRoom = (props) => {
     useEffect(() => {
         dispatch(fetchRoom(props.match.params.roomKey))
     }, [])
-    const [userCode, setUserCode] = useState(``);
-    // const [userOutput, setUserOutput] = useState(['', '', '']);
-    const [testCases, setTestCases] = useState('')
-    // const solutions = [[2], [4, 6], [0]]
-    const inputs = [[1,2], [2,3], [0]]
+    // const [userCode, setUserCode] = useState(``);
+    // const [userOutput, setUserOutput] = useState([]);
+    // const [testCases, setTestCases] = useState([false, false, false]);
+    // const [newData, setNewData] = useState([''])
+    // const solutions = questionsObj[props.room[0].questions[0].title].solutions;
+    // const inputs = questionsObj[props.room[0].questions[0].title].inputs;
+    // const codeLine = questionsObj[props.room[0].questions[0].title].codeLine;
 
+    // const handleChange = useCallback(
+    //     (value, event) => {
+    //         setUserCode(value);
+    //     }
+    // )
 
-    const handleChange = useCallback(
-        (value, event) => {
-            setUserCode(value);
-        }
-    )
+    // const handleClick = useCallback(
+    //     () => {
+            
+    //         inputs.forEach( (input, idx) => {
+    //             // console.log(input)
+    //             // console.log(idx)
+    //             let data = {
+    //                 code: userCode + codeLine + '\nmodule.exports = { func }',
+    //                 input: input
 
-    const handleClick = useCallback(
-        () => {
-            let data = {
-                code: userCode + 'doubler(1,2);'
-            }
-            compile(data).then(({ data }) => { setTestCases(data)}).catch(err => console.log(err))
-            // solutions.forEach( (solution, idx) => {
-            //     let data = {
-            //         code: userCode,
-            //         language: "rb",
-            //         input: inputs[idx]
-            //     }
+    //             }
+    //             let newOutput = userOutput;
+    //             compile(data).then( ({ data }) => {
+    //                 let newOutput = userOutput;
+    //                 newOutput.push(data);
+    //                 setUserOutput(newOutput)
+    //                 console.log(userOutput)
+    //             })
+    //         })
+    //         // console.log(userOutput)
+    //         let newTestCases = testCases;
 
-            //     compile(data).then(res => {
-            //         let newOutput = userOutput;
-            //         newOutput[idx] = res.data.output
-            //         setUserOutput(newOutput)
-            //     })
+    //         userOutput.forEach((output, idx) => {
+    //             if(typeof output === Array){
+    //                 let testCase = true;
 
-            //     if(typeof userOutput[idx] === Array){
-            //         let testCase = true;
-
-            //         userOutput[idx].forEach( (ele, i) => {
-            //             if(ele !== solution[i]){
-            //                 testCase = false;
-            //             }
-            //         })
-
-            //         let newTestCases = testCases;
-            //         newTestCases[idx] = testCase;
-            //         setTestCases(newTestCases)
-            //     }
-            //     else{
-            //         let newTestCases = testCases;
-            //         newTestCases[idx] = (userOutput[idx] === solution)
-            //     }
-            // })
-        }
-    )
+    //                 output.forEach((ele, i) => {
+    //                     if(ele !== solutions[idx][i]){
+    //                         testCase = false;
+    //                     }
+    //                 })
+    //                 newTestCases[idx] = testCase
+    //                 setTestCases(newTestCases);
+    //             }
+    //             else{
+    //                 newTestCases[idx] = (output === solutions[idx])
+    //                 setTestCases(newTestCases);
+    //             }
+    //         })
+    //         console.log("has finished compiling")
+    //     }
+    // )
 
     return (
         <div className="interview-room-container">
@@ -96,10 +101,9 @@ const InterviewRoom = (props) => {
                     <div className='code-editor'>
                         <Editor
                             height="65vh"
-                            defaultLanguage='ruby'
-                            defaultValue='"Hello World"'
+                            defaultLanguage='javascript'
+                            defaultValue={'//Enter your code here'}
                             theme='vs-dark'
-                            onChange={handleChange}
                         />
                         
                     </div>
@@ -110,19 +114,46 @@ const InterviewRoom = (props) => {
                     </div>
                 </div>
                 <div className="interview-left-side-bar">
-                    <div>
+                    {/* <div>
                         Test cases go here.
                         <button onClick={handleClick}>Run tests</button>
-                        {/* {testCases.forEach( (testCase, idx) => {
-                            return (
-                                <div>
-                                    Test Case {inputs[idx]} : {testCase ? "Passed" : "Failed"}
-                                </div>
-                            )
-                        })} */}
-                        This is where the live chat tab goes.
-                        Also here is notes tab.
-                    </div>
+                        <div>
+                            Test Case 1   
+                            <div>
+                                Input: {inputs[0].toString()}
+                            </div>
+                            <div>
+                                Output: {solutions[0].toString()}
+                            </div>
+                            <div>
+                                User Submitted: { testCases[0] ? "Passed" : "Failed"}
+                            </div>
+                        </div>
+                        <div>
+                            Test Case 2   
+                            <div>
+                                Input: {inputs[1].toString()}
+                            </div>
+                            <div>
+                                Output: {solutions[1].toString()}
+                            </div>
+                            <div>
+                                User Submitted: { testCases[1] ? "Passed" : "Failed"}
+                            </div>
+                        </div>
+                        <div>
+                            Test Case 3   
+                            <div>
+                                Input: {inputs[2].toString()}
+                            </div>
+                            <div>
+                                Output: {solutions[2].toString()}
+                            </div>
+                            <div>
+                                User Submitted: { testCases[2] ? "Passed" : "Failed"}
+                            </div>
+                        </div>
+                    </div> */}
                     
                 </div>
         </div>

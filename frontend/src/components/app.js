@@ -15,6 +15,7 @@ import InterviewRoomContainer from './rooms/interview_room_container'
 import Chat from './chat';
 import QuestionsIndexContainer from './questions/questions_index_container';
 import QuestionShowContainer from './questions/question_show';
+import About from './about/about';
 
 const App = () => (
   <div>
@@ -30,7 +31,8 @@ const App = () => (
         <ProtectedRoute exact path="/rooms/:roomKey/lobby" component={RoomLobbyContainer}/>
         <ProtectedRoute exact path="/rooms/:roomKey/interview" component={InterviewRoomContainer}/>
         <ProtectedRoute exact path="/chat" component={Chat}/>
-        
+
+        <Route exact path="/about" component={About}/>
         <Route exact path="/questions/all" component={QuestionsIndexContainer}/>
         <Route exact path='/questions/:id' component={QuestionShowContainer}></Route>
     </Switch>
