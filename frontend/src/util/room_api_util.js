@@ -6,7 +6,6 @@ export const createRoom = (roomData) => {
 }
 
 export const addParticipant = (roomKey, user) => {
-  console.log(roomKey)
   return axios.patch(`/api/rooms/${roomKey}/join`, user)
 }
 

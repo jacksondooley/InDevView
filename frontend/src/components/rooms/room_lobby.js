@@ -6,25 +6,34 @@ import Chat from '../chat';
 import { receiveRoom } from "../../actions/room_actions"
 import socket from '../../util/socket_client_util';
 
+const startButton = (room) => {
+    if (room[0]?.interviewers.every(interviewee => interviewee.status === 1)) {
+        return <button onClick={() => socket.emit("hostStart", {roomKey: room[0].room_key})}>Start</button>
+    }
+    else {
+        return <button>Awaiting Ready</button>
+    }
+}
 
 const RoomLobby = (props) => {
     let room = useSelector(state => state.room)
-
-    console.log(room)
-    console.log(props)
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
-    console.log(currentUser)
 
     useEffect(() => {
         // dispatch(fetchRoom(props.match.params.roomKey))
         socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
-        socket.emit("fetchRoom", {roomKey: props.match.params.roomKey})   
+        socket.emit("fetchRoom", {roomKey: props.match.params.roomKey})
+        
+        
+        socket.on("startInterview", (data) => {
+            console.log("pls sir")
+            props.history.push(`/rooms/${data.roomKey}/interview`)
+        })
 
         socket.on("fetchRoomRes", (data) => {
-            console.log("-----")
-            console.log(data)
             dispatch(receiveRoom(data))
+            socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
         })
         
         return () => socket.emit("leaveLobby", { roomKey: props.match.params.roomKey, userId: props.currentUser.id } )
@@ -39,6 +48,8 @@ const RoomLobby = (props) => {
     // const changeStatus = () => {
         
     // }
+
+
 
     return (
         <div className='room-lobby-container'>
@@ -92,6 +103,7 @@ const RoomLobby = (props) => {
                         <Link className='ready-button' to={`/rooms/${props?.room.room_key}/interview`}>Ready!</Link> :
                         <Link className='not-ready-button' onClick={(e) => e.preventDefault()}>Not Ready</Link>
                 } */}
+                {room ? startButton(room) : <div>yes</div>}
                 <button onClick={() => socket.emit("changeStatus", { roomKey: props.match.params.roomKey, userId: props.currentUser.id })}>
                     {props.currentUser.status === 0 ? "ready up" : "not ready"}
                 </button>
