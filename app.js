@@ -114,18 +114,22 @@ io.on("connection", (socket) => {
         console.log("receive start")
         socket.join(data.roomKey)
         io.to(data.roomKey).emit("startInterview", data)
-        // socket.leave(data.roomKey)
+        socket.leave(data.roomKey)
         socket.broadcast.emit("startInterview", {yes: "wee"});
     })
 
     socket.on("leaveLobby", (data) => {
+        console.log(data)
         Room.find({ room_key: data.roomKey })
             .then(res => {
                 const filteredInterviewers = res[0].interviewers.filter((user) => data.userId !== user.id)
                 const filteredInterviewees = res[0].interviewees.filter((user) => data.userId !== user.id)
                 res[0].interviewers = filteredInterviewers
                 res[0].interviewees = filteredInterviewees
-                res[0].save()
+                // res[0].markModified('interviewers')
+                // res[0].markModified('in')
+                res[0].update()
+
                 io.to(data.roomKey).emit("fetchRoomRes", res)
             })
     })

@@ -6,9 +6,9 @@ import Chat from '../chat';
 import { receiveRoom } from "../../actions/room_actions"
 import socket from '../../util/socket_client_util';
 
-const startButton = (room) => {
+const startButton = (sock, room) => {
     if (room[0]?.interviewers.every(interviewee => interviewee.status === 1)) {
-        return <button onClick={() => socket.emit("hostStart", {roomKey: room[0].room_key})}>Start</button>
+        return <button onClick={() => sock.emit("hostStart", {roomKey: room[0].room_key})}>Start</button>
     }
     else {
         return <button>Awaiting Ready</button>
@@ -16,27 +16,28 @@ const startButton = (room) => {
 }
 
 const RoomLobby = (props) => {
+    let sock = socket
     let room = useSelector(state => state.room)
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
 
     useEffect(() => {
         // dispatch(fetchRoom(props.match.params.roomKey))
-        socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
-        socket.emit("fetchRoom", {roomKey: props.match.params.roomKey})
+        sock.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
+        sock.emit("fetchRoom", {roomKey: props.match.params.roomKey})
         
         
-        socket.on("startInterview", (data) => {
+        sock.on("startInterview", (data) => {
             console.log("pls sir")
             props.history.push(`/rooms/${data.roomKey}/interview`)
         })
 
-        socket.on("fetchRoomRes", (data) => {
+        sock.on("fetchRoomRes", (data) => {
             dispatch(receiveRoom(data))
-            socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
+            sock.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
         })
         
-        return () => socket.emit("leaveLobby", { roomKey: props.match.params.roomKey, userId: props.currentUser.id } )
+        return () => sock.emit("leaveLobby", { roomKey: props.match.params.roomKey, userId: props.currentUser.id } )
     }, [])
 
 
@@ -103,8 +104,8 @@ const RoomLobby = (props) => {
                         <Link className='ready-button' to={`/rooms/${props?.room.room_key}/interview`}>Ready!</Link> :
                         <Link className='not-ready-button' onClick={(e) => e.preventDefault()}>Not Ready</Link>
                 } */}
-                {room ? startButton(room) : <div>yes</div>}
-                <button onClick={() => socket.emit("changeStatus", { roomKey: props.match.params.roomKey, userId: props.currentUser.id })}>
+                {room ? startButton(sock, room) : <div>yes</div>}
+                <button onClick={() => sock.emit("changeStatus", { roomKey: props.match.params.roomKey, userId: props.currentUser.id })}>
                     {props.currentUser.status === 0 ? "ready up" : "not ready"}
                 </button>
             </div>
