@@ -21,7 +21,7 @@ class Rooms extends React.Component{
                         </div>
                     </a>
                 </Link>
-                <Link id="join-link" classsName='rooms-link' to="/rooms/join">
+                <Link id="join-link" className='rooms-link' to="/rooms/join">
                     <a id='join-btn' class="effect effect-1" href="#" title="Join Room">
                         Join Room
                     </a>

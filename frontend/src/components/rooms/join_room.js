@@ -39,12 +39,14 @@ class JoinRoom extends React.Component{
         return(
             <div className="join-room-container">
                 <div className='join-room-main-col'>
-                    <p>Enter a room key:</p>
+                    <p>Enter a room key</p>
                     <input className='join-room-input' type="number" placeholder="Room Key" onChange={this.update('roomKey')}></input>
-                    <div className='join-room-btn-container'>
-                        <button id='join-room-btn' value="Submit" onClick={this.handleSubmit}>Join Room</button>
-                        <Link id="lobby-link" className='form-small-link' to="/rooms">Back to Lobby</Link>
-                    </div>
+                        <div className='join-room-btn-container'>
+                            <button id='join-room-btn' value="Submit" onClick={this.handleSubmit}>Join Room</button>
+                        </div>
+                    <Link id="lobby-link" className='form-small-link' to="/rooms">Back to rooms</Link>
+                    <br/>
+                    <Link id="lobby-link" className='form-small-link' to="/rooms/create">Create room</Link>
                 </div>
             </div>
         )

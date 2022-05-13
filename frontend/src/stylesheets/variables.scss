@@ -21,7 +21,6 @@ $blue-700: #334E68;
 $blue-800: #243B53;
 $blue-900: #102A43;
 
-$text-shadow: 0px 0px 5px $blue-500;
 
 // gray
 $gray-100: #FAFAFA;
@@ -58,6 +57,13 @@ $green-500: #006644;
 $green-300: #36B37E;
 $green-100: #ABF5D1;
 
+// orange
+$orange-100: #fbaa69;
+$orange-300: #fa9a23;
+$orange-500: #d17604;
+$orange-800: #8B4F02;
+
+
 // secondary pallette
 $secondary-red: #8F0031;
 $secondary-yellow: #F79B19;
@@ -66,6 +72,8 @@ $secondary-baby-blue: #00A8CC;
 $secondary-violet: #91198E;
 
 // other colors
+$burnt-orange: #ff6600;
+$dark-orange: #ff6702;
 $primary: #303F9F;
 $secondary: #BDBDBD;
 $confirm: #00897B;
@@ -75,9 +83,15 @@ $help: #673AB7;
 
 
 // TEMPLATES
+
+
+$text-shadow: 0px 0px 5px $orange-500;
+
+
 %form-inputs {
-	background-color: $gray-100;
+	background-color: $blue-100;
 	color: $blue-900;
+	border: 1.5px solid $cool-gray-300;
 	margin: 1rem;
 	padding: 1rem;
 	font-size: 1rem;
@@ -85,6 +99,13 @@ $help: #673AB7;
 	width: 310px;
 	min-width: 300px;
 	font-family: $code;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px $blue-100 inset !important;
 }
 
 %form-submit {
@@ -97,11 +118,14 @@ $help: #673AB7;
 	width: 310px;
 	min-width: 300px;
 	color: $blue-100;
+	border: 1px solid $cool-gray-500;
 	letter-spacing: 2px;
 	background-color: $blue-900;
 	border-radius: 5px;
 	text-transform: uppercase;
+	transition: $transition;
 }
+
 
 %component-container {
 	background-color: $background-color;
@@ -132,7 +156,23 @@ $help: #673AB7;
 }
 
 %secondary-btn-hov {
-		transform: translateY(-2px);
-		box-shadow: 0 0 40px 40px $blue-700 inset;
+		transform: translateY(-4px);
+		box-shadow: 0 0 30px 30px $blue-700 inset;
 		letter-spacing: 3px;
 }
+
+%room-crud-container {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	grid-template-rows: auto;
+	text-align: center;
+	justify-content: center;
+	font-family: $poppins;
+	font-size: 1.5rem;
+	font-weight: 200;
+	background-color: $background-color;
+	color: $blue-100;
+	height: 100vh;
+}
+
+// mongoose.connect

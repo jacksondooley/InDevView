@@ -72,7 +72,7 @@ class CreateRoom extends React.Component{
                                 type="number"
                                 min="1" 
                                 step="1" 
-                                placeholder="time" 
+                                placeholder="00" 
                                 onChange={this.update('time')}>    
                             </input>
                         </div> 
@@ -84,9 +84,9 @@ class CreateRoom extends React.Component{
                             ))} */}
                         </ul>
                         <div className="coding-questions-form">
-                            <label>Choose a question</label>
+                            <label>Choose question</label>
                             <select id='quest-sel' className='question-select' onChange={this.update("questions")}>
-                                <option className='create-room-dropdown' selected disabled hidden placeholder="Select"></option>
+                                <option className='create-room-dropdown' selected disabled hidden >question</option>
                                 {this.props.questions.map((question, idx) => (
                                     <option value={question._id}>{question.title}</option>
                                 ))}
@@ -107,9 +107,10 @@ class CreateRoom extends React.Component{
                         </div>
                     </div>
                     <input className='create-room-btn' type="submit" value="Create Room"/>
-                
                 </form>
-                <Link className='lobby-link' to='/rooms'>Back to Rooms</Link>
+                <Link id='lobby-link' className='form-small-link' to='/rooms'>Back to rooms</Link>
+                <br/>
+                <Link id='lobby-link' className='form-small-link' to='/rooms/join'>Join room</Link>
                 </div>
             </div>
         )
