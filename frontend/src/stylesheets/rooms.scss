@@ -32,6 +32,7 @@
     &:hover {
         text-decoration: underline;
         text-decoration-thickness: 100;
+        
     }
 
     color: transparent;
@@ -45,6 +46,7 @@
     &:hover {
         text-decoration: underline;
         text-decoration-thickness: 100;
+        text-decoration-color: $orange-300;
     }
 
     color: transparent;

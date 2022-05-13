@@ -55,10 +55,12 @@
 
 .create-room-input {
     @extend %create-form-inputs;
-    // width: 150px !important;
-    // min-width: 100px !important;
     padding: 1rem;
-    margin: 2rem;
+    margin: 1rem;
+
+    &:focus {
+        border: 3px solid $orange-500;
+    }
 }
 
 .question-select {
@@ -72,6 +74,9 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    &:focus {
+        border: 3px solid $orange-500;
+    }
 }
 
 

@@ -41,7 +41,7 @@ class NavBar extends React.Component {
         <div className='nav-bar'>
            <Link className='home-button' to="/">
              <h1 id="home-button-icon">
-              InDevView
+              In<span className='orange-text'>Dev</span>View
             </h1>
           </Link>
           <div className='nav-right'>
