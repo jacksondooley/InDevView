@@ -15,10 +15,11 @@ import InterviewRoomContainer from './rooms/interview_room_container'
 import Chat from './chat';
 import QuestionsIndexContainer from './questions/questions_index_container';
 import QuestionShowContainer from './questions/question_show';
+import Footer from './footer/footer';
 import About from './about/about';
 
 const App = () => (
-  <div>
+  <div className='inner-body'>
     <NavBarContainer />
     <Switch>
         <AuthRoute exact path="/" component={MainPage} />
@@ -36,6 +37,7 @@ const App = () => (
         <Route exact path="/questions/all" component={QuestionsIndexContainer}/>
         <Route exact path='/questions/:id' component={QuestionShowContainer}></Route>
     </Switch>
+    {/* <Footer/> */}
   </div>
 );
 

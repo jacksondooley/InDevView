@@ -59,8 +59,9 @@
 .room-lobby-buttons {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     height: 4rem;
-    width: 10rem;
+    width: 18rem;
     margin-top: 1rem;
     text-transform: uppercase;
 }
@@ -101,7 +102,6 @@
     align-items: center;
     justify-content: center;
     @extend %sub-headers;
-
     border-right: 2px solid $blue-700;
     border-left: 2px solid $blue-700;
     width: 100%;
@@ -109,14 +109,35 @@
 }
 
 .start-button {
+    border: 1px solid $background-color;
     -webkit-font-smoothing: antialiased;
     display: flex;
+    font-weight: 600;
+    font-size: 1rem;
     justify-content: center;
     align-items: center;
     font-family: $poppins;
-    width: 180px;
-    border-radius: 20px;
-} 
+    width: 50%;
+    border-radius: 10px;
+    margin: 5px;
+    transition: $transition;
+}
+
+.start-button:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+}
+#ready {
+    background-color: $green-300;
+}
+
+#not-ready {
+    background-color: $red-500;
+}
+
+#ready-up {
+    background-color: $yellow-300;
+}
 
 .room-lobby-participants{
     display: flex;

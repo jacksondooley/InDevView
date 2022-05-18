@@ -185,4 +185,8 @@ input:-webkit-autofill:active{
 	align-items: center;
 }
 
+html {
+	background-color: $background-color;
+}
+
 // mongoose.connect

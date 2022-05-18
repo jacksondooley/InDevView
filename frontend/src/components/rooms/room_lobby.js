@@ -8,10 +8,10 @@ import socket from '../../util/socket_client_util';
 
 const startButton = (room) => {
     if (room[0]?.interviewers.every(interviewee => interviewee.status === 1)) {
-        return <button className='start-button' onClick={() => socket.emit("hostStart", {roomKey: room[0].room_key})}>Start</button>
+        return <button id='ready' className='start-button' onClick={() => socket.emit("hostStart", {roomKey: room[0].room_key})}>START</button>
     }
     else {
-        return <button className='start-button'>Awaiting Ready</button>
+        return <button id='not-ready' className='start-button'>NOT READY</button>
     }
 }
 
@@ -70,7 +70,7 @@ const RoomLobby = (props) => {
                             <Link className='not-ready-button' onClick={(e) => e.preventDefault()}>Not Ready</Link>
                     } */}
                     {room ? startButton(room) : <div>yes</div>}
-                    <button className='start-button' onClick={() => socket.emit("changeStatus", { roomKey: props.match.params.roomKey, userId: props.currentUser.id })}>
+                    <button id='ready-up' className='start-button' onClick={() => socket.emit("changeStatus", { roomKey: props.match.params.roomKey, userId: props.currentUser.id })}>
                         {props.currentUser.status === 0 ? "READY UP" : "NOT READY"}
                     </button>
                 </div>
