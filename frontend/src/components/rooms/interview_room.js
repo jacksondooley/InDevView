@@ -24,62 +24,58 @@ const InterviewRoom = (props) => {
         })
 
     }, [])
-    // const [userCode, setUserCode] = useState(``);
-    // const [userOutput, setUserOutput] = useState([]);
-    // const [testCases, setTestCases] = useState([false, false, false]);
-    // const [newData, setNewData] = useState([''])
-    // const solutions = questionsObj[props.room[0].questions[0].title].solutions;
-    // const inputs = questionsObj[props.room[0].questions[0].title].inputs;
-    // const codeLine = questionsObj[props.room[0].questions[0].title].codeLine;
+    const [userCode, setUserCode] = useState(``);
+    const [userOutput, setUserOutput] = useState(['','','']);
+    const [testCases, setTestCases] = useState([false, false, false]);
+    const [newData, setNewData] = useState([''])
+    const solutions = questionsObj[props.room[0].questions[0].title].solutions;
+    const inputs = questionsObj[props.room[0].questions[0].title].inputs;
+    const codeLine = questionsObj[props.room[0].questions[0].title].codeLine;
 
-    // const handleChange = useCallback(
-    //     (value, event) => {
-    //         setUserCode(value);
-    //     }
-    // )
+    const handleChange = useCallback(
+        (value, event) => {
+            setUserCode(value);
+        }
+    )
 
-    // const handleClick = useCallback(
-    //     () => {
-            
-    //         inputs.forEach( (input, idx) => {
-    //             // console.log(input)
-    //             // console.log(idx)
-    //             let data = {
-    //                 code: userCode + codeLine + '\nmodule.exports = { func }',
-    //                 input: input
+    const handleClick = useCallback(
+        () => {
 
-    //             }
-    //             let newOutput = userOutput;
-    //             compile(data).then( ({ data }) => {
-    //                 let newOutput = userOutput;
-    //                 newOutput.push(data);
-    //                 setUserOutput(newOutput)
-    //                 console.log(userOutput)
-    //             })
-    //         })
-    //         // console.log(userOutput)
-    //         let newTestCases = testCases;
+            // if(userCode === ''){
+            //     setUserCode('function ' + codeLine.substring(codeLine.indexOf('=') + 2) + '(){\n\t\n}');
+            // }
 
-    //         userOutput.forEach((output, idx) => {
-    //             if(typeof output === Array){
-    //                 let testCase = true;
+            let data = {
+                code: userCode + codeLine + '\nmodule.exports = { func }',
+                inputs: inputs
+            }
 
-    //                 output.forEach((ele, i) => {
-    //                     if(ele !== solutions[idx][i]){
-    //                         testCase = false;
-    //                     }
-    //                 })
-    //                 newTestCases[idx] = testCase
-    //                 setTestCases(newTestCases);
-    //             }
-    //             else{
-    //                 newTestCases[idx] = (output === solutions[idx])
-    //                 setTestCases(newTestCases);
-    //             }
-    //         })
-    //         console.log("has finished compiling")
-    //     }
-    // )
+            compile(data).then(({ data }) => {
+                setUserOutput(data)
+                // console.log(userOutput)
+                let newTestCases = testCases;
+
+                userOutput.forEach((output, idx) => {
+                    if(output instanceof Array){
+                        let testCase = true;
+
+                        output.forEach((ele, i) => {
+                            if(ele !== solutions[idx][i]){
+                                testCase = false;
+                            }
+                        })
+                        newTestCases[idx] = testCase
+                        setTestCases(newTestCases);
+                    }
+                    else{
+                        newTestCases[idx] = (output === solutions[idx])
+                        setTestCases(newTestCases);
+                    }
+                })
+            })
+            // console.log("has finished compiling")
+        }
+    )
 
     return (
         <div className="interview-room-container">
@@ -112,8 +108,9 @@ const InterviewRoom = (props) => {
                         <Editor
                             height="65vh"
                             defaultLanguage='javascript'
-                            defaultValue={'//Enter your code here'}
+                            defaultValue={'function ' + codeLine.substring(codeLine.indexOf('=') + 2) + '(){\n\t\n}'}
                             theme='vs-dark'
+                            onChange={handleChange}
                         />
                         
                     </div>
@@ -124,7 +121,7 @@ const InterviewRoom = (props) => {
                     </div>
                 </div>
                 <div className="interview-left-side-bar">
-                    {/* <div>
+                    <div>
                         Test cases go here.
                         <button onClick={handleClick}>Run tests</button>
                         <div>
@@ -133,10 +130,13 @@ const InterviewRoom = (props) => {
                                 Input: {inputs[0].toString()}
                             </div>
                             <div>
-                                Output: {solutions[0].toString()}
+                                Expected Output: {solutions[0].toString()}
                             </div>
                             <div>
-                                User Submitted: { testCases[0] ? "Passed" : "Failed"}
+                                User Submitted: {userOutput[0].toString()}
+                            </div>
+                            <div>
+                                { testCases[0] ? "Passed" : "Failed"}
                             </div>
                         </div>
                         <div>
@@ -145,10 +145,13 @@ const InterviewRoom = (props) => {
                                 Input: {inputs[1].toString()}
                             </div>
                             <div>
-                                Output: {solutions[1].toString()}
+                                Expected Output: {solutions[1].toString()}
                             </div>
                             <div>
-                                User Submitted: { testCases[1] ? "Passed" : "Failed"}
+                                User Submitted: { userOutput[1].toString() }
+                            </div>
+                            <div>
+                                { testCases[1] ? "Passed" : "Failed"}
                             </div>
                         </div>
                         <div>
@@ -157,13 +160,16 @@ const InterviewRoom = (props) => {
                                 Input: {inputs[2].toString()}
                             </div>
                             <div>
-                                Output: {solutions[2].toString()}
+                                Expected Output: {solutions[2].toString()}
                             </div>
                             <div>
-                                User Submitted: { testCases[2] ? "Passed" : "Failed"}
+                                User Submitted: { userOutput[2].toString() }
+                            </div>
+                            <div>
+                                { testCases[2] ? "Passed" : "Failed"}
                             </div>
                         </div>
-                    </div> */}
+                    </div>
                     
                 </div>
         </div>

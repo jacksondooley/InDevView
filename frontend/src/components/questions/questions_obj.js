@@ -6,8 +6,8 @@ export const questionsObj = {
     },
     "merge sort" : {
         codeLine: '\nconst func = mergeSort',
-        inputs: [[4,2,1,3], [5, 1, 4], []],
-        solutions: [[1,2,3,4], [1,4,5],[]]
+        inputs: [[4,2,1,3], [5, 1, 4], [0]],
+        solutions: [[1,2,3,4], [1,4,5],[0]]
     },
     "doubler" : {
         codeLine: '\nconst func = doubler',
