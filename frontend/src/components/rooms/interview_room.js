@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRoom } from "../../actions/room_actions";
-import '../../stylesheets/interview_room.css'
+import '../../stylesheets/interview_room.scss'
 import EditorContainer from "../editor/editor_container";
 import Editor from '@monaco-editor/react'
 import { compile } from "../../util/compile_api_util";
@@ -24,6 +24,28 @@ const InterviewRoom = (props) => {
         })
 
     }, [])
+
+    const diffDisplay = (difficulty) => {
+		if (difficulty === 1) {
+			return (
+				<div id='easy' className="easy">
+						EASY
+				</div>
+			)
+		} else if (difficulty === 2) {
+			return (
+				<div id='medium' className="medium">
+						MEDIUM
+				</div>
+			)
+		} else {
+			return (
+				<div id='hard' className="hard">
+						HARD
+				</div>
+			)
+		}
+	}
     // const [userCode, setUserCode] = useState(``);
     // const [userOutput, setUserOutput] = useState([]);
     // const [testCases, setTestCases] = useState([false, false, false]);
@@ -83,46 +105,69 @@ const InterviewRoom = (props) => {
 
     return (
         <div className="interview-room-container">
+            <div className='left-head'>
                 <div className="interview-room-header">
                     <h1>
                         Entry Code: {props.room[0]?.room_key}
                     </h1>
                     <p>Time left: {props.room[0]?.time}</p>
                 </div>
-                <div className="interview-room-body">
-                    <div>
-                        <ul>
-                            {props.room[0]?.questions.map(question => 
-                                (<li>
-                                    <div className="interview-body-title">
-                                        <h2>{question.title}</h2>
-                                     <p>Difficulty:  
-                                            {question.difficulty === 1 ? ' Easy' : question.difficulty === 2 ? ' Medium' : ' Hard'}
-                                        </p>
-                                    </div>
-
-                                    <div className="question-description">
-                                        {question.description}
-                                    </div>
-                                </li>)
-                            )}
-                        </ul>
-                    </div>
-                    <div className='code-editor'>
-                        <Editor
-                            height="65vh"
-                            defaultLanguage='javascript'
-                            defaultValue={'//Enter your code here'}
-                            theme='vs-dark'
-                        />
-                        
+            </div>
+            <div className="code">
+                <div className='code-editor'>
+                    <Editor
+                        height="65vh"
+                        defaultLanguage='javascript'
+                        defaultValue={'//Enter your code here'}
+                        theme='vs-dark'
+                    />
+                </div>
+            </div>
+            <div className="header">
+                <div>
+                    <ul>
+                        {props.room[0]?.questions?.map(question => 
+                            (<li>
+                                <div className="interview-body-title">
+                                    <h2>{question.title}</h2>
+                                </div>
+                            </li>)
+                        )}
+                    </ul>
+                </div>
+            </div>
+            <div className='right-head'>
+                {props.room[0]?.questions.map(question => 
+                <div className='diff-display'>
+                    <p className='diff-text'>
+                        Difficulty
+                    </p>
+                    <div id='room-diff'>
+                        {diffDisplay(question.difficulty)}
                     </div>
                 </div>
+                    )}
+            </div>
+            <div className="description">
+                <ul>
+                    {props.room[0]?.questions?.map(question => 
+                    (<li>
+                        <p>  
+                            {question.description}
+                        </p>
+                    </li>)
+                )}
+                </ul>
+            </div>
+            <div className="chat">
                 <div className="interview-right-side-bar">
                     <div>
                         <Chat />
                     </div>
                 </div>
+            </div>
+            <div className="chat-head"></div>
+            <div className="participants">
                 <div className="interview-left-side-bar">
                     {/* <div>
                         Test cases go here.
@@ -166,6 +211,11 @@ const InterviewRoom = (props) => {
                     </div> */}
                     
                 </div>
+
+            </div>
+            <div className="part-head">
+
+            </div>
         </div>
     )
 }
