@@ -178,4 +178,11 @@ input:-webkit-autofill:active{
 	height: 100vh;
 }
 
+%auth-buttons {
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 // mongoose.connect

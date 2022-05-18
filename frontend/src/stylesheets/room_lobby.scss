@@ -1,200 +1,189 @@
 @import './variables.scss';
 
 .room-lobby-container{
-	padding-top: 10px;
+    padding-top: 10px;
 	width: 100%;
 	background-color: $background-color;
-	display: grid;
-	grid-template-columns: 1fr 800px 1fr;
-    grid-template-rows: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-rows: 1fr 1fr 7fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    ". header ."
+    "roomkey time chat-header"
+    "buttons participants chat";
 	font-family: $poppins;
 	color: $blue-100;
-	height: 100vw;
+    font-size: 1.2rem;
 }
 
-.lobby-header {
-    position:relative;
-}
-
-.lobby-main-col {
-    grid-column: 2;
-    grid-row: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-.room-lobby-container h1{
-    grid-row: 1;
-    grid-column: 2;
-    text-align: center;
+.roomkey { 
+    grid-area: roomkey;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+}
+
+.roomkey-num {
+    background-color: $blue-100;
+    color: $background-color;
+    border-radius: 5px;
+    padding: .5rem;
     margin: 1rem;
-    text-shadow: $text-shadow;
-    border: 1px solid white;
-    height: 70px;
+    height: fit-content;
 }
 
-.lobby-time-container {
+%sub-headers {
+    font-family: $code;
+    color: $orange-100;
+    text-shadow: $text-shadow;
+}
+
+.roomkey-text {
+    @extend %sub-headers;
+}
+
+.time {
+    grid-area: time;
+    display: flex;
+    justify-content: center;
+}
+
+.buttons {
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+}
+
+.room-lobby-buttons {
+    display: flex;
+    flex-direction: row;
+    height: 4rem;
+    width: 10rem;
+    margin-top: 1rem;
+}
+
+.header { 
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    text-shadow: $text-shadow;
+
+}
+
+.participants { 
+    grid-area: participants;
+}
+
+.chat {
+    grid-area: chat;
+    font-size: 1rem;
+    margin: auto;
+    width: 90%;
+    height: 90%;
+}
+
+.chat-header {
+    grid-area: chat-header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @extend %sub-headers
+}
+
+.time-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    @extend %sub-headers;
+
+    border-right: 2px solid $blue-700;
+    border-left: 2px solid $blue-700;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
 
-.interview-length-text {
-    margin-right: 10px;
-    font-family: $code;
-}
-
-.interview-length-output {
-    font-family: $code;
-    color: $orange-300;
-    text-shadow: $text-shadow;
-}
-
-.status-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 20px;
-    width: 40%;
-    height: 40px;
-    border: 1px solid white;
-}
-
-%status-buttons {
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.status-button {
-    @extend %status-buttons;
-    font-family: $poppins;
 }
 
 .start-button {
-    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid $blue-100;
-    background-color: $cool-gray-900;
-    color: $gray-100;
-    @extend %status-buttons;
-    border: 1px solid $orange-300;
-}
-
-.entry-code{
-    grid-column: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: 1px solid white;
-    width: fit-content;
-    height: fit-content;
-}
-
-
-.room-lobby-container h2{
-    background-color: white;
-    color: $background-color;
-    border-radius: 5px;
-    padding: 1rem;
-    margin: 1rem;
-    height: fit-content;
-    border: 1px solid white;
-}
+    font-family: $poppins;
+    width: 180px;
+    border-radius: 20px;
+} 
 
 .room-lobby-participants{
-    height: 800px;
-    position:static;
-    grid-column: 2;
-    grid-row: 1;
-    display: grid;
-    grid-template-columns: 300px 300px;
-    column-gap: 100px;
-    /* flex-direction: column; */
-    margin: 1rem;
-    border: 1px solid white;
-}
-
-.lobby-members-list-item {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    position:static;
+    border-left: 2px solid $blue-700;
+    border-right: 2px solid $blue-700;
+}
+
+.members-ul {
+    display: flex;
     align-items: center;
+    justify-content: center;
+    font-family: $code;
+    width: 100%;
+}
+
+// .remove-user-button{
+//     background-color: firebrick;
+//     color: white;
+//     padding: 0.25rem;
+//     border: 1px solid #eee;
+//     border-radius: 5px;
+//     margin: 1rem;
+//     cursor: pointer;
+//     border: 1px solid white;
+// }
+
+
+.user-li {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+}
+
+.status-icons {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 
-.lobby-list-item-left {
+.fa-solid {
+    margin-right: .5rem;
+}
+
+.fa-circle-check {
+    color: $green-300;
+}
+
+.fa-circle-xmark {
+    color: $red-500;
+}
+
+.room-lobby-item {
+    margin: 20px;
+}
+
+
+.room-lobby-item label {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: $blue-900;
+    border-radius: 10px;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    // width: 70%;
-}
-
-#user-icon {
-    padding: 20px;
-}
-
-.room-lobby-item > ul {
-    border: 2px solid gray;
-    border: 1px solid white;
-}
-
-.room-lobby-participants ul li{
-    margin: 1rem;
-    border: 1px solid white;
-}
-
-.room-lobby-buttons{
-    margin: 1rem;
-    border: 1px solid white;
-}
-
-.not-ready-button, .ready-button{
-    padding: 1rem;
-    border-radius: 5px;
-    text-decoration: none;
-    border: 1px solid rgba(0,0,0,0.4);
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
-    border: 1px solid white;
-}
-
-.not-ready-button{
-    background-color: lightcoral;
-    border: 1px solid white;
-    color: white;
-    cursor: default;
-}
-
-.ready-button{
-    background-color: coral;
-    color: white;
-    border: 1px solid white;
-}
-
-.ready-button:hover{
-    box-shadow: none;
-    transform: translateY(2px);
-}
-
-.remove-user-button{
-    background-color: firebrick;
-    color: white;
-    padding: 0.25rem;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    margin: 1rem;
-    cursor: pointer;
-    border: 1px solid white;
+    height: 3rem; 
+    font-family: $code;
 }

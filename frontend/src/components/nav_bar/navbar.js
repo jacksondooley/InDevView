@@ -46,9 +46,9 @@ class NavBar extends React.Component {
           </Link>
           <div className='nav-right'>
             <div className='nav-middle'>
-            <div class="list-choice">
-              <div class="list-choice-title">Explore <i class="fa-brands fa-wpexplorer"></i></div>
-                <div class="list-choice-objects">
+            <div className="list-choice">
+              <div className="list-choice-title">Explore <i className="fa-brands fa-wpexplorer"></i></div>
+                <div className="list-choice-objects">
                   <label>
                     <Link className='nav-link' to="/questions/all">
                     <input type="radio" name="month"/>
