@@ -41,7 +41,6 @@ const RoomLobby = (props) => {
     }, [])
 
     return (
-
         <div className='room-lobby-container'>
             <div className="roomkey">
                 <div className='roomkey-text'>
@@ -72,7 +71,7 @@ const RoomLobby = (props) => {
                     } */}
                     {room ? startButton(room) : <div>yes</div>}
                     <button className='start-button' onClick={() => socket.emit("changeStatus", { roomKey: props.match.params.roomKey, userId: props.currentUser.id })}>
-                        {props.currentUser.status === 0 ? "ready up" : "not ready"}
+                        {props.currentUser.status === 0 ? "READY UP" : "NOT READY"}
                     </button>
                 </div>
             </div>

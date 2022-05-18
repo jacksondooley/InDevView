@@ -39,9 +39,11 @@ const Chat = (props) => {
 
   const sendMessage = (e) => {
     e.preventDefault()
-    socket.emit('sendRoomMsgClient', { message: message, roomKey: roomKey, handle: handle});
+    if (message.length) {
+      socket.emit('sendRoomMsgClient', { message: message, roomKey: roomKey, handle: handle});
+      setMessage("")
+    }
     // console.log("client message sent")
-    setMessage("")
   }
 
   const isUser = (data, idx) => {
@@ -75,7 +77,12 @@ const Chat = (props) => {
         </ul>
       </div>
       <div className="input">
-        <input className='chat-input' type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>
+        <input 
+          placeholder="send a message"
+          className='chat-input' 
+          type="text" 
+          onChange={(e) => setMessage(e.target.value)}
+          value={message}/>
       </div>
       <div className="send">
         <button onClick={sendMessage}>
