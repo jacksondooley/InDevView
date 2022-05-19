@@ -19,26 +19,28 @@ import Footer from './footer/footer';
 import About from './about/about';
 
 const App = () => (
-  <div className='inner-body'>
-    <NavBarContainer />
-    <Switch>
-        <AuthRoute exact path="/" component={MainPage} />
-        <AuthRoute exact path="/login" component={LoginFormContainer} />
-        <AuthRoute exact path="/signup" component={SignupFormContainer} />
+  <>
+    <div className='inner-body'>
+      <NavBarContainer />
+      <Switch>
+          <AuthRoute exact path="/" component={MainPage} />
+          <AuthRoute exact path="/login" component={LoginFormContainer} />
+          <AuthRoute exact path="/signup" component={SignupFormContainer} />
 
-        <ProtectedRoute exact path="/rooms/create" component={CreateRoomContainer}/>
-        <ProtectedRoute exact path="/rooms/join" component={JoinRoomContainer}/>
-        <ProtectedRoute exact path ="/rooms" component={RoomsContainer}/>
-        <ProtectedRoute exact path="/rooms/:roomKey/lobby" component={RoomLobbyContainer}/>
-        <ProtectedRoute exact path="/rooms/:roomKey/interview" component={InterviewRoomContainer}/>
-        <ProtectedRoute exact path="/chat" component={Chat}/>
+          <ProtectedRoute exact path="/rooms/create" component={CreateRoomContainer}/>
+          <ProtectedRoute exact path="/rooms/join" component={JoinRoomContainer}/>
+          <ProtectedRoute exact path ="/rooms" component={RoomsContainer}/>
+          <ProtectedRoute exact path="/rooms/:roomKey/lobby" component={RoomLobbyContainer}/>
+          <ProtectedRoute exact path="/rooms/:roomKey/interview" component={InterviewRoomContainer}/>
+          <ProtectedRoute exact path="/chat" component={Chat}/>
 
-        <Route exact path="/about" component={About}/>
-        <Route exact path="/questions/all" component={QuestionsIndexContainer}/>
-        <Route exact path='/questions/:id' component={QuestionShowContainer}></Route>
-    </Switch>
-    {/* <Footer/> */}
-  </div>
+          <Route exact path="/about" component={About}/>
+          <Route exact path="/questions/all" component={QuestionsIndexContainer}/>
+          <Route exact path='/questions/:id' component={QuestionShowContainer}></Route>
+      </Switch>
+    </div>
+  <Footer/>
+  </>
 );
 
 export default App;

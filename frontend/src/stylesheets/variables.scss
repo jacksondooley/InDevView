@@ -86,6 +86,7 @@ $help: #673AB7;
 
 
 $text-shadow: 0px 0px 5px $orange-500;
+$box-shadow: 0 0 8px $blue-500;
 
 
 %form-inputs {
@@ -185,8 +186,21 @@ input:-webkit-autofill:active{
 	align-items: center;
 }
 
+%sub-headers {
+	font-family: $code;
+	color: $orange-100;
+	text-shadow: $text-shadow;
+
+}
+
 html {
 	background-color: $background-color;
+}
+
+.inner-body {
+	height: fit-content;
+	min-height: 60rem;
+	// margin: 1px;
 }
 
 // mongoose.connect

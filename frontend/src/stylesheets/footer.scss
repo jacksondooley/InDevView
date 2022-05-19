@@ -1,20 +1,74 @@
 @import './variables.scss';
 
 .footer-container {  display: grid;
-	grid-row: 3;
 	background-color: $blue-900;
 	color: $blue-100;
-	position: absolute;
-	bottom: 0;
+	box-shadow: 0 0px 400px $blue-900;
 	padding-top: 50px;
 	width: 100%;
 	height: 10rem;
   grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
-  grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     ". jackson spencer will .";
+}
+
+.footer-col {  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-rows: 0.4fr 1.6fr;
+  grid-auto-columns: 1fr;
+	width: 12rem;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "name name"
+    "pic links";
+	font-family: $futura;
+}
+
+.name {
+	grid-area: name;
+	display: flex;
+	text-decoration: underline;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 10px;
+	color: $blue-200;
+	font-weight: 600;
+	// text-transform: uppercase;
+	// padding: 10px;
+	// letter-spacing: .1rem;
+}
+
+.pic { grid-area: pic; }
+
+.links a {
+	display: flex;
+	flex-direction: row;
+}
+
+.links {
+	grid-area: links;
+	display: flex;
+	flex-direction: column;
+}
+
+
+.footer-container img {
+	width: 80px;
+	height: 80px;
+	border: 2px solid $blue-900;
+	// border-radius: 50%;
+	box-shadow: $box-shadow;
+}
+
+.jackson img {
+
+	vertical-align: top;
+	// border-radius: 50%;
+	object-fit: cover;
+	object-position: 0 5%;
 }
 
 .jackson {
@@ -38,7 +92,7 @@
 	flex-direction: column;
 }
 
-.links {
+.personal-link {
 	color: $blue-100;
 	text-decoration: none;
 	margin: 5px;
@@ -48,7 +102,7 @@
 	margin-right: 0.5rem;
 }
 
-.links:hover {
+.personal-link:hover {
 	text-decoration: underline;
 }
 

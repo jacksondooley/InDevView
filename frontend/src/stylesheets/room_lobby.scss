@@ -6,7 +6,7 @@
 	background-color: $background-color;
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr;
-    grid-template-rows: 1fr 1fr 8fr;
+    grid-template-rows: 1fr 1fr 4fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
@@ -30,8 +30,11 @@
     color: $background-color;
     border-radius: 5px;
     padding: .5rem;
-    margin: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     height: fit-content;
+    width: fit-content;
+    box-shadow: $box-shadow;
 }
 
 %sub-headers {
@@ -78,6 +81,8 @@
 
 .participants { 
     grid-area: participants;
+    border-left: 2px solid $blue-700;
+    border-right: 2px solid $blue-700;
 }
 
 .chat {
@@ -93,7 +98,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    @extend %sub-headers
+    @extend %sub-headers;
+    font-size: 1.2rem;
 }
 
 .time-header {
@@ -145,8 +151,6 @@
     justify-content: center;
     height: 100%;
     position:static;
-    border-left: 2px solid $blue-700;
-    border-right: 2px solid $blue-700;
 }
 
 .members-ul {

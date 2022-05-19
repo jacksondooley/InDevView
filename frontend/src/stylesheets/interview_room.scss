@@ -7,9 +7,8 @@
     font-family: $poppins;
     color: $blue-100;
     font-size: 1.2rem;
-    font-weight: 200;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 1fr 1fr 8fr;
+    grid-template-rows: 1fr 1fr 7fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
@@ -18,60 +17,91 @@
       "participants code chat";
   }
   
-  .description {
-      grid-area: description;
-      font-family: $poppins;
-      font-weight: 200;
-      font-size: 2fr;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      flex-direction: row;
-    }
-  
-  .code { 
-      grid-area: code;
-
-    }
-  
-  .chat {
-      grid-area: chat;
-
-    }
-  
-  .chat-head {
-      grid-area: chat-head;
-    }
-  
-  .header {
-      grid-area: header;
-      display: flex;
-      flex-direction: row;
-    //   position: absolute;
-      border: 1px solid white;
-      font-size: 2.5rem;
-    }
-
-    .right-head {
-        grid-area: right-head;
-        border: 1px solid white;
-        font-family: $poppins;
-        font-weight: 200;
-        font-size: 2fr;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        flex-direction: row;
-    }
-  
-  .participants {
-      grid-area: participants;
-    }
-  
-  .part-head { grid-area: part-head;
+.description {
+    grid-area: description;
+    font-family: $poppins;
+    font-weight: 200;
+    font-size: 2fr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: row;
 }
+
+.code { 
+    grid-area: code;
+    margin-bottom: 10rem;
+}
+
+.code-editor {
+    box-shadow: $text-shadow;
+}
+
+.chat {
+    grid-area: chat;
+    @extend %sub-headers;
+
+}
+
+.chat-head {
+    grid-area: chat-head;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-head {
+    grid-area: left-head;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.header {
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+//   position: absolute;
+//   border: 1px solid white;
+    font-size: 2.5rem;
+}
+
+.right-head {
+    grid-area: right-head;
+    // border: 1px solid white;
+    font-family: $poppins;
+    font-weight: 200;
+    font-size: 2fr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: row;
+}
+
+.participants {
+    grid-area: participants;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#room-participants {
+    border: none;
+}
+
+.part-head {
+    grid-area: part-head;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// .fa-comments {
+    // font-size: 1.2rem;
+// }
   
 
 
@@ -131,26 +161,62 @@
 }
 
 .diff-display {
+    background-color: $blue-900;
+    border-radius: 5px;
+	box-shadow: $box-shadow; 
+    width: 9rem;
+    height: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: fit-content;
+    // width: fit-scontent;
     flex-direction: column;
 }
 
 .diff-display p {
+    font-size: 0.9rem;
     margin-bottom: 5px;
     color: $blue-300;
     font-style: italic;
+}
+
+.diff-time-text {
+    font-weight: 200;
 }
 
 .diff-display div {
     font-size: 2rem;
     font-weight: 600;
     font-style: italic;
-    text-shadow: $text-shadow;
 }
 
+#time-disp {
+    color: $background-color;
+    font-family: $code;
+    font-size: 2rem;
+    font-weight: 400;
+    font-style:normal;
+}
+
+#interview-participants {
+    border: none;
+}
+
+#room-ul {
+    justify-content: center;
+}
+
+#room-li {
+    justify-content: center;
+}
+
+.roomkey-container {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 
 // .interview-room-body h2{
 //     font-size: 2rem;
