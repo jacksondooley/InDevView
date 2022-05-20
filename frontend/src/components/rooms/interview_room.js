@@ -46,6 +46,58 @@ const InterviewRoom = (props) => {
 			)
 		}
 	}
+
+    const [userCode, setUserCode] = useState(``);
+    const [userOutput, setUserOutput] = useState(['','','']);
+    const [testCases, setTestCases] = useState([false, false, false]);
+    const solutions = questionsObj[props.room[0].questions[0].title].solutions;
+    const inputs = questionsObj[props.room[0].questions[0].title].inputs;
+    const codeLine = questionsObj[props.room[0].questions[0].title].codeLine;
+
+    const handleChange = useCallback(
+        (value, event) => {
+            setUserCode(value);
+        }
+    )
+
+    const handleClick = useCallback(
+        () => {
+
+            // if(userCode === ''){
+            //     setUserCode('function ' + codeLine.substring(codeLine.indexOf('=') + 2) + '(){\n\t\n}');
+            // }
+
+            let data = {
+                code: userCode + codeLine + '\nmodule.exports = { func }',
+                inputs: inputs
+            }
+
+            compile(data).then(({ data }) => {
+                setUserOutput(data)
+                // console.log(userOutput)
+                let newTestCases = testCases;
+
+                userOutput.forEach((output, idx) => {
+                    if(output instanceof Array){
+                        let testCase = true;
+
+                        output.forEach((ele, i) => {
+                            if(ele !== solutions[idx][i]){
+                                testCase = false;
+                            }
+                        })
+                        newTestCases[idx] = testCase
+                        setTestCases(newTestCases);
+                    }
+                    else{
+                        newTestCases[idx] = (output === solutions[idx])
+                        setTestCases(newTestCases);
+                    }
+                })
+            })
+            // console.log("has finished compiling")
+        }
+    )
     
     return (
         <div className="interview-room-container">
@@ -57,8 +109,9 @@ const InterviewRoom = (props) => {
                     <Editor
                         height="65vh"
                         defaultLanguage='javascript'
-                        defaultValue={'//Enter your code here'}
+                        defaultValue={'function ' + codeLine.substring(codeLine.indexOf("=") + 2) + "(){\n\t\n}"}
                         theme='vs-dark'
+                        onChange={handleChange}
                         />
                 </div>
             </div>
@@ -157,6 +210,55 @@ const InterviewRoom = (props) => {
                                     {member.handle}
                                     </li>
                                 ))} */}
+                <div>
+                    Test cases go here.
+                    <button onClick={handleClick}>Run tests</button>
+                    <div>
+                        Test Case 1   
+                        <div>
+                            Input: {inputs[0].toString()}
+                        </div>
+                        <div>
+                            Expected Output: {solutions[0].toString()}
+                        </div>
+                        <div>
+                            User Submitted: {userOutput[0].toString()}
+                        </div>
+                        <div>
+                            { testCases[0] ? "Passed" : "Failed"}
+                        </div>
+                    </div>
+                    <div>
+                        Test Case 2   
+                        <div>
+                            Input: {inputs[1].toString()}
+                        </div>
+                        <div>
+                            Expected Output: {solutions[1].toString()}
+                        </div>
+                        <div>
+                            User Submitted: { userOutput[1].toString() }
+                        </div>
+                        <div>
+                            { testCases[1] ? "Passed" : "Failed"}
+                        </div>
+                    </div>
+                    <div>
+                        Test Case 3   
+                        <div>
+                            Input: {inputs[2].toString()}
+                        </div>
+                        <div>
+                            Expected Output: {solutions[2].toString()}
+                        </div>
+                        <div>
+                            User Submitted: { userOutput[2].toString() }
+                        </div>
+                        <div>
+                            { testCases[2] ? "Passed" : "Failed"}
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className="part-head">
             <div className='diff-display'>
@@ -173,20 +275,6 @@ const InterviewRoom = (props) => {
 }
 
 export default InterviewRoom;
-
-// const [userCode, setUserCode] = useState(``);
-// const [userOutput, setUserOutput] = useState([]);
-// const [testCases, setTestCases] = useState([false, false, false]);
-// const [newData, setNewData] = useState([''])
-// const solutions = questionsObj[props.room[0].questions[0].title].solutions;
-// const inputs = questionsObj[props.room[0].questions[0].title].inputs;
-// const codeLine = questionsObj[props.room[0].questions[0].title].codeLine;
-
-// const handleChange = useCallback(
-//     (value, event) => {
-//         setUserCode(value);
-//     }
-// )
 
 // const handleClick = useCallback(
 //     () => {

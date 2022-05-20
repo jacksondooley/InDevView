@@ -1,5 +1,5 @@
-function doubler(x){
-    return x * 2;
+function doubler(num){
+	return num * 2;
 }
 const func = doubler
 module.exports = { func }

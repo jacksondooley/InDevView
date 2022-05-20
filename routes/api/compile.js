@@ -11,12 +11,17 @@ router.post("/",(req, res) => {
     fs.writeFileSync("./test.js", req.body.code);
     console.log("wrote file")
 
-    const testCaseResults = '';
+    const testCaseResults = [];
 
-    const result = func(req.body.input);
-    console.log(result);
+    let inputs = req.body.inputs;
 
-    res.json(result)
+    inputs.forEach(input => {
+        let result = func(input);
+        console.log(result)
+        testCaseResults.push(result)
+    })
+    console.log(testCaseResults)
+    res.json(testCaseResults)
 
     // const execFile = util.promisify(require('node:child_process').execFile);
 
