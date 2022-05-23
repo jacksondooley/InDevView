@@ -114,6 +114,56 @@ const InterviewRoom = (props) => {
                         onChange={handleChange}
                         />
                 </div>
+
+                <div>
+                    Test cases go here.
+                    <button onClick={handleClick}>Run tests</button>
+                    <div>
+                        Test Case 1   
+                        <div>
+                            Input: {inputs[0].toString()}
+                        </div>
+                        <div>
+                            Expected Output: {solutions[0].toString()}
+                        </div>
+                        <div>
+                            User Submitted: {userOutput[0].toString()}
+                        </div>
+                        <div>
+                            { testCases[0] ? "Passed" : "Failed"}
+                        </div>
+                    </div>
+                    <div>
+                        Test Case 2   
+                        <div>
+                            Input: {inputs[1].toString()}
+                        </div>
+                        <div>
+                            Expected Output: {solutions[1].toString()}
+                        </div>
+                        <div>
+                            User Submitted: { userOutput[1].toString() }
+                        </div>
+                        <div>
+                            { testCases[1] ? "Passed" : "Failed"}
+                        </div>
+                    </div>
+                    <div>
+                        Test Case 3   
+                        <div>
+                            Input: {inputs[2].toString()}
+                        </div>
+                        <div>
+                            Expected Output: {solutions[2].toString()}
+                        </div>
+                        <div>
+                            User Submitted: { userOutput[2].toString() }
+                        </div>
+                        <div>
+                            { testCases[2] ? "Passed" : "Failed"}
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className="header">
                 <div>
@@ -210,55 +260,7 @@ const InterviewRoom = (props) => {
                                     {member.handle}
                                     </li>
                                 ))} */}
-                <div>
-                    Test cases go here.
-                    <button onClick={handleClick}>Run tests</button>
-                    <div>
-                        Test Case 1   
-                        <div>
-                            Input: {inputs[0].toString()}
-                        </div>
-                        <div>
-                            Expected Output: {solutions[0].toString()}
-                        </div>
-                        <div>
-                            User Submitted: {userOutput[0].toString()}
-                        </div>
-                        <div>
-                            { testCases[0] ? "Passed" : "Failed"}
-                        </div>
-                    </div>
-                    <div>
-                        Test Case 2   
-                        <div>
-                            Input: {inputs[1].toString()}
-                        </div>
-                        <div>
-                            Expected Output: {solutions[1].toString()}
-                        </div>
-                        <div>
-                            User Submitted: { userOutput[1].toString() }
-                        </div>
-                        <div>
-                            { testCases[1] ? "Passed" : "Failed"}
-                        </div>
-                    </div>
-                    <div>
-                        Test Case 3   
-                        <div>
-                            Input: {inputs[2].toString()}
-                        </div>
-                        <div>
-                            Expected Output: {solutions[2].toString()}
-                        </div>
-                        <div>
-                            User Submitted: { userOutput[2].toString() }
-                        </div>
-                        <div>
-                            { testCases[2] ? "Passed" : "Failed"}
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <div className="part-head">
             <div className='diff-display'>

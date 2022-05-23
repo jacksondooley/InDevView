@@ -1,5 +1,3 @@
-function doubler(num){
-	return num * 2;
-}
-const func = doubler
+
+const func = sqRoot
 module.exports = { func }
