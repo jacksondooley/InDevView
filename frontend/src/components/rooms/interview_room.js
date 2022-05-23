@@ -22,6 +22,11 @@ const InterviewRoom = (props) => {
             dispatch(receiveRoom(data))
             socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
         })
+        
+        return () => {
+            socket.emit("leaveRoom", {roomKey: props.match.params.roomKey, handle: props.currentUser.handle})
+            socket.emit("leaveLobby", { roomKey: props.match.params.roomKey, userId: props.currentUser.id } )
+        }
 
     }, [])
 

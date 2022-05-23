@@ -17,6 +17,7 @@ import QuestionsIndexContainer from './questions/questions_index_container';
 import QuestionShowContainer from './questions/question_show';
 import Footer from './footer/footer';
 import About from './about/about';
+import EditorContainer from './editor/editor_container';
 
 const App = () => (
   <>
@@ -32,7 +33,7 @@ const App = () => (
           <ProtectedRoute exact path ="/rooms" component={RoomsContainer}/>
           <ProtectedRoute exact path="/rooms/:roomKey/lobby" component={RoomLobbyContainer}/>
           <ProtectedRoute exact path="/rooms/:roomKey/interview" component={InterviewRoomContainer}/>
-          <ProtectedRoute exact path="/chat" component={Chat}/>
+          {/* <ProtectedRoute exact path="/editor" component={EditorContainer}/> */}
 
           <Route exact path="/about" component={About}/>
           <Route exact path="/questions/all" component={QuestionsIndexContainer}/>
