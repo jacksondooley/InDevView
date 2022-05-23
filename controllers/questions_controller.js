@@ -8,7 +8,10 @@ const createQuestion = (req, res) => {
 			description: req.body.description,
 			template: req.body.template,
 			solution: req.body.solution,
-			difficulty: req.body.difficulty
+			difficulty: req.body.difficulty,
+			codeLine: req.body.codeLine,
+			inputs: req.body.inputs,
+			solutions: req.body.solutions
 	});
 
 	newQuestion.save()

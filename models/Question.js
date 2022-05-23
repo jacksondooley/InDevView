@@ -29,6 +29,15 @@ const QuestionSchema = new Schema({
     date: {
 			type: Date,
 			default: Date.now
+		},
+	codeLine: {
+			type: String
+		},
+	inputs: {
+			type: Array
+		},
+	solutions: {
+			type: Array
 		}
 });
 
