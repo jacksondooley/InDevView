@@ -50,9 +50,9 @@ const InterviewRoom = (props) => {
     const [userCode, setUserCode] = useState(``);
     const [userOutput, setUserOutput] = useState(['','','']);
     const [testCases, setTestCases] = useState([false, false, false]);
-    const solutions = questionsObj[props.room[0].questions[0].title].solutions;
-    const inputs = questionsObj[props.room[0].questions[0].title].inputs;
-    const codeLine = questionsObj[props.room[0].questions[0].title].codeLine;
+    const solutions = props.room[0].questions[0].solutions;
+    const inputs = props.room[0].questions[0].inputs;
+    const codeLine = props.room[0].questions[0].codeLine;
 
     const handleChange = useCallback(
         (value, event) => {
