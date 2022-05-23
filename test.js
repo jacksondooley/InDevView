@@ -1,5 +1,5 @@
-function sqRoot(){
-    
+function doubler(x){
+	return x * 2;
 }
-const func = sqRoot
+const func = doubler
 module.exports = { func }

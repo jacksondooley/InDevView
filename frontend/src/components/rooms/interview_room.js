@@ -47,7 +47,7 @@ const InterviewRoom = (props) => {
 		}
 	}
 
-    const [userCode, setUserCode] = useState(``);
+    const [userCode, setUserCode] = useState('');
     const [userOutput, setUserOutput] = useState(['','','']);
     const [testCases, setTestCases] = useState([false, false, false]);
     const solutions = props.room[0].questions[0].solutions;
@@ -63,9 +63,10 @@ const InterviewRoom = (props) => {
     const handleClick = useCallback(
         () => {
 
-            // if(userCode === ''){
-            //     setUserCode('function ' + codeLine.substring(codeLine.indexOf('=') + 2) + '(){\n\t\n}');
-            // }
+            if(userCode.length === 0){
+                const code = 'function ' + codeLine.substring(codeLine.indexOf('=') + 2) + '(){\n\t\n}'
+                setUserCode(code);
+            }
 
             let data = {
                 code: userCode + codeLine + '\nmodule.exports = { func }',
