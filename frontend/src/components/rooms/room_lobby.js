@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import '../../stylesheets/room_lobby.scss'
 import Chat from '../chat';
 import { receiveRoom } from "../../actions/room_actions"
-import socket from '../../util/socket_client_util';
+import { socket} from '../../util/socket_client_util';
 
 const startButton = (room) => {
     if (room[0]?.interviewers.every(interviewee => interviewee.status === 1)) {
@@ -37,7 +37,10 @@ const RoomLobby = (props) => {
             socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
         })
         
-        return () => socket.emit("leaveLobby", { roomKey: props.match.params.roomKey, userId: props.currentUser.id } )
+        return () => {
+            socket.emit("leaveRoom", {roomKey: props.match.params.roomKey, handle: props.currentUser.handle})
+            socket.emit("leaveLobby", { roomKey: props.match.params.roomKey, userId: props.currentUser.id } )
+        }
     }, [])
 
     return (

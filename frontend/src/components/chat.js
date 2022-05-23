@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import '../stylesheets/chat.scss'
-import socket from "../util/socket_client_util";
+import {socket} from "../util/socket_client_util";
 
 const Chat = (props) => {
   // console.log(props)
@@ -24,7 +24,7 @@ const Chat = (props) => {
 
     // socket.on("userJoinedRoom", (data) => console.log(data))
 
-    // return () => socket.emit("leaveRoom", {roomKey: roomKey, handle: handle});
+    return () => socket.emit("leaveRoom", {roomKey: roomKey, handle: handle});
   }, []);
 
   useEffect(() => {
