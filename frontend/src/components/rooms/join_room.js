@@ -1,7 +1,7 @@
 import React from "react";
 import '../../stylesheets/join_room.scss'
 import { Link } from "react-router-dom"
-import socket from '../../util/socket_client_util';
+import { socket } from '../../util/socket_client_util';
 
 class JoinRoom extends React.Component{
     constructor(props){

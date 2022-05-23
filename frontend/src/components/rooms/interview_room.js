@@ -6,7 +6,7 @@ import EditorContainer from "../editor/editor_container";
 import Editor from '@monaco-editor/react'
 import { compile } from "../../util/compile_api_util";
 import { questionsObj } from "../questions/questions_obj";
-import socket from '../../util/socket_client_util';
+import {socket} from '../../util/socket_client_util';
 import Chat from "../chat";
 import { receiveRoom } from "../../actions/room_actions";
 
