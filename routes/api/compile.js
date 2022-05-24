@@ -5,23 +5,46 @@ const axios = require('axios');
 const fs = require('fs')
 const { execFile } = require('node:child_process')
 const util = require('node:util')
-const { func } = require('../../test')
+
+// router.post("/",(req, res) => {
+//     fs.writeFileSync("./test.js", req.body.code);
+//     console.log("wrote file")
+    
+//     let { func } = require('./test')
+//     const testCaseResults = [];
+
+//     let inputs = req.body.inputs;
+
+//     console.log(counter)
+//     counter += 1
+
+//     inputs.forEach(input => {
+//         let result = func(input);
+//         console.log(result)
+//         testCaseResults.push(result)
+//     })
+//     console.log(testCaseResults)
+//     res.json(testCaseResults)
 
 router.post("/",(req, res) => {
-    fs.writeFileSync("./test.js", req.body.code);
+    // fs.writeFileSync("./test.js", `console.log("hello")`);
     console.log("wrote file")
-
-    const testCaseResults = [];
-
-    let inputs = req.body.inputs;
-
-    inputs.forEach(input => {
-        let result = func(input);
-        console.log(result)
-        testCaseResults.push(result)
+    
+    const child = execFile('node', ['test.js'], (error, stdout, stderr) => {
+        if (error) {
+            throw error;
+        }
+        let output = fs.readFileSync('./test2.js', 'utf8')
+        console.log(output)
     })
-    console.log(testCaseResults)
-    res.json(testCaseResults)
+
+
+        
+    
+        
+    
+
+
 
     // const execFile = util.promisify(require('node:child_process').execFile);
 

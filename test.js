@@ -1,5 +1,9 @@
-function doubler(x){
-	return x * 3
+const fs = require('fs')
+
+function doubler(x) {
+    return x * 10
 }
-const func = doubler
-module.exports = { func }
+
+let answ = doubler(5)
+
+fs.writeFileSync("./test2.js", `${answ}`);
