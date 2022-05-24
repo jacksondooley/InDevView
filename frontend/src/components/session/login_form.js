@@ -93,7 +93,7 @@ class LoginForm extends React.Component {
         <span className="form-errors">
           {this.renderErrors()}
         </span>
-        <small className="form-small">don't have an account? <br/>
+        <small className="form-small">Don't have an account? <br/>
           <Link className="form-small-link" to="/signup">Sign Up</Link>
         </small>
       </div>
