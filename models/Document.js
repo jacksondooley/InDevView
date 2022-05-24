@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const DocumentSchema = new Schema({
-    room_id: {
+    room_key: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Room"
     },
