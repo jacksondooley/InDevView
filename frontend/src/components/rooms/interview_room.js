@@ -14,6 +14,14 @@ const InterviewRoom = (props) => {
     const room = useSelector(state => state.room);
     const currentUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+
+    const solutions = props.room[0].questions[0].solutions;
+    const inputs = props.room[0].questions[0].inputs;
+    const codeLine = props.room[0].questions[0].codeLine;
+    const [userCode, setUserCode] = useState('function solution(){\n\t\n}');
+    const [userOutput, setUserOutput] = useState(['','','']);
+    const [testCases, setTestCases] = useState([false, false, false]);
+
     useEffect(() => {
         socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
         socket.emit("fetchRoom", {roomKey: props.match.params.roomKey})
@@ -61,13 +69,6 @@ const InterviewRoom = (props) => {
 			)
 		}
 	}
-
-    const solutions = props.room[0].questions[0].solutions;
-    const inputs = props.room[0].questions[0].inputs;
-    const codeLine = props.room[0].questions[0].codeLine;
-    const [userCode, setUserCode] = useState('function solution(){\n\t\n}');
-    const [userOutput, setUserOutput] = useState(['','','']);
-    const [testCases, setTestCases] = useState([false, false, false]);
     
 
     const handleChange = useCallback(
@@ -91,54 +92,19 @@ const InterviewRoom = (props) => {
 
             compile(data).then(({ data }) => {
                 setUserOutput(data)
-                let newTestCases = testCases;
-                // let outputs = [];
 
-                userOutput.forEach((output, idx) => {
-                    if(output instanceof Array){
-                        let testCase = true;
-
-                        output.forEach((ele, i) => {
-                            if(ele !== solutions[idx][i]){
-                                testCase = false;
-                            }
-                        })
-                        newTestCases[idx] = testCase
-                        setTestCases(newTestCases);
-                    }
-                    else{
-                        newTestCases[idx] = (output === solutions[idx])
-                        setTestCases(newTestCases);
-                    }
+                // checks if output is equal to solution
+                const newData = data.map((output, idx) => {
+                    console.log(`${idx}: ${output} ${solutions[idx]}`)
+                    console.log(parseInt(output) === solutions[idx])
+                    return solutions[idx] === parseInt(output)
                 })
-                console.log(userOutput)
+
+                setTestCases(newData)
             })
         }
     )
 
-    // useEffect(() => {
-    //     let newTestCases = testCases;
-    //     // let outputs = [];
-
-    //     userOutput.forEach((output, idx) => {
-    //         if(output instanceof Array){
-    //             let testCase = true;
-
-    //             output.forEach((ele, i) => {
-    //                 if(ele !== solutions[idx][i]){
-    //                     testCase = false;
-    //                 }
-    //             })
-    //             newTestCases[idx] = testCase
-    //             setTestCases(newTestCases);
-    //         }
-    //         else{
-    //             newTestCases[idx] = (output === solutions[idx])
-    //             setTestCases(newTestCases);
-    //         }
-    //     })
-    //     // console.log(testCases);
-    // }, [userOutput])
     
     return (
         <div className="interview-room-container">
