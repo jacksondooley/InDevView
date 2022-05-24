@@ -31,13 +31,19 @@ const QuestionSchema = new Schema({
 			default: Date.now
 		},
 	codeLine: {
-			type: String
+			type: String,
+			require: true
 		},
 	inputs: {
+			type: Array,
+			require: true
+		},
+	inputs2: {
 			type: Array
 		},
 	solutions: {
-			type: Array
+			type: Array,
+			require: true
 		}
 });
 

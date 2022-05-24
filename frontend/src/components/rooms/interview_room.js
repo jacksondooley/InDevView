@@ -52,12 +52,13 @@ const InterviewRoom = (props) => {
 		}
 	}
 
-    const [userCode, setUserCode] = useState('');
-    const [userOutput, setUserOutput] = useState(['','','']);
-    const [testCases, setTestCases] = useState([false, false, false]);
     const solutions = props.room[0].questions[0].solutions;
     const inputs = props.room[0].questions[0].inputs;
     const codeLine = props.room[0].questions[0].codeLine;
+    const [userCode, setUserCode] = useState('function ' + codeLine.substring(codeLine.indexOf('=') + 2) + '(){\n\t\n}');
+    const [userOutput, setUserOutput] = useState(['','','']);
+    const [testCases, setTestCases] = useState([false, false, false]);
+    
 
     const handleChange = useCallback(
         (value, event) => {
@@ -68,7 +69,7 @@ const InterviewRoom = (props) => {
     const handleClick = useCallback(
         () => {
 
-            if(userCode.length === 0){
+            if(!userCode){
                 const code = 'function ' + codeLine.substring(codeLine.indexOf('=') + 2) + '(){\n\t\n}'
                 setUserCode(code);
             }
@@ -80,30 +81,34 @@ const InterviewRoom = (props) => {
 
             compile(data).then(({ data }) => {
                 setUserOutput(data)
-                // console.log(userOutput)
-                let newTestCases = testCases;
-
-                userOutput.forEach((output, idx) => {
-                    if(output instanceof Array){
-                        let testCase = true;
-
-                        output.forEach((ele, i) => {
-                            if(ele !== solutions[idx][i]){
-                                testCase = false;
-                            }
-                        })
-                        newTestCases[idx] = testCase
-                        setTestCases(newTestCases);
-                    }
-                    else{
-                        newTestCases[idx] = (output === solutions[idx])
-                        setTestCases(newTestCases);
-                    }
-                })
+                console.log(userOutput)
             })
-            // console.log("has finished compiling")
         }
     )
+
+    useEffect(() => {
+        let newTestCases = testCases;
+        // let outputs = [];
+
+        userOutput.forEach((output, idx) => {
+            if(output instanceof Array){
+                let testCase = true;
+
+                output.forEach((ele, i) => {
+                    if(ele !== solutions[idx][i]){
+                        testCase = false;
+                    }
+                })
+                newTestCases[idx] = testCase
+                setTestCases(newTestCases);
+            }
+            else{
+                newTestCases[idx] = (output === solutions[idx])
+                setTestCases(newTestCases);
+            }
+        })
+        // console.log(testCases);
+    }, [userOutput])
     
     return (
         <div className="interview-room-container">
