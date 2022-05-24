@@ -91,34 +91,54 @@ const InterviewRoom = (props) => {
 
             compile(data).then(({ data }) => {
                 setUserOutput(data)
+                let newTestCases = testCases;
+                // let outputs = [];
+
+                userOutput.forEach((output, idx) => {
+                    if(output instanceof Array){
+                        let testCase = true;
+
+                        output.forEach((ele, i) => {
+                            if(ele !== solutions[idx][i]){
+                                testCase = false;
+                            }
+                        })
+                        newTestCases[idx] = testCase
+                        setTestCases(newTestCases);
+                    }
+                    else{
+                        newTestCases[idx] = (output === solutions[idx])
+                        setTestCases(newTestCases);
+                    }
+                })
                 console.log(userOutput)
             })
         }
     )
 
-    useEffect(() => {
-        let newTestCases = testCases;
-        // let outputs = [];
+    // useEffect(() => {
+    //     let newTestCases = testCases;
+    //     // let outputs = [];
 
-        userOutput.forEach((output, idx) => {
-            if(output instanceof Array){
-                let testCase = true;
+    //     userOutput.forEach((output, idx) => {
+    //         if(output instanceof Array){
+    //             let testCase = true;
 
-                output.forEach((ele, i) => {
-                    if(ele !== solutions[idx][i]){
-                        testCase = false;
-                    }
-                })
-                newTestCases[idx] = testCase
-                setTestCases(newTestCases);
-            }
-            else{
-                newTestCases[idx] = (output === solutions[idx])
-                setTestCases(newTestCases);
-            }
-        })
-        // console.log(testCases);
-    }, [userOutput])
+    //             output.forEach((ele, i) => {
+    //                 if(ele !== solutions[idx][i]){
+    //                     testCase = false;
+    //                 }
+    //             })
+    //             newTestCases[idx] = testCase
+    //             setTestCases(newTestCases);
+    //         }
+    //         else{
+    //             newTestCases[idx] = (output === solutions[idx])
+    //             setTestCases(newTestCases);
+    //         }
+    //     })
+    //     // console.log(testCases);
+    // }, [userOutput])
     
     return (
         <div className="interview-room-container">
@@ -350,87 +370,3 @@ const InterviewRoom = (props) => {
 
 export default InterviewRoom;
 
-// const handleClick = useCallback(
-//     () => {
-        
-//         inputs.forEach( (input, idx) => {
-//             // console.log(input)
-//             // console.log(idx)
-//             let data = {
-//                 code: userCode + codeLine + '\nmodule.exports = { func }',
-//                 input: input
-
-//             }
-//             let newOutput = userOutput;
-//             compile(data).then( ({ data }) => {
-//                 let newOutput = userOutput;
-//                 newOutput.push(data);
-//                 setUserOutput(newOutput)
-//                 console.log(userOutput)
-//             })
-//         })
-//         // console.log(userOutput)
-//         let newTestCases = testCases;
-
-//         userOutput.forEach((output, idx) => {
-//             if(typeof output === Array){
-//                 let testCase = true;
-
-//                 output.forEach((ele, i) => {
-//                     if(ele !== solutions[idx][i]){
-//                         testCase = false;
-//                     }
-//                 })
-//                 newTestCases[idx] = testCase
-//                 setTestCases(newTestCases);
-//             }
-//             else{
-//                 newTestCases[idx] = (output === solutions[idx])
-//                 setTestCases(newTestCases);
-//             }
-//         })
-//         console.log("has finished compiling")
-//     }
-// )
-
-
-// {/* <div>
-//     Test cases go here.
-//     <div>
-//     <button onClick={handleClick}>Run tests</button>
-//         Test Case 1   
-//         <div>
-//             Input: {inputs[0].toString()}
-//         </div>
-//         <div>
-//             Output: {solutions[0].toString()}
-//         </div>
-//         <div>
-//             Actual Output: { testCases[0] ? "Passed" : "Failed"}
-//         </div>
-//     </div>
-//     <div>
-//         Test Case 2   
-//         <div>
-//             Input: {inputs[1].toString()}
-//         </div>
-//         <div>
-//             Output: {solutions[1].toString()}
-//         </div>
-//         <div>
-//             Actual Output: { testCases[1] ? "Passed" : "Failed"}
-//         </div>
-//     </div>
-//     <div>
-//         Test Case 3   
-//         <div>
-//             Input: {inputs[2].toString()}
-//         </div>
-//         <div>
-//             Output: {solutions[2].toString()}
-//         </div>
-//         <div>
-//             Actual Output: { testCases[2] ? "Passed" : "Failed"}
-//         </div>
-//     </div>
-// </div> */}

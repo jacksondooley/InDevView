@@ -32,17 +32,13 @@ router.post("/",(req, res) => {
     let testCaseResults = [];
 
     inputs.forEach(input => {
+        console.log(input)
         let code = req.body.code;
         fs.writeFileSync("./test.js", "const fs = require('fs')\n" + code + '\nlet answ = solution(' + input + ')\nfs.writeFileSync("./test2.js", `${answ}`)');
         console.log("wrote file")
     
-        const child = execFile('node', ['test.js'], (error, stdout, stderr) => {
-            if (error) {
-                throw error;
-            }
-            // console.log(stdout)
-            // testCaseResults.push(stdout)
-        })
+        execFileSync('node', ['test.js'])
+
         let output = fs.readFileSync('./test2.js', 'utf8')
         testCaseResults.push(output);
         console.log(testCaseResults)
