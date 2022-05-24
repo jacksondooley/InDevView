@@ -163,6 +163,7 @@ input:-webkit-autofill:active{
 		transform: translateY(-4px);
 		box-shadow: 0 0 20px 20px $orange-800 inset;
 		letter-spacing: 3px;
+		cursor: pointer;
 }
 
 %room-crud-container {

@@ -21,13 +21,16 @@
   border-radius: 5px;
   height: 24rem;
   width: 100%;
+  scroll-behavior: auto;
   overflow-y: scroll;
+
   overflow-wrap: break-word;
   grid-area: Main;
   display: flex;
 }
 
 .chat-messages-ul {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   padding: 10px;

@@ -18,7 +18,13 @@ const Chat = (props) => {
   // disconnects from socket when component will unmount
   useEffect(() => {
 
-    // window.addEventListener('keydown', checkKey)
+    window.addEventListener('keydown', (e => {
+      if (e.key == 'Enter') {
+        e.preventDefault();
+        // console.log(e.key == 'Enter')
+        sendMessage(e)
+      }
+    }))
 
     socket.emit("joinRoom", { roomKey: roomKey, handle: handle})
 

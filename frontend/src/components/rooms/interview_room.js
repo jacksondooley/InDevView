@@ -30,6 +30,16 @@ const InterviewRoom = (props) => {
 
     }, [])
 
+    const PassFail = (testCase) => {
+        return testCase ? (
+            <p className='pass'>PASSED!</p>
+        ) : (
+            <p className="fail">
+                FAILED
+            </p>
+        )
+    }
+
     const diffDisplay = (difficulty) => {
 		if (difficulty === 1) {
 			return (
@@ -121,52 +131,103 @@ const InterviewRoom = (props) => {
                         />
                 </div>
 
-                <div>
-                    Test cases go here.
-                    <button onClick={handleClick}>Run tests</button>
-                    <div>
-                        Test Case 1   
-                        <div>
-                            Input: {inputs[0].toString()}
+                <div className='test-cases'>
+                    <div className='run-test-btn-container'>
+                        <button onClick={handleClick}>Run tests</button>
+                    </div>
+                    <div className='test-case'>
+                        <div className='test-case-header'>
+                            <h3>
+                                Test Case 1
+                            </h3>
+                            {PassFail(testCases[0])}
+                            {/* { testCases[0] ? "Passed" : "Failed"} */}
                         </div>
                         <div>
-                            Expected Output: {solutions[0].toString()}
+                            <label>
+                                Input:
+                            </label>
+                            <p>
+                                {inputs[0].toString()}
+                            </p>
                         </div>
                         <div>
-                            User Submitted: {userOutput[0].toString()}
+                            <label>
+                                Expected Output:
+                            </label>
+                            <p>
+                                {solutions[0].toString()}
+                            </p>
                         </div>
                         <div>
-                            { testCases[0] ? "Passed" : "Failed"}
+                            <label>
+                                User Submitted:
+                            </label>
+                            <p>
+                                {userOutput[0].toString()}
+                            </p>
                         </div>
                     </div>
-                    <div>
-                        Test Case 2   
-                        <div>
-                            Input: {inputs[1].toString()}
+                    <div className='test-case'>
+                       <div className='test-case-header'>
+                            <h3>
+                                Test Case 2
+                            </h3>
+                            {PassFail(testCases[1])}
                         </div>
                         <div>
-                            Expected Output: {solutions[1].toString()}
+                            <label>
+                                Input:
+                            </label>
+                            <p>
+                                {inputs[1].toString()}
+                            </p>
                         </div>
                         <div>
-                            User Submitted: { userOutput[1].toString() }
+                            <label>
+                                Expected Output:
+                            </label>
+                            <p>
+                                {solutions[1].toString()}
+                            </p>
                         </div>
                         <div>
-                            { testCases[1] ? "Passed" : "Failed"}
+                            <label>
+                                User Submitted:
+                            </label>
+                            <p>
+                                { userOutput[1].toString() }
+                            </p>
                         </div>
                     </div>
-                    <div>
-                        Test Case 3   
-                        <div>
-                            Input: {inputs[2].toString()}
+                    <div className='test-case'>
+                        <div className='test-case-header'>
+                            <h3>
+                                Test Case 3
+                            </h3>
+                            {PassFail(testCases[2])}
                         </div>
                         <div>
-                            Expected Output: {solutions[2].toString()}
+                            <label>
+                                Input:
+                            </label>
+                                {inputs[2].toString()}
                         </div>
                         <div>
-                            User Submitted: { userOutput[2].toString() }
+                            <label>
+                                Expected Output:
+                            </label>
+                            <p>
+                                {solutions[2].toString()}
+                            </p>
                         </div>
                         <div>
-                            { testCases[2] ? "Passed" : "Failed"}
+                            <label>
+                                User Submitted:
+                            </label>
+                            <p>
+                                { userOutput[2].toString() }
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -330,8 +391,8 @@ export default InterviewRoom;
 
 // {/* <div>
 //     Test cases go here.
-//     <button onClick={handleClick}>Run tests</button>
 //     <div>
+//     <button onClick={handleClick}>Run tests</button>
 //         Test Case 1   
 //         <div>
 //             Input: {inputs[0].toString()}

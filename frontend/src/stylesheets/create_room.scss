@@ -88,4 +88,5 @@
 
 .create-room-btn:hover {
     @extend %secondary-btn-hov;
+    // text-decoration: none !important;
 }

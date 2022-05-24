@@ -1,6 +1,3 @@
-function doubler(arg) {
-    return arg * 2
-}
-
-const func = doubler
+function validName() {}
+const func = validName
 module.exports = { func }

@@ -8,7 +8,7 @@
     color: $blue-100;
     font-size: 1.2rem;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 1fr 1fr 7fr;
+    grid-template-rows: .5fr .5fr 7fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
@@ -32,6 +32,9 @@
 .code { 
     grid-area: code;
     margin-bottom: 10rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .code-editor {
@@ -227,3 +230,91 @@
 //     text-align: left;
 //     margin: 1rem;
 // }
+
+.test-cases {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+    padding: 1rem;
+    border-top: 2px solid $blue-700;
+    border-left: none;
+    border-right: none;
+    font-family: $code;
+    // width: fit-content;
+}
+
+.test-case {
+    padding: 2rem;
+    padding-left: 1rem;
+}
+
+.test-cases h3 {
+    font-size: 2rem;
+    font-family: $code;
+    margin-bottom: 1rem;
+    border-bottom: 0 !important
+}
+
+.test-cases label {
+    font-family: $code;
+    font-weight: 800;
+}
+
+.test-cases button {
+    // background-color: $red-500;
+    // height: 5rem;
+    // border-radius: 10px;
+    @extend %form-submit;
+}
+
+.test-cases button:hover {
+    @extend %secondary-btn-hov;
+}
+
+.test-case div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row;
+    margin-top: .5rem;
+    align-items: center;
+    // border: 1px solid white;
+}
+
+.test-case-header {
+    border-bottom: 1px solid $blue-700;
+    margin-bottom: 1rem !important;
+    padding-bottom: .4rem;
+    // margin: 0 !important;
+    // padding-bottom: .5rem;
+}
+
+.test-case :first-child {
+    margin-bottom: .5rem;
+}
+
+%pass-fail {
+    padding: .5rem;
+    border-radius: 5px;
+    font-style: italic;
+    font-weight: 800;
+    color: white;
+    // font-family: $poppins+;
+}
+
+.pass {
+    @extend %pass-fail;
+    background-color: $green-300;
+}
+
+.fail {
+    @extend %pass-fail;
+    background-color: $red-500;
+}
+
+.run-test-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
