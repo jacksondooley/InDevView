@@ -4,7 +4,8 @@ const passport = require('passport');
 const axios = require('axios');
 const fs = require('fs')
 const { execFile } = require('node:child_process')
-const util = require('node:util')
+const util = require('node:util');
+const { execFileSync } = require('child_process');
 
 // router.post("/",(req, res) => {
 //     fs.writeFileSync("./test.js", req.body.code);
@@ -27,24 +28,29 @@ const util = require('node:util')
 //     res.json(testCaseResults)
 
 router.post("/",(req, res) => {
-    // fs.writeFileSync("./test.js", `console.log("hello")`);
-    console.log("wrote file")
+    let inputs = req.body.inputs;
+    let testCaseResults = [];
+
+    inputs.forEach(input => {
+        let code = req.body.code;
+        fs.writeFileSync("./test.js", "const fs = require('fs')\n" + code + '\nlet answ = solution(' + input + ')\nfs.writeFileSync("./test2.js", `${answ}`)');
+        console.log("wrote file")
     
-    const child = execFile('node', ['test.js'], (error, stdout, stderr) => {
-        if (error) {
-            throw error;
-        }
+        const child = execFile('node', ['test.js'], (error, stdout, stderr) => {
+            if (error) {
+                throw error;
+            }
+            // console.log(stdout)
+            // testCaseResults.push(stdout)
+        })
         let output = fs.readFileSync('./test2.js', 'utf8')
-        console.log(output)
+        testCaseResults.push(output);
+        console.log(testCaseResults)
+
     })
-
-
-        
-    
-        
-    
-
-
+    console.log(testCaseResults);
+    res.json(testCaseResults);
+    // fs.writeFileSync("./test.js", req.body.code);
 
     // const execFile = util.promisify(require('node:child_process').execFile);
 
