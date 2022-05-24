@@ -65,7 +65,7 @@ const InterviewRoom = (props) => {
     const solutions = props.room[0].questions[0].solutions;
     const inputs = props.room[0].questions[0].inputs;
     const codeLine = props.room[0].questions[0].codeLine;
-    const [userCode, setUserCode] = useState('function ' + codeLine.substring(codeLine.indexOf('=') + 2) + '(){\n\t\n}');
+    const [userCode, setUserCode] = useState('function solution(){\n\t\n}');
     const [userOutput, setUserOutput] = useState(['','','']);
     const [testCases, setTestCases] = useState([false, false, false]);
     
@@ -80,12 +80,12 @@ const InterviewRoom = (props) => {
         () => {
 
             if(!userCode){
-                const code = 'function ' + codeLine.substring(codeLine.indexOf('=') + 2) + '(){\n\t\n}'
+                const code = 'function solution(){\n\t\n}'
                 setUserCode(code);
             }
 
             let data = {
-                code: userCode + codeLine + '\nmodule.exports = { func }',
+                code: userCode,
                 inputs: inputs
             }
 
@@ -130,7 +130,7 @@ const InterviewRoom = (props) => {
                     <Editor
                         height="65vh"
                         defaultLanguage='javascript'
-                        defaultValue={'function ' + codeLine.substring(codeLine.indexOf("=") + 2) + "(){\n\t\n}"}
+                        defaultValue={'function solution(){\n\t\n}'}
                         theme='vs-dark'
                         onChange={handleChange}
                         />
@@ -166,10 +166,10 @@ const InterviewRoom = (props) => {
                         </div>
                         <div>
                             <label>
-                                User Submitted:
+                                Actual Output:
                             </label>
                             <p>
-                                {userOutput[0].toString()}
+                                {userOutput[0] ? userOutput[0].toString() : "Undefined"}
                             </p>
                         </div>
                     </div>
@@ -198,10 +198,10 @@ const InterviewRoom = (props) => {
                         </div>
                         <div>
                             <label>
-                                User Submitted:
+                                Actual Output:
                             </label>
                             <p>
-                                { userOutput[1].toString() }
+                                { userOutput[1] ? userOutput[1].toString() : "Undefined"}
                             </p>
                         </div>
                     </div>
@@ -228,10 +228,10 @@ const InterviewRoom = (props) => {
                         </div>
                         <div>
                             <label>
-                                User Submitted:
+                                Actual Output:
                             </label>
                             <p>
-                                { userOutput[2].toString() }
+                                { userOutput[2] ? userOutput[2].toString() : "Undefined"}
                             </p>
                         </div>
                     </div>
@@ -406,7 +406,7 @@ export default InterviewRoom;
 //             Output: {solutions[0].toString()}
 //         </div>
 //         <div>
-//             User Submitted: { testCases[0] ? "Passed" : "Failed"}
+//             Actual Output: { testCases[0] ? "Passed" : "Failed"}
 //         </div>
 //     </div>
 //     <div>
@@ -418,7 +418,7 @@ export default InterviewRoom;
 //             Output: {solutions[1].toString()}
 //         </div>
 //         <div>
-//             User Submitted: { testCases[1] ? "Passed" : "Failed"}
+//             Actual Output: { testCases[1] ? "Passed" : "Failed"}
 //         </div>
 //     </div>
 //     <div>
@@ -430,7 +430,7 @@ export default InterviewRoom;
 //             Output: {solutions[2].toString()}
 //         </div>
 //         <div>
-//             User Submitted: { testCases[2] ? "Passed" : "Failed"}
+//             Actual Output: { testCases[2] ? "Passed" : "Failed"}
 //         </div>
 //     </div>
 // </div> */}
