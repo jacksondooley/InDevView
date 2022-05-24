@@ -33,7 +33,7 @@ const App = () => (
           <ProtectedRoute exact path ="/rooms" component={RoomsContainer}/>
           <ProtectedRoute exact path="/rooms/:roomKey/lobby" component={RoomLobbyContainer}/>
           <ProtectedRoute exact path="/rooms/:roomKey/interview" component={InterviewRoomContainer}/>
-          {/* <ProtectedRoute exact path="/editor" component={EditorContainer}/> */}
+          <ProtectedRoute exact path="/rooms/:roomKey/editor" component={EditorContainer}/>
 
           <Route exact path="/about" component={About}/>
           <Route exact path="/questions/all" component={QuestionsIndexContainer}/>

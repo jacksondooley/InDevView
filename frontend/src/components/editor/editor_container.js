@@ -3,14 +3,14 @@ import CodeEditor from './editor'
 
 const mapStateToProps = (state) => {
     return {
-
+        currentUser: state.session.user
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
+// const mapDispatchToProps = (dispatch) => {
+//     return {
 
-    }
-}
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CodeEditor);
+export default connect(mapStateToProps, null)(CodeEditor);

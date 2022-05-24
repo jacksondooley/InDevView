@@ -28,7 +28,6 @@ const RoomLobby = (props) => {
         
         
         socket.on("startInterview", (data) => {
-            console.log("pls sir")
             props.history.push(`/rooms/${props.match.params.roomKey}/interview`)
         })
 
