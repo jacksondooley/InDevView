@@ -12,8 +12,8 @@ const seedQuestions = [
 	{
 		title: "square root",
 		description: "Given a non-negative integer (x), find the square root of x, rounded down to the nearest integer",
-		template: '',
-		solution: '',
+		template: 'function sqRoot(x){\n\t\n}',
+		solution: 'function sqRoot(x){\n\treturn Math.floor(x ** (1 / 2));\n}',
 		difficulty: 1,
 		codeLine: '\nconst func = sqRoot',
         inputs: [4, 8, 576],
@@ -22,8 +22,8 @@ const seedQuestions = [
 	{
 		title: 'doubler',
 		description: "Given an integer (x), return the number that is double of x",
-		template: '',
-		solution: '',
+		template: 'function doubler(x){\n\t\n}',
+		solution: 'function doubler(x){\n\treturn x * 2;\n}',
 		difficulty: 1,
 		codeLine: '\nconst func = doubler',
         inputs: [12, 31, 0],
@@ -32,7 +32,7 @@ const seedQuestions = [
 	{
 		title: 'titleize',
 		description: 'Given a string containing at least one word, captialize the first letter of each word in the string',
-		template: '',
+		template: 'function titleize(str){\n\t\n}',
 		solution: '',
 		difficulty: 2,
 		codeLine: '\nconst func = titlelize',
@@ -42,7 +42,7 @@ const seedQuestions = [
 	{
 		title: 'merge sort',
 		description: 'Given an array of integers, sort the array in ascending order in O(n log(n)) time',
-		template: '',
+		template: 'function mergeSort(arr){\n\t\n}',
 		solution: '',
 		difficulty: 3,
 		codeLine: '\nconst func = mergeSort',
@@ -52,7 +52,7 @@ const seedQuestions = [
 	{
 		title: 'palindrome',
 		description: 'Given a string, return true if the string is a palindrome',
-		template: '',
+		template: 'function palindrome(str){\n\t\n}',
 		solution: '',
 		difficulty: 2,
 		codeLine: '\nconst func = palindrome',
@@ -62,7 +62,7 @@ const seedQuestions = [
 	{
 		title: "valid parentheses",
 		description: 'Given a string that only contains (), {}, and [], determine if the input string is valid, in which open brackets must be closed by the same brackets and brackets must closed in the correct order',
-		template: '',
+		template: 'function validParentheses(str){\n\t\n}',
 		solution: '',
 		difficulty: 3,
 		codeLine: '\nconst func = validParentheses',
@@ -72,7 +72,7 @@ const seedQuestions = [
 	{
 		title: "yell",
 		description: 'Given an array of strings, return an array of strings in which every string in the original array has an ! after it',
-		template: '',
+		template: 'function yell(arr){\n\t\n}',
 		solution: '',
 		difficulty: 1,
 		codeLine: '\nconst func = yell',
@@ -82,7 +82,7 @@ const seedQuestions = [
 	{
 		title: "fizz buzz",
 		description: "Given an integer, return an array containing all of the integers from 1 to the given integer that are divisible by 3 or 5, but not both",
-		template: '',
+		template: 'function fizzBuzz(num){\n\t\n}',
 		solution: '',
 		difficulty: 1,
 		codeLine: '\nconst func = fizzBuzz',
@@ -92,7 +92,7 @@ const seedQuestions = [
 	{
 		title: "valid name",
 		description: "Given a string, check if it contains a first and last name, which are both capitalized and are separated by a space",
-		template: '',
+		template: 'function validName(str){\n\t\n}',
 		solution: '',
 		difficulty: 2,
 		codeLine: '\nconst func = validName',
@@ -102,7 +102,7 @@ const seedQuestions = [
 	{
 		title: "reverse words",
 		description: "Given a string, return a string with the order of the characters of the original string reversed. However, the order of the words in the string remains the same",
-		template: '',
+		template: 'function reverseWords(str){\n\t\n}',
 		solution: '',
 		difficulty: 2,
 		codeLine: '\nconst func = reverseWords',
@@ -112,7 +112,7 @@ const seedQuestions = [
 	{
 		title: "plus one",
 		description: "Given an array of integers that represent digits of an integer, return an array of integers that represent the digits of the resulting integer after adding one to the original integer",
-		template: '',
+		template: 'function plusOne(arr){\n\t\n}',
 		solution: '',
 		difficulty: 2,
 		codeLine: '\nconst func = plusOne',
@@ -122,7 +122,7 @@ const seedQuestions = [
 	{
 		title: "palindrome substring",
 		description: "Given a string, find the longest substring that is a palindrome",
-		template: '',
+		template: 'function palindromeSubString(str){\n\t\n}',
 		solution: '',
 		difficulty: 3,
 		codeLine: '\nconst func = palindromeSubstring',
