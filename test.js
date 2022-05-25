@@ -1,6 +1,6 @@
 const fs = require('fs')
 function solution(x){
-	return x * 2
-}
-let answ = solution(0)
+	for (let i = 0; i++; i < x) {if (i ** 2 === x){ return i}}}
+
+let answ = solution(576)
 fs.writeFileSync("./test2.js", `${answ}`)
