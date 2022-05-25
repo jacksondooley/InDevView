@@ -35,6 +35,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    font-weight: 400;
+    font-size: 1rem;
+
 }
 
 
@@ -45,7 +48,6 @@
     padding-left: 1rem;
     padding-right: 1rem;
     margin: 1rem;
-    font-weight: 400;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
     height: 25px;
 }
@@ -77,7 +79,7 @@
     justify-content: space-around;
     width: fit-content;
     font-family: $poppins;
-    font-weight: 100;
+    // font-weight: 500;
     font-size: 1.2rem;
 }
 
@@ -103,15 +105,13 @@
     background-color: $gray-100;
     color: $cool-gray-900;
     @extend %auth-buttons;
-    border: 1px solid $orange-300;
 }
 
 .login{
     background-color: $cool-gray-900;
     color: $gray-100;
     @extend %auth-buttons;
-    border: 1px solid $orange-300;
-}
+   }
 
 .logout {
     background-color: $blue-900;
@@ -119,6 +119,14 @@
     border: 1px solid $blue-900 !important;
     @extend %auth-buttons;
     box-shadow: $text-shadow;
+}
+
+.about {
+  background-color: $orange-300;
+  color: $blue-900;
+  border: 1px solid $orange-300 !important;
+  @extend %auth-buttons;
+  box-shadow: $text-shadow;
 }
 
 
@@ -143,7 +151,6 @@
     box-sizing: border-box;
     color: $orange-300;
     font-weight: 200;
-    // text-shadow: $text-shadow;
     border-radius: 0.2em;
   }
 
@@ -167,6 +174,7 @@
   position: absolute;
   top: 0;
   padding-top: 3.3em;
+  font-weight: 200;
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
@@ -207,10 +215,10 @@
   }
 
 .nav-about-link {
-  color: $blue-100;
-  font-size: 1.2rem;
-  text-decoration: none;
-  height: 100%;
+  // color: $blue-100;
+  // font-size: 1.2rem;
+  // text-decoration: none;
+  // height: 100%;
   // width: 100%;
 }
 
