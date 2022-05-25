@@ -6,11 +6,13 @@
 	box-shadow: 0 0px 400px $blue-900;
 	padding-top: 50px;
 	width: 100%;
-	height: 10rem;
-  grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
+	height: 15rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 2fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
+		"developers developers developers developers developers"
     ". jackson spencer will .";
 }
 
@@ -18,40 +20,64 @@
   grid-template-columns: 1.2fr 0.8fr;
   grid-template-rows: 0.4fr 1.6fr;
   grid-auto-columns: 1fr;
+  gap: .5rem 0px;
 	width: 12rem;
-  gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     "name name"
     "pic links";
-	font-family: $futura;
+	font-family: $poppins;
+}
+
+.developers {
+	grid-area: developers;
+	display: flex;
+	justify-content: center;
+	font-family: $code;
+	letter-spacing: .2rem;
+	color: $blue-100;
+	font-size: 2rem;
+	-webkit-font-smoothing: antialiased;
+	// font-weight: 300;
 }
 
 .name {
 	grid-area: name;
 	display: flex;
-	text-decoration: underline;
+	// text-decoration: underline;
+	font-family: $code;
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 10px;
-	color: $blue-200;
-	font-weight: 600;
+	color: $blue-100;
+	// font-weight: 400;
+	// letter-spacing: .1rem;
+	-webkit-font-smoothing: antialiased;
+
 	// text-transform: uppercase;
 	// padding: 10px;
 	// letter-spacing: .1rem;
 }
 
-.pic { grid-area: pic; }
+.pic {
+	grid-area: pic;
+}
 
 .links a {
 	display: flex;
 	flex-direction: row;
+	color: $blue-400;
 }
 
 .links {
 	grid-area: links;
 	display: flex;
 	flex-direction: column;
+	font-size: .8rem;
+	height: 100%;
+	// align-items: center;
+	// border: 1px solid white;
+	justify-content: space-around;
 }
 
 
@@ -59,7 +85,7 @@
 	width: 80px;
 	height: 80px;
 	border: 2px solid $blue-900;
-	// border-radius: 50%;
+	border-radius: 50%;
 	box-shadow: $box-shadow;
 }
 

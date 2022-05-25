@@ -24,7 +24,7 @@ const App = () => (
     <div className='inner-body'>
       <NavBarContainer />
       <Switch>
-          <AuthRoute exact path="/" component={MainPage} />
+          <AuthRoute exact path="/" component={About} />
           <AuthRoute exact path="/login" component={LoginFormContainer} />
           <AuthRoute exact path="/signup" component={SignupFormContainer} />
 

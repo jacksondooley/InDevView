@@ -46,7 +46,7 @@ class NavBar extends React.Component {
           </Link>
           <div className='nav-right'>
             <div className='nav-middle'>
-              <Link className='nav-about-link' to='/about/'>About</Link>
+         
             <div className="list-choice">
               <div className="list-choice-title">Explore <i className="fa-brands fa-wpexplorer"></i></div>
                 <div className="list-choice-objects">
@@ -67,6 +67,9 @@ class NavBar extends React.Component {
                     </Link>
                   </label>  
                 </div>
+              </div>
+              <div className='nav-bar-buttons'>
+                <Link className='about' to={'/about'}>About</Link>
               </div>
             </div>
             { this.getLinks() }
