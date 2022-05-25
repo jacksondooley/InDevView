@@ -6,9 +6,45 @@ import createRoom from '../../gifs/createroom.gif';
 import shareRoom from '../../gifs/shareroomkey.gif';
 import joinRoom from '../../gifs/joinroom.gif';
 import readyUp from '../../gifs/readyup.gif';
+import {showModal} from '../../actions/modal_actions';
 
 class About extends React.Component{
+    constructor(props) {
+        super(props)
+
+        this.loginModal = this.loginModal.bind(this);
+        console.log(this.props.loggedIn);
+    }
+
+    loginModal() {
+		this.props.showModal("login")
+	};
+
+    
+    
+    
     render(){
+        const {loggedIn} = this.props;
+        let component;
+        if (loggedIn) { component = 
+            <Link
+                className="signup-btn"
+                to='/rooms'
+                // onClick={this.loginModal}
+                >
+                Start
+            </Link>
+        } else {
+            component=
+                <Link
+                    className="signup-btn"
+                    // to='/rooms'
+                    onClick={this.loginModal}
+                    >
+                    Start
+                </Link> 
+        }
+
         return (
             <div className="about-page">
                 <div className='about-main'>
@@ -22,9 +58,9 @@ class About extends React.Component{
                             </span>
                         </h2>
                     </div>
-                    <Link className="signup-btn" to='/signup'>
-                        Start
-                    </Link>
+                    <div className='start-btn-container'>
+                        {component}
+                    </div>
                 <footer className="splash-footer">
                     Copyright &copy; 2022 InDevView
                 </footer>
@@ -91,4 +127,4 @@ class About extends React.Component{
     }
 }
 
-export default About
+export default About;

@@ -16,18 +16,19 @@ import Chat from './chat';
 import QuestionsIndexContainer from './questions/questions_index_container';
 import QuestionShowContainer from './questions/question_show';
 import Footer from './footer/footer';
-import About from './about/about';
+import AboutContainer from './about/about_container';
 import EditorContainer from './editor/editor_container';
+import ModalContainer from './modal/modal_container';
+
+
 
 const App = () => (
   <>
+    <ModalContainer/>
     <div className='inner-body'>
       <NavBarContainer />
       <Switch>
-          <AuthRoute exact path="/" component={About} />
-          <AuthRoute exact path="/login" component={LoginFormContainer} />
-          <AuthRoute exact path="/signup" component={SignupFormContainer} />
-
+          <AuthRoute exact path="/" component={AboutContainer} />
           <ProtectedRoute exact path="/rooms/create" component={CreateRoomContainer}/>
           <ProtectedRoute exact path="/rooms/join" component={JoinRoomContainer}/>
           <ProtectedRoute exact path ="/rooms" component={RoomsContainer}/>
@@ -35,12 +36,12 @@ const App = () => (
           <ProtectedRoute exact path="/rooms/:roomKey/interview" component={InterviewRoomContainer}/>
           <ProtectedRoute exact path="/rooms/:roomKey/editor" component={EditorContainer}/>
 
-          <Route exact path="/about" component={About}/>
+          <Route exact path="/about" component={AboutContainer}/>
           <Route exact path="/questions/all" component={QuestionsIndexContainer}/>
           <Route exact path='/questions/:id' component={QuestionShowContainer}></Route>
       </Switch>
     </div>
-  <Footer/>
+    <Footer/>
   </>
 );
 

@@ -13,9 +13,16 @@ class LoginForm extends React.Component {
       errors: {}
     };
 
+    this.signupModal = this.signupModal.bind(this);
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
+
+  signupModal() {
+    this.props.closeModal()
+		this.props.showModal("signup");
+	}
 
   // Once the user has been authenticated, redirect to the Tweets page
 //   componentWillReceiveProps(nextProps) {
@@ -35,6 +42,9 @@ class LoginForm extends React.Component {
         this.setState({errors: this.props.errors})
       }
 
+      if (this.props.loggedIn) {
+        this.props.closeModal();
+      }
   }
 
   // Handle field updates (called in the render method)
@@ -53,7 +63,11 @@ class LoginForm extends React.Component {
       password: this.state.password
     };
 
-    this.props.login(user); 
+    this.props.login(user);
+    // this.props.closeModal();
+
+    // componentDidUpdate()  {
+    // }
   }
 
   // Render the session errors if there are any
@@ -94,7 +108,7 @@ class LoginForm extends React.Component {
           {this.renderErrors()}
         </span>
         <small className="form-small">Don't have an account? <br/>
-          <Link className="form-small-link" to="/signup">Sign Up</Link>
+          <Link className="form-small-link" onClick={this.signupModal}>Sign Up</Link>
         </small>
       </div>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { showModal } from '../../actions/modal_actions';
 import '../../stylesheets/navbar.scss'
 // import Timer from './test_timer';
 
@@ -8,12 +9,23 @@ class NavBar extends React.Component {
     super(props);
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
+    this.signupModal = this.signupModal.bind(this);
+		this.loginModal = this.loginModal.bind(this);
+    // console.log(this.props.loggedIn);
   }
 
   logoutUser(e) {
       e.preventDefault();
       this.props.logout();
   }
+
+  signupModal() {
+		this.props.showModal("signup")
+	}
+
+	loginModal() {
+		this.props.showModal("login")
+	}
 
   // Selectively render links dependent on whether the user is logged in
   getLinks() {
@@ -29,14 +41,44 @@ class NavBar extends React.Component {
       } else {
         return (
             <div className='nav-bar-buttons'>
-                <Link className='signup' to={'/signup'}>Signup</Link>
-                <Link className='login' to={'/login'}>Login</Link>
+                <Link
+                  onClick={this.signupModal}
+                  className='signup'
+                >
+                  Sign Up
+                </Link>
+                <Link
+                  onClick={this.loginModal}
+                  className='login'
+                  // to={'/login'}
+                >
+                  Login
+                </Link>
             </div>
         );
       }
   }
 
   render() {
+    const {loggedIn} = this.props;
+    let component;
+    if (loggedIn) { component = 
+      <Link className='nav-link' to='/rooms'>
+        <input type="radio" name="month"/>
+          <span>
+            Rooms
+          </span>
+      </Link>
+    } else {
+        component =
+        <Link className='nav-link' onClick={this.loginModal}>
+          <input type="radio" name="month"/>
+            <span>
+              Rooms
+            </span>
+        </Link>
+    }
+
       return (
         <div className='nav-bar'>
            <Link className='home-button' to="/">
@@ -48,7 +90,10 @@ class NavBar extends React.Component {
             <div className='nav-middle'>
          
             <div className="list-choice">
-              <div className="list-choice-title">Explore <i className="fa-brands fa-wpexplorer"></i></div>
+              <div className="list-choice-title">
+                Explore
+                <i className="fa-brands fa-wpexplorer"></i>
+              </div>
                 <div className="list-choice-objects">
                   <label>
                     <Link className='nav-link' to="/questions/all">
@@ -59,12 +104,7 @@ class NavBar extends React.Component {
                     </Link>
                   </label>  
                   <label>
-                    <Link className='nav-link' to="/rooms">
-                    <input type="radio" name="month"/>
-                      <span>
-                        Rooms
-                      </span>
-                    </Link>
+                    {component}
                   </label>  
                 </div>
               </div>

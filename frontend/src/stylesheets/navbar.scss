@@ -4,20 +4,30 @@
     font-family: $poppins;
     background-color: $background-color;
     color: $blue-100;
-    padding: 1rem;
+    // margin-left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    // padding-right: -4rem !important;
+    // margin-right: 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid $blue-500;
     height: 40px;
+    position:sticky;
+    top:0;
+    width: 100%;
+//     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+// -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+// box-sizing: border-box;         /* Opera/IE 8+ */
     
 }
 
 #home-button-icon {
     font-family: $code;
     font-size: 1.5rem;
-    font-weight: 100;
+    font-weight: 500;
     text-shadow: $text-shadow;
 }
 
@@ -28,6 +38,7 @@
 .home-button{
     text-decoration: none;
     color: $blue-100;
+    margin-left: 1.5rem;
 }
 
 .nav-bar-buttons {
@@ -48,12 +59,12 @@
     padding-left: 1rem;
     padding-right: 1rem;
     margin: 1rem;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
+    // box-shadow: 0px 4px 8px rgba(0,0,0,0.4);
     height: 25px;
 }
 
 .nav-bar-buttons a:hover{
-    box-shadow: none;
+    // box-shadow: none;
 }
 
 .nav-bar-buttons button{
@@ -63,12 +74,13 @@
     padding-left: 1rem;
     padding-right: 1rem;
     font-weight: bold;
-    box-shadow: $text-shadow;
+    // box-shadow: $text-shadow;
     cursor: pointer;
 }
 
 .nav-bar-buttons button:hover{
-    box-shadow: none;
+    // box-shadow: none;
+
 }
 
 .nav-middle {
@@ -80,7 +92,7 @@
     width: fit-content;
     font-family: $poppins;
     // font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .nav-right {
@@ -92,20 +104,12 @@
 }
 
 
-%auth-buttons {
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid $blue-100;
-    // font-size: 1.
-}
-
 .signup{
     background-color: $gray-100;
     color: $cool-gray-900;
     @extend %auth-buttons;
 }
+
 
 .login{
     background-color: $cool-gray-900;
@@ -118,7 +122,7 @@
     color: $blue-100;
     border: 1px solid $blue-900 !important;
     @extend %auth-buttons;
-    box-shadow: $text-shadow;
+    // box-shadow: $text-shadow;
 }
 
 .about {
@@ -126,7 +130,14 @@
   color: $blue-900;
   border: 1px solid $orange-300 !important;
   @extend %auth-buttons;
-  box-shadow: $text-shadow;
+  // box-shadow: $text-shadow;
+}
+
+.fa-wpexplorer {
+  // height: 30px !important;
+  // // width: 30px !important;
+  // size: 2rem;
+  size:"lg"
 }
 
 
@@ -143,15 +154,16 @@
   }
 
   .list-choice-title {
-    width: fit-content;
+    // width: 300p
+    @extend %form-submit;
+    border: none;
     display: block;
     background: $background-color;
-    text-align: center;
-    padding: 0.55em 1em;
-    box-sizing: border-box;
+    // text-align: center;
+    padding: 0rem 1rem !important;
+    // margin-bottom: 5rem !important;
+    height: 100%;
     color: $orange-300;
-    font-weight: 200;
-    border-radius: 0.2em;
   }
 
   .list-choice:hover .list-choice-title {
@@ -163,7 +175,7 @@
   .list-choice input[type="radio"] + span {
   color: #FFF;
   background: $blue-700;
-  padding: 0.55em 1em;
+  padding: 0.55rem 1rem;
   display: block;
   text-align: center;
   box-sizing: border-box;
@@ -212,6 +224,9 @@
 
   .nav-link {
       text-decoration: none;
+      // padding-left: 2rem !important;
+      // width: 100%;
+      // margin-left: 2rem;
   }
 
 .nav-about-link {

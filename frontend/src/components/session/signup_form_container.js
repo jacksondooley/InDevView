@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
-import { signup } from '../../actions/session_actions';
+import { signup, login } from '../../actions/session_actions';
 import SignupForm from './signup_form';
+import { showModal, closeModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state) => {
   return {
+    loggedIn: state.session.isAuthenticated,
     signedIn: state.session.isSignedIn,
     errors: state.errors.session
   };
@@ -11,7 +13,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signup: user => dispatch(signup(user))
+    signup: user => dispatch(signup(user)),
+    login: user => dispatch(login(user)),
+    closeModal: () => dispatch(closeModal()),
+    showModal: modal => dispatch(showModal(modal))
   }
 }
 
