@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRoom } from "../../actions/room_actions";
 import '../../stylesheets/interview_room.scss'
@@ -14,13 +14,19 @@ const InterviewRoom = (props) => {
     const room = useSelector(state => state.room);
     const currentUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-
-    const solutions = props.room[0].questions[0].solutions;
-    const inputs = props.room[0].questions[0].inputs;
-    const codeLine = props.room[0].questions[0].codeLine;
+    const roomKey = props.match.params.roomKey
+    const solutions = props.room[0]?.questions[0].solutions;
+    const inputs = props.room[0]?.questions[0].inputs;
+    const codeLine = props.room[0]?.questions[0].codeLine;
     const [userCode, setUserCode] = useState('function solution(){\n\t\n}');
     const [userOutput, setUserOutput] = useState(['','','']);
     const [testCases, setTestCases] = useState([false, false, false]);
+
+    const editorRef = useRef(null);
+
+    function handleEditorDidMount(editor, monaco) {
+        editorRef.current = editor; 
+    }
 
     useEffect(() => {
         socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
@@ -30,6 +36,10 @@ const InterviewRoom = (props) => {
             dispatch(receiveRoom(data))
             socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
         })
+
+        socket.on("receiveEditorChange", (data) => {
+            setUserCode(data)
+        })
         
         return () => {
             socket.emit("leaveRoom", {roomKey: props.match.params.roomKey, handle: props.currentUser.handle})
@@ -37,6 +47,16 @@ const InterviewRoom = (props) => {
         }
 
     }, [])
+
+    useEffect(() => {
+        if (editorRef.current) {
+            if (editorRef.current.getValue() !== userCode) {
+                const cursorPosition = editorRef.current.getPosition();
+                editorRef.current.setValue(userCode);
+                editorRef.current.setPosition(cursorPosition);
+            }
+        }
+    }, [userCode])
 
     const PassFail = (testCase) => {
         return testCase ? (
@@ -73,7 +93,12 @@ const InterviewRoom = (props) => {
 
     const handleChange = useCallback(
         (value, event) => {
-            setUserCode(value);
+            // setUserCode(value);
+            let data = {
+                editorData: value,
+                roomKey
+            }
+            socket.emit("sendEditorChange", data)
         }
     )
 
@@ -118,6 +143,7 @@ const InterviewRoom = (props) => {
                         defaultLanguage='javascript'
                         defaultValue={'function solution(){\n\t\n}'}
                         theme='vs-dark'
+                        onMount={handleEditorDidMount}
                         onChange={handleChange}
                         />
                 </div>
@@ -304,21 +330,7 @@ const InterviewRoom = (props) => {
                             )}
                         </ul>
                     </div>
-                    {/* <p>{props.room?.participants.length < 2 ? "Waiting on other people..." : "Ready!"}</p> */}
                 </div>
-                    {/* {props.room[0]?.interviewees.map(member => 
-                        (
-                            <li>
-                            {member.handle}
-                            </li>
-                            ))}
-                            {props.room[0]?.interviewers.map(member => 
-                                (
-                                    <li>
-                                    {member.handle}
-                                    </li>
-                                ))} */}
-                
             </div>
             <div className="part-head">
             <div className='diff-display'>

@@ -135,6 +135,12 @@ io.on("connection", (socket) => {
             })
     })
 
+    socket.on("sendEditorChange", (data) => {
+        console.log(data.editorData)
+
+        socket.broadcast.to(data.roomKey).emit("receiveEditorChange", data.editorData)
+    })
+
     socket.on("disconnect", () => {
         console.log("Client disconnected");
     })
