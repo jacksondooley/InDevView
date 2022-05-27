@@ -25,18 +25,18 @@ class SignupForm extends React.Component {
 		this.props.showModal("login")
 	}
 
-//   componentWillReceiveProps(nextProps) {
-//     if (nextProps.signedIn === true) {
-//       this.props.history.push('/login');
-//     }
+  componentWillReceiveProps(nextProps) {
+    // if (nextProps.signedIn === true) {
+    //   this.props.history.push('/');
+    // }
 
-//     this.setState({errors: nextProps.errors})
-//   }
+    this.setState({errors: nextProps.errors})
+  }
 
   componentDidUpdate(prevProps) {
-      if (this.props.signedIn === true) {
-          this.props.history.push('/')
-      }
+      // if (this.props.signedIn === true) {
+      //     this.props.history.push('/')
+      // }
 
       if (this.props.errors !== prevProps.errors) {
         this.setState({errors: this.props.errors})
@@ -62,14 +62,19 @@ class SignupForm extends React.Component {
       password2: this.state.password2
     };
 
-    // let newUser = {
-    //   email: this.state.email,
-    //   password: this.state.password
-    // }
+    let user2 = {
+      email: this.state.email,
+      password: this.state.password
+    }
 
-    this.props.signup(user, this.props.history);
-    // this.props.login(newUser);
-    // this.props.closeModal();
+    this.props.signup(user).then(
+      ()=>{
+
+        if (this.props.isAuthenticated === true) {
+            this.props.closeModal();                 
+        }
+      }
+    )
   }
 
   renderErrors() {
@@ -125,6 +130,7 @@ class SignupForm extends React.Component {
           <Link
             className="form-small-link"
             onClick={this.loginModal}
+            to="/"
             >Login
           </Link>
         </small>

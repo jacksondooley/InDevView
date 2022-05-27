@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { showModal } from '../../actions/modal_actions';
+// import { showModal } from '../../actions/modal_actions';
 import '../../stylesheets/navbar.scss'
 // import Timer from './test_timer';
 
@@ -44,13 +44,14 @@ class NavBar extends React.Component {
                 <Link
                   onClick={this.signupModal}
                   className='signup'
+                  to={"/"}
                 >
                   Sign Up
                 </Link>
                 <Link
                   onClick={this.loginModal}
                   className='login'
-                  // to={'/login'}
+                  to={'/'}
                 >
                   Login
                 </Link>

@@ -36,7 +36,7 @@ class LoginForm extends React.Component {
 
   componentDidUpdate(prevProps){
       if (this.props.currentUser === true) {
-          this.props.history.push('/')
+          this.props.history.push('/login')
       } 
       if (this.props.errors !== prevProps.errors) {
         this.setState({errors: this.props.errors})
@@ -64,10 +64,6 @@ class LoginForm extends React.Component {
     };
 
     this.props.login(user);
-    // this.props.closeModal();
-
-    // componentDidUpdate()  {
-    // }
   }
 
   // Render the session errors if there are any
