@@ -5,7 +5,7 @@ const roomsReducer = (state = {}, action) => {
   const dupState = Object.assign({}, state)
   switch(action.type) {
     case RECEIVE_ROOM:
-      const room = action.room
+      const room = Object.assign({}, action.room)
       console.log(room[0])
       return room
     case RECEIVE_PARTICIPANT:

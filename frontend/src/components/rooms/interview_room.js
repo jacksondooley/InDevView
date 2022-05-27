@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useParams } from "react-router-dom"
 import '../../stylesheets/interview_room.scss'
 import Editor from '@monaco-editor/react'
 import { compile } from "../../util/compile_api_util";
@@ -10,7 +11,7 @@ import { receiveRoom } from "../../actions/room_actions";
 const InterviewRoom = (props) => {
     const room = useSelector(state => state.room);
     const dispatch = useDispatch();
-    const roomKey = props.match.params.roomKey
+    const { roomKey } = useParams();
     const solutions = props.room[0]?.questions[0].solutions;
     const inputs = props.room[0]?.questions[0].inputs;
     const codeLine = props.room[0]?.questions[0].codeLine;
@@ -25,15 +26,23 @@ const InterviewRoom = (props) => {
     const editorRef = useRef(null);
 
     function handleEditorDidMount(editor, monaco) {
+        console.log(editorRef)
         editorRef.current = editor; 
+        console.log(editorRef)
     }
 
+    let letParams = useParams();
+    const constParams = useParams()
+    console.log(`letParams: ${letParams.roomKey}`)
+    console.log(`constParams: ${constParams.roomKey}`)
+
     useEffect(() => {
-        socket.emit("joinRoom", { roomKey, handle: props.currentUser.handle, component: 'interview' })
-        socket.emit("fetchRoom", {roomKey})
+        socket.emit("fetchRoom", {roomKey: roomKey})
+        socket.emit("joinRoom", { roomKey: roomKey, handle: props.currentUser.handle, component: 'interview' })
 
         socket.on("fetchRoomRes", (data) => {
             dispatch(receiveRoom(data))
+            // socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
         })
 
         socket.on("receiveEditorChange", (data) => {
@@ -42,8 +51,9 @@ const InterviewRoom = (props) => {
         })
         
         return () => {
-            socket.emit("leaveRoom", {roomKey, handle: props.currentUser.handle})
-            socket.emit("leaveLobby", { roomKey, userId: props.currentUser.id } )
+            socket.emit("leaveRoom", {roomKey: roomKey, handle: props.currentUser.handle})
+            socket.emit("leaveLobby", { roomKey: roomKey, userId: props.currentUser.id } )
+            socket.removeAllListeners()
         }
 
     }, [])
@@ -298,7 +308,7 @@ const InterviewRoom = (props) => {
                         Chat
                     </div>
                     <div>
-                        <Chat />
+                        <Chat roomKey={roomKey}/>
                     </div>
                 </div>
             </div>

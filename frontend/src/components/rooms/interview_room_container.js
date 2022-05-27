@@ -2,7 +2,8 @@ import { connect } from 'react-redux'
 import InterviewRoom from './interview_room'
 import { fetchRoom } from '../../actions/room_actions'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+    console.log(ownProps)
     return {
         currentUser: state.session.user,
         room: state.room

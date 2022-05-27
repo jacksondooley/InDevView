@@ -83,6 +83,7 @@ io.on("connection", (socket) => {
     })
 
     socket.on("fetchRoom", (data) => {
+        console.log(`fetchRoomData: ${data.roomKey}`)
         Room.find({ room_key: data.roomKey})        
             .then(res => io.to(data.roomKey).emit("fetchRoomRes", res))
     })
