@@ -4,6 +4,7 @@
     background-color: $background-color;
     color: $blue-100;
     font-family: $code;
+    font-weight: 500;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -20,11 +21,23 @@
     flex-direction: column;
     text-align: center;
     row-gap: 2rem;
-
-    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    align-items: flex-start;
     align-items: center !important;
-    height: 55rem;
+    height: 40rem;
     border-bottom: 4px solid $blue-700;
+}
+
+.start-btn-container {
+    // position: relativ;
+    margin-bottom: auto;
+    bottom: 0;
+}
+
+
+.about-main h1 {
+    font-weight: 500 !important;
 }
 
 .about-middle img {
@@ -123,12 +136,8 @@
 
 
 .signup-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
     @extend %form-submit;
-    
+    font-size: 1.5rem;
 }
 
 

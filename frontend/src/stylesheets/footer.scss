@@ -30,12 +30,14 @@
 }
 
 .developers {
+	font-weight: 800;
+	color: $cool-gray-300;
 	grid-area: developers;
 	display: flex;
 	justify-content: center;
 	font-family: $code;
 	letter-spacing: .2rem;
-	color: $blue-100;
+	// color: $blue-100;
 	font-size: 2rem;
 	-webkit-font-smoothing: antialiased;
 	// font-weight: 300;
@@ -66,7 +68,7 @@
 .links a {
 	display: flex;
 	flex-direction: row;
-	color: $blue-400;
+	color: $cool-gray-300;
 }
 
 .links {
@@ -126,6 +128,7 @@
 
 .fa-brands {
 	margin-right: 0.5rem;
+	margin-left: 0.5rem;
 }
 
 .personal-link:hover {

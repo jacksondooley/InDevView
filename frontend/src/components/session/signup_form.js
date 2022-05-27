@@ -6,6 +6,7 @@ import '../../stylesheets/signup_form.scss'
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       email: '',
       handle: '',
@@ -13,25 +14,36 @@ class SignupForm extends React.Component {
       password2: '',
       errors: {}
     };
-
+    
+    this.loginModal = this.loginModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
   }
 
-//   componentWillReceiveProps(nextProps) {
-//     if (nextProps.signedIn === true) {
-//       this.props.history.push('/login');
-//     }
+  loginModal() {
+    this.props.closeModal()
+		this.props.showModal("login")
+	}
 
-//     this.setState({errors: nextProps.errors})
-//   }
+  componentWillReceiveProps(nextProps) {
+    // if (nextProps.signedIn === true) {
+    //   this.props.history.push('/');
+    // }
+
+    this.setState({errors: nextProps.errors})
+  }
 
   componentDidUpdate(prevProps) {
-      if (this.props.signedIn === true) {
-          this.props.history.push('/login')
-      }
+      // if (this.props.signedIn === true) {
+      //     this.props.history.push('/')
+      // }
+
       if (this.props.errors !== prevProps.errors) {
         this.setState({errors: this.props.errors})
+      }
+
+      if (this.props.loggedIn) {
+        this.props.closeModal();
       }
   }
 
@@ -50,7 +62,19 @@ class SignupForm extends React.Component {
       password2: this.state.password2
     };
 
-    this.props.signup(user, this.props.history); 
+    let user2 = {
+      email: this.state.email,
+      password: this.state.password
+    }
+
+    this.props.signup(user).then(
+      ()=>{
+
+        if (this.props.isAuthenticated === true) {
+            this.props.closeModal();                 
+        }
+      }
+    )
   }
 
   renderErrors() {
@@ -96,14 +120,19 @@ class SignupForm extends React.Component {
                 placeholder="Confirm Password"
               />
             <br/>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Sign Up" />
             <span className="form-errors">
               {this.renderErrors()}
             </span>
           </div>
         </form>
         <small className="form-small">Already have an account? <br/>
-          <Link className="form-small-link" to="/login">Login</Link>
+          <Link
+            className="form-small-link"
+            onClick={this.loginModal}
+            to="/"
+            >Login
+          </Link>
         </small>
       </div>
     );

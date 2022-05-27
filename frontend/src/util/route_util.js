@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
+import { showModal } from '../actions/modal_actions';
 
 
 const Auth = ({ component: Component, path, loggedIn, exact }) => (
@@ -20,7 +21,8 @@ const Protected = ({ component: Component, loggedIn, ...rest }) => (
       loggedIn ? (
         <Component {...props} />
       ) : (
-        <Redirect to="/login" />
+        <Redirect to="/" />
+
       )
     }
   />

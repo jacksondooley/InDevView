@@ -1,0 +1,19 @@
+@import './variables.scss';
+
+.modal-bg {
+	z-index: 10000;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-guts {
+	display: flex;
+	justify-content: space-around;
+}

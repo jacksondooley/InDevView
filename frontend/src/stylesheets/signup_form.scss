@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 .signup-form-container{
-   @extend %component-container;
+    @extend %modal-container;
 }
 
 .signup-form-container h1{
@@ -14,7 +14,6 @@
 
 .signup-form-container input[type=submit]{
     @extend %form-submit;
-    transition: $transition;
 }
 
 .signup-form-container input[type=submit]:hover{
