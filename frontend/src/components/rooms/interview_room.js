@@ -17,13 +17,13 @@ const InterviewRoom = (props) => {
     const solutions = props.room[0]?.questions[0].solutions;
     const inputs = props.room[0]?.questions[0].inputs;
     const codeLine = props.room[0]?.questions[0].codeLine;
+    const currentUserId = useSelector(state => state.session.user.id)
     const [userCode, setUserCode] = useState({
         editorCode: 'function solution(){\n\t\n}',
-        lastUserId: 0
+        lastUserId: currentUserId
     });
     const [userOutput, setUserOutput] = useState(['','','']);
     const [testCases, setTestCases] = useState([false, false, false]);
-    const currentUserId = useSelector(state => state.session.user.id)
 
     const editorRef = useRef(null);
 
@@ -56,13 +56,17 @@ const InterviewRoom = (props) => {
         console.log("in useEffect-userCode")
         console.log(userCode)
         if (editorRef.current) {
-            if (editorRef.current.getValue() !== userCode.editorCode && currentUserId !== userCode.lastUserId ) {
+            if (userCode.lastUserId === 0) {
                 const cursorPosition = editorRef.current.getPosition();
                 editorRef.current.setValue(userCode.editorCode);
                 editorRef.current.setPosition(cursorPosition);
+                setUserCode({
+                    editorCode: userCode.editorCode,
+                    lastUserId: currentUserId
+                })
             }
         }
-    }, [userCode])
+    }, [userCode.editorCode])
 
     const PassFail = (testCase) => {
         return testCase ? (
@@ -100,9 +104,8 @@ const InterviewRoom = (props) => {
     const handleChange = useCallback(
         (value, event) => {
 
-
             
-            if (userCode.lastUserId === currentUserId || userCode.lastUserId === 0) {
+            if (userCode.lastUserId === currentUserId) {
                 setUserCode({
                     lastUserId: currentUserId,
                     editorCode: value,

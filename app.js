@@ -138,7 +138,7 @@ io.on("connection", (socket) => {
     socket.on("sendEditorChange", (data) => {
         console.log(data)
         const newData = {
-            lastUserId: data.lastUserId,
+            lastUserId: 0,
             editorCode: data.editorCode
         }
         socket.broadcast.to(data.roomKey).emit("receiveEditorChange", newData)
@@ -148,26 +148,6 @@ io.on("connection", (socket) => {
         console.log("Client disconnected");
     })
 })
-
-
-
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/app.html');
-// });
-
-// io.on('connection', (socket) => {
-//   console.log('a user connected');
-//   socket.on('disconnect', () => {
-//     console.log('user disconnected')
-//   })
-//   socket.on('chat message', (msg) => {
-//     io.emit('chat message', msg);
-//   });
-// })
-
-// server.listen(5001, () => {
-//   console.log('listening on *:3000');
-// })
 
 
 
