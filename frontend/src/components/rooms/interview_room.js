@@ -12,15 +12,18 @@ import { receiveRoom } from "../../actions/room_actions";
 
 const InterviewRoom = (props) => {
     const room = useSelector(state => state.room);
-    const currentUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const roomKey = props.match.params.roomKey
     const solutions = props.room[0]?.questions[0].solutions;
     const inputs = props.room[0]?.questions[0].inputs;
     const codeLine = props.room[0]?.questions[0].codeLine;
-    const [userCode, setUserCode] = useState('function solution(){\n\t\n}');
+    const [userCode, setUserCode] = useState({
+        editorCode: 'function solution(){\n\t\n}',
+        lastUserId: 0
+    });
     const [userOutput, setUserOutput] = useState(['','','']);
     const [testCases, setTestCases] = useState([false, false, false]);
+    const currentUserId = useSelector(state => state.session.user.id)
 
     const editorRef = useRef(null);
 
@@ -38,6 +41,7 @@ const InterviewRoom = (props) => {
         })
 
         socket.on("receiveEditorChange", (data) => {
+            console.log("receiveEditorChange")
             setUserCode(data)
         })
         
@@ -49,10 +53,12 @@ const InterviewRoom = (props) => {
     }, [])
 
     useEffect(() => {
+        console.log("in useEffect-userCode")
+        console.log(userCode)
         if (editorRef.current) {
-            if (editorRef.current.getValue() !== userCode) {
+            if (editorRef.current.getValue() !== userCode.editorCode && currentUserId !== userCode.lastUserId ) {
                 const cursorPosition = editorRef.current.getPosition();
-                editorRef.current.setValue(userCode);
+                editorRef.current.setValue(userCode.editorCode);
                 editorRef.current.setPosition(cursorPosition);
             }
         }
@@ -93,25 +99,35 @@ const InterviewRoom = (props) => {
 
     const handleChange = useCallback(
         (value, event) => {
-            // setUserCode(value);
-            let data = {
-                editorData: value,
-                roomKey
+
+
+            
+            if (userCode.lastUserId === currentUserId || userCode.lastUserId === 0) {
+                setUserCode({
+                    lastUserId: currentUserId,
+                    editorCode: value,
+                });
+                let data = {
+                    lastUserId: currentUserId,
+                    editorCode: value,
+                    roomKey
+                }
+                
+                socket.emit("sendEditorChange", data)
             }
-            socket.emit("sendEditorChange", data)
         }
     )
 
     const handleClick = useCallback(
         () => {
 
-            if(!userCode){
-                const code = 'function solution(){\n\t\n}'
-                setUserCode(code);
-            }
+            // if(!userCode){
+            //     const editorCode = 'function solution(){\n\t\n}'
+            //     setUserCode(code);
+            // }
 
             let data = {
-                code: userCode,
+                code: userCode.editorCode,
                 inputs: inputs
             }
 

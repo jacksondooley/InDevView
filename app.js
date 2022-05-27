@@ -136,9 +136,12 @@ io.on("connection", (socket) => {
     })
 
     socket.on("sendEditorChange", (data) => {
-        console.log(data.editorData)
-
-        socket.broadcast.to(data.roomKey).emit("receiveEditorChange", data.editorData)
+        console.log(data)
+        const newData = {
+            lastUserId: data.lastUserId,
+            editorCode: data.editorCode
+        }
+        socket.broadcast.to(data.roomKey).emit("receiveEditorChange", newData)
     })
 
     socket.on("disconnect", () => {

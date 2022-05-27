@@ -19,7 +19,7 @@ const RoomLobby = (props) => {
     console.log(props)
     let room = useSelector(state => state.room)
     const dispatch = useDispatch()
-    const currentUser = useSelector(state => state.session.user)
+    
 
     useEffect(() => {
         // dispatch(fetchRoom(props.match.params.roomKey))
