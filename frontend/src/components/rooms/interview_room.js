@@ -1,11 +1,8 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRoom } from "../../actions/room_actions";
 import '../../stylesheets/interview_room.scss'
-import EditorContainer from "../editor/editor_container";
 import Editor from '@monaco-editor/react'
 import { compile } from "../../util/compile_api_util";
-import { questionsObj } from "../questions/questions_obj";
 import {socket} from '../../util/socket_client_util';
 import Chat from "../chat";
 import { receiveRoom } from "../../actions/room_actions";
@@ -32,12 +29,11 @@ const InterviewRoom = (props) => {
     }
 
     useEffect(() => {
-        socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
-        socket.emit("fetchRoom", {roomKey: props.match.params.roomKey})
+        socket.emit("joinRoom", { roomKey, handle: props.currentUser.handle, component: 'interview' })
+        socket.emit("fetchRoom", {roomKey})
 
         socket.on("fetchRoomRes", (data) => {
             dispatch(receiveRoom(data))
-            socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
         })
 
         socket.on("receiveEditorChange", (data) => {
@@ -46,8 +42,8 @@ const InterviewRoom = (props) => {
         })
         
         return () => {
-            socket.emit("leaveRoom", {roomKey: props.match.params.roomKey, handle: props.currentUser.handle})
-            socket.emit("leaveLobby", { roomKey: props.match.params.roomKey, userId: props.currentUser.id } )
+            socket.emit("leaveRoom", {roomKey, handle: props.currentUser.handle})
+            socket.emit("leaveLobby", { roomKey, userId: props.currentUser.id } )
         }
 
     }, [])

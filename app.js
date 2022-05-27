@@ -64,7 +64,7 @@ io.on("connection", (socket) => {
 
     socket.on("joinRoom", (data) => {
         socket.join(data.roomKey)
-        console.log(`${data.handle} has joined ${data.roomKey}`)
+        console.log(`${data.handle} has joined ${data.roomKey} from ${data.component}`)
         io.emit("userJoinedRoom", `${data.handle} has joined ${data.roomKey}`)
     })
 
@@ -127,8 +127,6 @@ io.on("connection", (socket) => {
                 const filteredInterviewees = res[0].interviewees.filter((user) => data.userId !== user.id)
                 res[0].interviewers = filteredInterviewers
                 res[0].interviewees = filteredInterviewees
-                // res[0].markModified('interviewers')
-                // res[0].markModified('in')
                 res[0].update()
 
                 io.to(data.roomKey).emit("fetchRoomRes", res)

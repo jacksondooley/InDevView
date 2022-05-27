@@ -24,7 +24,7 @@ const RoomLobby = (props) => {
     useEffect(() => {
         // dispatch(fetchRoom(props.match.params.roomKey))
         socket.emit("fetchRoom", {roomKey: props.match.params.roomKey})
-        socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
+        socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle, component: 'lobby' })
         
         
         socket.on("startInterview", (data) => {
@@ -33,7 +33,7 @@ const RoomLobby = (props) => {
 
         socket.on("fetchRoomRes", (data) => {
             dispatch(receiveRoom(data))
-            socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle })
+            // socket.emit("joinRoom", { roomKey: props.match.params.roomKey, handle: props.currentUser.handle, component: 'lobby2' })
         })
         
         return () => {
