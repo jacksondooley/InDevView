@@ -26,7 +26,7 @@ const Footer = () => {
 							<a className='personal-link' target='_blank' href='https://www.linkedin.com/in/jacksondooley/'>
 								<i class="fa-brands fa-linkedin"></i>LinkedIn
 							</a>
-							<a className='personal-link' target='_blank' href='https://github.com/jacksondooley'>
+							<a className='personal-link' target='_blank' href='https://angel.co/u/jacksondooley'>
 								<i class="fa-brands fa-angellist"></i>AngelList
 							</a>
 
@@ -49,10 +49,10 @@ const Footer = () => {
 							<a className='personal-link' target='_blank' href='https://github.com/Spencer-JLee'>
 								<i class="fa-brands fa-github"></i>Github
 							</a>
-							<a className='personal-link' target='_blank' href='https://www.linkedin.com/in/jacksondooley/'>
+							<a className='personal-link' target='_blank' href='https://www.linkedin.com/in/spencer-lee-693335186/'>
 								<i class="fa-brands fa-linkedin"></i>LinkedIn
 							</a>
-							<a className='personal-link' target='_blank' href='https://github.com/jacksondooley'>
+							<a className='personal-link' target='_blank' href='https://angel.co/u/spencer-lee-13'>
 								<i class="fa-brands fa-angellist"></i>AngelList
 							</a>
 
