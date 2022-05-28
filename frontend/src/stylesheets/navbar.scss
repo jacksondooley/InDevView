@@ -174,13 +174,17 @@
   }
   .list-choice input[type="radio"] + span {
   color: #FFF;
-  background: $blue-700;
-  padding: 0.55rem 1rem;
+  background: $blue-900;
+  color: $orange-300;
+  padding: 1rem;
   display: block;
   text-align: center;
   box-sizing: border-box;
   cursor: pointer;
   width: 100%;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
   }
   .list-choice-objects {
   position: absolute;
@@ -191,22 +195,21 @@
   width: 100%;
   overflow: hidden;
   max-height: 0;
-  transition: $transition;
+  transition: 300ms ease-in;
   }
   .list-choice:hover .list-choice-objects  input[type="radio"] + span {
     position: relative;
     top: 0;
-    transition: $transition;
+    transition: 300ms ease-in;
   }
   .list-choice:hover input[type="radio"] + span:hover {
-    box-shadow: 0 0 20px 20px $orange-800 inset;
+    box-shadow: 0 0 20px 20px $blue-800 inset;
 
   }
   .list-choice:hover input[type="radio"]:checked + span:hover {
     background:$secondary-baby-blue;
   }
   .list-choice input[type="radio"]:checked + span {
-    background: $cool-gray-100;
     position: absolute;
     top: 0em;
     border-radius: 5px;
@@ -224,19 +227,5 @@
 
   .nav-link {
       text-decoration: none;
-      // padding-left: 2rem !important;
-      // width: 100%;
-      // margin-left: 2rem;
+      font-weight: 500;
   }
-
-.nav-about-link {
-  // color: $blue-100;
-  // font-size: 1.2rem;
-  // text-decoration: none;
-  // height: 100%;
-  // width: 100%;
-}
-
-.nav-about-link:hover {
-  // text-decoration: underline;
-}
