@@ -127,32 +127,32 @@ const InterviewRoom = (props) => {
         }
     )
 
-    const handleClick = useCallback(
+    const handleRunTests = useCallback(
         () => {
-
+            
             // if(!userCode){
-            //     const editorCode = 'function solution(){\n\t\n}'
-            //     setUserCode(code);
-            // }
-
-            let data = {
-                code: userCode.editorCode,
-                inputs: inputs
-            }
-
-            compile(data).then(({ data }) => {
-                setUserOutput(data)
-
-                // checks if output is equal to solution
-                const newData = data.map((output, idx) => {
-                    console.log(`${idx}: ${output} ${solutions[idx]}`)
-                    console.log(parseInt(output) === solutions[idx])
-                    return solutions[idx] === parseInt(output)
+                //     const editorCode = 'function solution(){\n\t\n}'
+                //     setUserCode(code);
+                // }
+                
+                let data = {
+                    code: userCode.editorCode,
+                    inputs: inputs
+                }
+                
+                compile(data).then(({ data }) => {
+                    setUserOutput(data)
+                    
+                    // checks if output is equal to solution
+                    const newData = data.map((output, idx) => {
+                        console.log(`${idx}: ${output} ${solutions[idx]}`)
+                        console.log(parseInt(output) === solutions[idx])
+                        return solutions[idx] === parseInt(output)
+                    })
+                    
+                    setTestCases(newData)
                 })
-
-                setTestCases(newData)
-            })
-        }
+            }
     )
 
     
@@ -173,9 +173,9 @@ const InterviewRoom = (props) => {
                         />
                 </div>
 
-                <div className='test-cases'>
+                <div className='test-cases' id='test-cases'>
                     <div className='run-test-btn-container'>
-                        <button onClick={handleClick}>Run tests</button>
+                        <button onClick={handleRunTests}>Run tests</button>
                     </div>
                     <div className='test-case'>
                         <div className='test-case-header'>
