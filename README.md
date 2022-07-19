@@ -1,5 +1,5 @@
 # InDevView
-InDevView is an application that allows users to practice for technical interviews with other users. By requesting another user to join their room, users can communicate with each other via live chat and practice their whiteboarding/coding skills with the built in code editor.
+[InDevView](https://indevview.herokuapp.com/#/) is an application that allows users to practice for technical interviews with other users. By requesting another user to join their room, users can communicate with each other via live chat and practice their whiteboarding/coding skills with the built in code editor.
 
 ## Technologies
 
