@@ -23,3 +23,8 @@
 ### Ready Up
 ![Ready Up](/frontend/src/gifs/readyup.gif)
 
+### Code Together
+![Code Together](/Pictures/solve_problem.png)
+
+### Run Test Cases
+![Test Cases](/Pictures/test_cases.png)
